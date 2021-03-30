@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="MileStone1.View.GraphView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MileStone1"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Height="600.042" Width="1149.76" Background="White">
+    <Grid Margin="10,0,0,0">
+        <ListBox x:Name="lbx_property_names" ItemsSource="{Binding PropertyIndexes}"
+                 SelectedValue="{Binding PropertyIndexesId}" 
+             SelectedValuePath="Id" DisplayMemberPath="Name"
+                 HorizontalAlignment="Left" Height="428" Margin="437,111,0,0" VerticalAlignment="Top" Width="80" SelectionChanged="lbx_property_names_SelectionChanged" Background="#FFF3EEEE"/>
+        <oxy:Plot Title="{Binding Title}" Margin="575,263,80,143" Background="#FFEBEBEB">
+            <oxy:Plot.Axes>
+                <oxy:DateTimeAxis Position="Bottom"
+                                    StringFormat="hh:mm"
+                                    MajorGridlineStyle="Solid"
+                                    MinorGridlineStyle="Dot"
+                                    IntervalType="Minutes"
+                                    IntervalLength="30" />
+                <oxy:LinearAxis Position="Left"
+                                MajorGridlineStyle="Solid"
+                                MinorGridlineStyle="Dot"
+                                IntervalLength="50" />
+            </oxy:Plot.Axes>
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding Points}"/>
+            </oxy:Plot.Series>
+        </oxy:Plot>
+    </Grid>
+</UserControl>
