@@ -4,18 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MileStone1"
-        xmlns:Controls="clr-namespace:MileStone1.Controls" xmlns:transmitter="clr-namespace:Transmitter" d:DataContext="{d:DesignInstance Type=local:SliderControlVM}"
+        xmlns:ProgressBar="clr-namespace:MileStone1.Controls" d:DataContext="{d:DesignInstance Type=local:SliderControlVM}"
+        xmlns:Controls="clr-namespace:MileStone1.Controls"
+        xmlns:Graph="clr-namespace:MileStone1.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="19*"/>
-            <RowDefinition Height="12*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Controls:ProgressBarView x:Name="animationSlide" Grid.RowSpan="2" LineToTransmit="{Binding VM_LineToTransmit}" RunAnimation="{Binding VM_RunAnimation}"/>
-        <Button Name ="b1" Content="LineNumber:" HorizontalAlignment="Left" Margin="304,164,0,0" VerticalAlignment="Top" Height="53" Width="86" Click="Button_Click"/>
-
+        <ProgressBar:ProgressBarView x:Name="animationSlide" Grid.RowSpan="3" LineToTransmit="{Binding VM_LineToTransmit}" RunAnimation="{Binding VM_RunAnimation}"/>
+        <Graph:GraphView x:Name="Graph" Grid.RowSpan="2" Margin="0,0,0,0" HorizontalAlignment="Right"/>
+        <Button Name ="b1" Content="LineNumber:" Margin="0,0,714,0" VerticalAlignment="Top" Height="53" Click="Button_Click"/>
     </Grid>
+
 </Window>
 
     

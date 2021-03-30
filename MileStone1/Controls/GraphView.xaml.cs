@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MileStone1.ViewModel;
 
-namespace MileStone1.View
+namespace MileStone1.Controls
 {
     public partial class GraphView : UserControl
     {
@@ -22,6 +22,7 @@ namespace MileStone1.View
         ViewModel.GraphVM gvm;
         public GraphView()
         {
+            InitializeComponent();
             Model.GraphModel gm = new Model.GraphModel();
             gvm = new ViewModel.GraphVM(gm);
             //connects the model and the viewModel (propreties and view)
