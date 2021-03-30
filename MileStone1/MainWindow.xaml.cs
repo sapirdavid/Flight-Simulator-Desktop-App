@@ -17,7 +17,7 @@ namespace MileStone1
             InitializeComponent();
            // Transmit t = new Transmit("localhost", 5400);
             FileReader f = new FileReader();
-            f.ReadFile(@"C:\Users\IlayBor\Desktop\sapir\reg_flight.csv");
+            f.ReadFile(@"..\..\..\..\reg_flight.csv");
             FlightDetectorModel lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400);
             SliderControlVM ltvm = new SliderControlVM(lt);
             animationSlide.ViewModel = ltvm;

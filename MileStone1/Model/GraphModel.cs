@@ -36,7 +36,7 @@ namespace MileStone1.Model
         {
             PropertyNames = new List<String>();
            
-            var reader = XmlReader.Create(@"C:\Users\IlayBor\Desktop\MileStone1_DesktopApp\MileStone1\playback_small.xml");
+            var reader = XmlReader.Create(@"..\..\..\..\playback_small.xml");
             //read only from the input tag
             reader.ReadToFollowing("input");
             //get all features names 
@@ -57,7 +57,7 @@ namespace MileStone1.Model
             {
                 PropertyValues.Add(new List<float>());
             }
-            using (var reader = new StreamReader(@"C:\Users\IlayBor\Desktop\MileStone1_DesktopApp\MileStone1\reg_flight.csv"))
+            using (var reader = new StreamReader(@"..\..\..\..\reg_flight.csv"))
             {
                 while (!reader.EndOfStream)
                 {
