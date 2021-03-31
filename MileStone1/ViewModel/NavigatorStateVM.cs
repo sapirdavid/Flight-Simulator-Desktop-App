@@ -15,7 +15,8 @@ namespace MileStone1
 {
     class NavigatorStateVM : INotifyPropertyChanged
     {
-        FlightDetectorModel fdm; 
+        FlightDetectorModel fdm;
+        private double _theValue;
         public event PropertyChangedEventHandler PropertyChanged;
         //notify all observers
         public void NotifyPropertyChanged(string propName)
@@ -34,6 +35,20 @@ namespace MileStone1
             };
         }
 
-        
+        public double VM_Rudder
+        {
+            get
+            {
+                return this.fdm.Rudder;
+            }
+        }
+
+        public double VM_Throttle
+        {
+            get
+            {
+                return this.fdm.Throttle;
+            }
+        }
     }
 }

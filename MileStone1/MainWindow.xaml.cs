@@ -21,6 +21,8 @@ namespace MileStone1
             FlightDetectorModel lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400);
             SliderControlVM ltvm = new SliderControlVM(lt);
             animationSlide.ViewModel = ltvm;
+            NavigatorStateVM nsvm = new NavigatorStateVM(lt);
+            //Navigator.Nsvm = nsvm;
             lt.StartTransmitting();
         }
 
@@ -29,6 +31,5 @@ namespace MileStone1
             b1.Content = "Line Number:" + animationSlide.LineToTransmit;
         }
 
-       
     }
 }

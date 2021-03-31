@@ -22,6 +22,9 @@ namespace MileStone1
         bool runAnimation = true;
         bool stopTransmitting = false;
         Thread t;
+        /***belong to NavigatorState****/
+        double rudder, throttle;
+        /*******/
         public event PropertyChangedEventHandler PropertyChanged;
         // test
         public void INotifyPropertyChanged(string propName)
@@ -75,6 +78,43 @@ namespace MileStone1
                 this.fps = value;
             }
         }
+
+        public double Rudder
+        {
+            get
+            {
+                return this.rudder;
+            }
+            set
+            {
+                this.rudder = value;
+                this.INotifyPropertyChanged("Rudder");
+            }
+        }
+
+        public double Throttle
+        {
+            get
+            {
+                return this.throttle;
+            }
+            set
+            {
+                this.throttle = value;
+                this.INotifyPropertyChanged("Throttle");
+            }
+        }
+
+        //the function update the values of rudder and throttle at specific line
+        public void updateRudderAndThrottle(string data)
+        {
+            string[] curLineSplit = data.Split(",");
+            Rudder = Double.Parse(curLineSplit[2]);
+            Throttle = Double.Parse(curLineSplit[6]);
+        }
+
+      
+
         public FlightDetectorModel(List<string> data, string hostName, int port)
         {
             this.data = data;
@@ -100,15 +140,7 @@ namespace MileStone1
             }
         }
 
-        //the function return the values of rudder and throttle at specific line
-        public List<string> getRudderAndThrottle(string data)
-        {
-            List<string> rudderAndThrottle = new List<string>();
-            string[] curLineSplit = data.Split(",");
-            rudderAndThrottle.Add(curLineSplit[2]);
-            rudderAndThrottle.Add(curLineSplit[6]);
-            return rudderAndThrottle;
-        }
+       
 
         //getRudderAndThrottle(data[currentLine]);
 
@@ -134,10 +166,10 @@ namespace MileStone1
                             }
                         }
                         tr.SendData(data[currentLine]);
+                        updateRudderAndThrottle(data[currentLine]);
                         LineToTransmit++;
                         this.INotifyPropertyChanged("LineToTransmitChanged");
                         Thread.Sleep(1000 / FramePerSecond);
-
                     }
                 }
 
