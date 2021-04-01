@@ -47,6 +47,7 @@ namespace MileStone1.Controls
                             RudderSlider.Value = nsvm.VM_Rudder;
                         }));
                     }
+                    /*
                     else if (e.PropertyName == "VM_Throttle")
                     {
                         this.Dispatcher.Invoke((Action)(() =>
@@ -54,6 +55,7 @@ namespace MileStone1.Controls
                             ThrottleSlider.Value = nsvm.VM_Throttle;
                         }));
                     }
+                    */
                     else if (e.PropertyName == "VM_Aileron")
                     {
                         this.Dispatcher.Invoke((Action)(() =>

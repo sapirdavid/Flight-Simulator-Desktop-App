@@ -12,7 +12,7 @@
             <RowDefinition Height="184*"/>
         </Grid.RowDefinitions>
         <Slider Name="RudderSlider" HorizontalAlignment="Left" Height="26" Margin="256,104,0,0" VerticalAlignment="Top" Width="169" Grid.Row="1" Maximum="1" IsEnabled="False"/>
-        <Slider Name="ThrottleSlider" HorizontalAlignment="Left" Height="117" Margin="212,42,0,0" VerticalAlignment="Top" Width="145" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Maximum="1" IsEnabled="False">
+        <Slider Name="ThrottleSlider" Value="{Binding VM_Throttle, Mode=OneWay}" HorizontalAlignment="Left" Height="117" Margin="212,42,0,0" VerticalAlignment="Top" Width="145" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Maximum="1" IsEnabled="False">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
