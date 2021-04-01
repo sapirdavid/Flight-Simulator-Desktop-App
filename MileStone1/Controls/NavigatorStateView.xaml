@@ -11,7 +11,7 @@
             <RowDefinition Height="41*"/>
             <RowDefinition Height="184*"/>
         </Grid.RowDefinitions>
-        <Slider Name="RudderSlider" HorizontalAlignment="Left" Height="26" Margin="256,104,0,0" VerticalAlignment="Top" Width="169" Grid.Row="1" ValueChanged="RudderSlider_ValueChanged" Maximum="1"/>
+        <Slider Name="RudderSlider" HorizontalAlignment="Left" Height="26" Margin="256,104,0,0" VerticalAlignment="Top" Width="169" Grid.Row="1" Maximum="1"/>
         <Slider Name="ThrottleSlider" HorizontalAlignment="Left" Height="117" Margin="212,42,0,0" VerticalAlignment="Top" Width="145" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Maximum="1">
             <Slider.RenderTransform>
                 <TransformGroup>
@@ -22,7 +22,7 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Rectangle HorizontalAlignment="Left" Height="140" Margin="259,32,0,0" Stroke="White" VerticalAlignment="Top" Width="158" Fill="White" Grid.RowSpan="2" />
+        <Rectangle HorizontalAlignment="Left" Height="140" Margin="257,32,0,0" Stroke="White" VerticalAlignment="Top" Width="158" Fill="White" Grid.RowSpan="2" />
         <Ellipse x:Name="BaseJoystick" HorizontalAlignment="Left" Height="140" Margin="270,32,0,0" Stroke="Black" VerticalAlignment="Top" Width="140" Grid.RowSpan="2">
             <Ellipse.Fill>
                 <LinearGradientBrush>
@@ -33,17 +33,7 @@
                 </LinearGradientBrush>
             </Ellipse.Fill>
         </Ellipse>
-        <Ellipse Fill="Black" HorizontalAlignment="Left" Height="68" Margin="305,70,0,0" Stroke="Black" VerticalAlignment="Top" Width="69" Grid.RowSpan="2"/>
-        <Ellipse x:Name="Knob" HorizontalAlignment="Left" Height="34" Margin="322,4,0,0" Stroke="Black" VerticalAlignment="Top" Width="34" Grid.Row="1">
-            <Ellipse.Fill>
-                <LinearGradientBrush>
-                    <GradientStop Color="Black" Offset="0.9"/>
-                    <GradientStop Color="DimGray" Offset="0.6" />
-                    <GradientStop Color="LightGray" Offset="0.5"/>
-                    <GradientStop Color="Black" Offset="0.1"/>
-                </LinearGradientBrush>
-            </Ellipse.Fill>
-        </Ellipse>
+        <Ellipse Fill="Black" HorizontalAlignment="Left" Height="80" Margin="301,62,0,0" Stroke="Black" VerticalAlignment="Top" Width="80" Grid.RowSpan="2"/>
         <TextBlock Background="White" HorizontalAlignment="Left" Height="21" Margin="182,7,0,0" Text="Throttle" TextWrapping="Wrap" VerticalAlignment="Top" Width="48" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
             <TextBlock.RenderTransform>
                 <TransformGroup>
@@ -64,6 +54,18 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
+        <Canvas x:Name="KnobBoard" HorizontalAlignment="Left" Height="80" Margin="301,62,0,0" VerticalAlignment="Top" Width="80" Grid.RowSpan="2">
+            <Ellipse x:Name="Knob" Height="34" Stroke="Black" Width="34" Canvas.Left="23" Canvas.Top="26">
+                <Ellipse.Fill>
+                    <LinearGradientBrush>
+                        <GradientStop Color="Black" Offset="0.9"/>
+                        <GradientStop Color="DimGray" Offset="0.6" />
+                        <GradientStop Color="LightGray" Offset="0.5"/>
+                        <GradientStop Color="Black" Offset="0.1"/>
+                    </LinearGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+        </Canvas>
         <!-->
         <TextBox HorizontalAlignment="Left" Height="50" Margin="176,114,0,0" Grid.Row="1" Text="{Binding ElementName=RudderSlider, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" Width="56"/>
         <!-->

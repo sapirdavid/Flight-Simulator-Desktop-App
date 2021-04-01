@@ -25,12 +25,7 @@ namespace MileStone1.Controls
             InitializeComponent();
         }
 
-        private void RudderSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
-
-       
+      
         public NavigatorStateVM Nsvm
         {
             get
@@ -42,6 +37,7 @@ namespace MileStone1.Controls
                 this.nsvm = value;
                 DataContext = nsvm;
 
+                //if the values of rudder or throttle changed, the slider will change accordingly
                 nsvm.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
                 {
                     if (e.PropertyName == "VM_Rudder")
@@ -50,19 +46,33 @@ namespace MileStone1.Controls
                         {
                             RudderSlider.Value = nsvm.VM_Rudder;
                         }));
-                    } else if (e.PropertyName == "VM_Throttle")
+                    }
+                    else if (e.PropertyName == "VM_Throttle")
                     {
                         this.Dispatcher.Invoke((Action)(() =>
                         {
                             ThrottleSlider.Value = nsvm.VM_Throttle;
                         }));
                     }
+                    else if (e.PropertyName == "VM_Aileron")
+                    {
+                        this.Dispatcher.Invoke((Action)(() =>
+                        {
+                            Canvas.SetLeft(Knob, ((nsvm.VM_Aileron + 1) * 23));
+                        }));
+                    }
+                    else if (e.PropertyName == "VM_Elevator")
+                    {
+                        this.Dispatcher.Invoke((Action)(() =>
+                        {
+                            Canvas.SetTop(Knob, ((nsvm.VM_Elevator + 1) * 23));
+                        }));
 
+                    };
                 };
+
             }
 
         }
-        
-
     }
 }

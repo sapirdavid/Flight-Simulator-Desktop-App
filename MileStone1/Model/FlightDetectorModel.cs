@@ -25,7 +25,7 @@ namespace MileStone1
         bool stopTransmitting = false;
         Thread t;
         /***belong to NavigatorState****/
-        double rudder, throttle;
+        double rudder, throttle, aileron, elevator;
         /*******/
 
         // Graph parametrs
@@ -112,10 +112,38 @@ namespace MileStone1
             }
         }
 
-        //the function update the values of rudder and throttle at specific line
-        public void updateRudderAndThrottle(string data)
+        public double Aileron
+        {
+            get
+            {
+                return this.aileron;
+            }
+            set
+            {
+                this.aileron = value;
+                this.INotifyPropertyChanged("Aileron");
+            }
+        }
+
+        public double Elevator
+        {
+            get
+            {
+                return this.elevator;
+            }
+            set
+            {
+                this.elevator = value;
+                this.INotifyPropertyChanged("Elevator");
+            }
+        }
+
+        //the function update the values of rudder,throttle,aileron,elevator at specific line
+        public void updateJoystickData(string data)
         {
             string[] curLineSplit = data.Split(",");
+            Aileron = Double.Parse(curLineSplit[0]);
+            Elevator = Double.Parse(curLineSplit[1]);
             Rudder = Double.Parse(curLineSplit[2]);
             Throttle = Double.Parse(curLineSplit[6]);
         }
@@ -173,7 +201,7 @@ namespace MileStone1
                             }
                         }
                         tr.SendData(data[currentLine]);
-                        updateRudderAndThrottle(data[currentLine]);
+                        updateJoystickData(data[currentLine]);
                         LineToTransmit++;
                         this.INotifyPropertyChanged("LineToTransmitChanged");
                         Thread.Sleep(1000 / FramePerSecond);
@@ -183,6 +211,9 @@ namespace MileStone1
             });
             t.Start();
         }
+
+      
+
         public void StopTransmitting()
         {
             this.stopTransmitting = true;
