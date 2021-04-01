@@ -13,10 +13,10 @@
                  
              SelectedValuePath="Id" DisplayMemberPath="Name"
                  HorizontalAlignment="Left" Height="300" Margin="0,0,0,0" VerticalAlignment="Top" Width="80" SelectionChanged="lbx_property_names_SelectionChanged" Background="#FFF3EEEE"/>
-        <oxy:Plot Title="{Binding Title}" Margin="80,0,0,0" Background="#FFEBEBEB">
+        <oxy:Plot Name="plot" Title="{Binding Title}" Margin="80,0,0,0" Background="#FFEBEBEB">
             <oxy:Plot.Axes>
                 <oxy:DateTimeAxis Position="Bottom"
-                                    StringFormat="hh:mm"
+                                    StringFormat="mm:ss"
                                     MajorGridlineStyle="Solid"
                                     MinorGridlineStyle="Dot"
                                     IntervalType="Minutes"

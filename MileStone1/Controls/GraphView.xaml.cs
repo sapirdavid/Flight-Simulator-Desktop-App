@@ -21,6 +21,7 @@ namespace MileStone1.Controls
     {
         //member of the viewModel
         ViewModel.GraphVM gvm;
+
         public GraphView()
         {
             InitializeComponent();
@@ -33,6 +34,7 @@ namespace MileStone1.Controls
             //get the selected proprety index
             PropertyIndex lbi = ((sender as ListBox).SelectedItem as PropertyIndex);
             gvm.changeValues(lbi);
+            gvm.pressed = true;
         }
 
         public GraphVM Gvm
@@ -60,9 +62,25 @@ namespace MileStone1.Controls
                             propertyIndex.Name = item;
                             propertyIndex.Id = counter++;
                             gvm.PropertyIndexes.Add(propertyIndex);
+
+
                         }
 
                     }
+                    if (e.PropertyName == "UpdateGraph")
+                    {
+                        this.Dispatcher.Invoke((Action)(() =>
+                        {
+                            PropertyIndex prop = lbx_property_names.SelectedItem as PropertyIndex;
+                            gvm.changeValues(prop);
+                        }));
+                    }
+
+
+
+
+
+
 
                 };
             }
