@@ -44,13 +44,13 @@ namespace MileStone1.Controls
 
                 nsvm.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
                 {
-                    if (e.PropertyName == "Rudder")
+                    if (e.PropertyName == "VM_Rudder")
                     {
                         this.Dispatcher.Invoke((Action)(() =>
                         {
                             RudderSlider.Value = nsvm.VM_Rudder;
                         }));
-                    } else if (e.PropertyName == "Throttle")
+                    } else if (e.PropertyName == "VM_Throttle")
                     {
                         this.Dispatcher.Invoke((Action)(() =>
                         {
