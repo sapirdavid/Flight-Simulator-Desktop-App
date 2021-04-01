@@ -14,10 +14,11 @@ namespace MileStone1
     /// </summary>
     public partial class MainWindow : Window
     {
+        string txtPath;
+
         public MainWindow()
         {
             InitializeComponent();
-           // Transmit t = new Transmit("localhost", 5400);
             FileReader f = new FileReader();
             f.ReadFile(@"..\..\..\..\reg_flight.csv");
             FlightDetectorModel lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400);
@@ -52,14 +53,11 @@ namespace MileStone1
 
             // Launch OpenFileDialog by calling ShowDialog method
             Nullable<bool> result = openFileDlg.ShowDialog();
-            /**
+            // Get the selected file name
             if (result.ToString() != string.Empty)
             {
-                txtPath.Text = openFileDlg.SelectedPath;
+                txtPath = openFileDlg.FileName;
             }
-            **/
-            // Get the selected file name and display in a TextBox.
-            // Load content of file in a TextBlock
 
         }
     }
