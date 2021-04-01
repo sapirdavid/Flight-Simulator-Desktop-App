@@ -19,8 +19,7 @@
         </Grid.RowDefinitions>
 
         <Button x:Name="openFile" Content="open file" HorizontalAlignment="Left" Height="53" Margin="145,0,0,0" VerticalAlignment="Top" Width="115" Click="openFile_Click"/>
-        <Button x:Name="startSimulationButton" Content="Start Simulation" HorizontalAlignment="Left" Margin="282,1,0,0" VerticalAlignment="Top" Height="52" Width="106" Click="startSimulationButton_Click"/>
-        <TextBlock x:Name="csvRequestBox" HorizontalAlignment="Left" Margin="231,40,0,0" Grid.Row="1" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="224" FontSize="16"/>
+        <Button x:Name="startSimulationButton" Content="Start Simulation" HorizontalAlignment="Left" Margin="282,1,0,0" VerticalAlignment="Top" Height="52" Width="106" Click="startSimulationButton_Click" Visibility="Visible" IsEnabled="False"/>
     </Grid>
 </Window>
 

@@ -10,7 +10,7 @@
         xmlns:Navigator="clr-namespace:MileStone1.Controls"
         xmlns:Data="clr-namespace:MileStone1.Controls"
         mc:Ignorable="d"
-        Title="JoystickWindow" Height="450" Width="800">
+        Title="Dashboard" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>

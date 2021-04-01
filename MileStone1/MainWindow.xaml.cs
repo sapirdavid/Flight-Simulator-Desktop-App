@@ -36,6 +36,7 @@ namespace MileStone1
                 csvPath = openFileDlg.FileName;
             }
             this.dw = new DashboardWindow(csvPath);
+            startSimulationButton.IsEnabled = true; //enable the button of the simulation
         }
 
         private void startSimulationButton_Click(object sender, RoutedEventArgs e)
@@ -44,11 +45,9 @@ namespace MileStone1
             {
                 this.Hide();
                 dw.Show();
+                dw.StartAnimation();
             }
-            else
-            {
-                csvRequestBox.Text = "please choose csv file first";
-            }
+           
         }
     }
 }

@@ -20,8 +20,8 @@ namespace MileStone1
     public partial class DashboardWindow : Window
     {
         string csvPath;
-
-
+        FlightDetectorModel lt;
+        
 
         public DashboardWindow(string csvPath)
         {
@@ -33,7 +33,7 @@ namespace MileStone1
         { 
             FileReader f = new FileReader();
             f.ReadFile(csvPath);
-            FlightDetectorModel lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400);
+            this.lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400);
             SliderControlVM ltvm = new SliderControlVM(lt);
             animationSlide.ViewModel = ltvm;
 
@@ -49,8 +49,10 @@ namespace MileStone1
             ViewModel.GraphVM gvm = new ViewModel.GraphVM(lt);
             graph.Gvm = gvm;
 
-            lt.StartTransmitting();
 
+        }
+        public void StartAnimation() {
+            this.lt.StartTransmitting();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
