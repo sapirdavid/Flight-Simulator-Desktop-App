@@ -68,9 +68,11 @@ namespace MileStone1.ViewModel
                 //if the values have changed
                 if (e.PropertyName == "PropertyValues")
                 {
+              
                     List<float> valuesGraph = fdm.PropertyValues[0];
                     Points = new List<DataPoint>();
                     DateTime date = new DateTime(2020, 3, 26, 0, 0, 0);
+                    //create data points aacording to the time and value
                     foreach (var item in valuesGraph)
                     {
                         Points.Add(new DataPoint(DateTimeAxis.ToDouble(date), item));
@@ -81,6 +83,7 @@ namespace MileStone1.ViewModel
                 //if the values have changed
                 if (e.PropertyName == "LineToTransmit")
                 {
+                    //update the values proprety that is chosen at the list box
                     this.currenLineIndex = fdm.LineToTransmit;
                     if (pressed)
                        INotifyPropertyChanged("UpdateGraph");
@@ -109,8 +112,10 @@ namespace MileStone1.ViewModel
         // change proprety and show it's values at the graph
         public void changeValues(PropertyIndex property)
         {
+            //update every 3 rows 
             int lineDiff = 3;
             long lineToCopy = 0;
+            //check if we need update
             if (Math.Abs(this.currenLineIndex - this.prevLineIndex) >= lineDiff)
             {
                 //update the cuurent line
@@ -141,7 +146,6 @@ namespace MileStone1.ViewModel
                 }
 
                 this.Title = property.Name;
-           //     INotifyPropertyChanged("UpdateGraph");
                 NotifyPropertyChanged("Title");
                 NotifyPropertyChanged("Points");
 
