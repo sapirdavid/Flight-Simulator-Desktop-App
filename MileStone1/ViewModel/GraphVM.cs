@@ -9,22 +9,31 @@ using System.Threading.Tasks;
 
 namespace MileStone1.ViewModel
 {
-    class GraphVM : INotifyPropertyChanged
+    public class GraphVM : INotifyPropertyChanged
     {
         //member of the model
-        private Model.GraphModel gm;
+        private FlightDetectorModel fdm;
         //all names
         public List<PropertyIndex> PropertyIndexes { get; set; }
         //create title
         public String Title { get; set; }
         // create data point so we can do create the graph (the graph receives data points)
         public List<DataPoint> Points { get; private set; }
+        public List<String> PropertyNames
+        {
+            get
+            {
+                return fdm.PropertyNames;
+            }
+        }
+
+
         //c'tor
-        public GraphVM(Model.GraphModel gm)
+        public GraphVM(FlightDetectorModel fdm)
         {
 
-            this.gm = gm;
-            this.gm.PropertyChanged +=
+            this.fdm = fdm;
+            this.fdm.PropertyChanged +=
             delegate (Object sender, PropertyChangedEventArgs e)
             {
                 //if the propreties have changed
@@ -33,7 +42,7 @@ namespace MileStone1.ViewModel
                     PropertyIndexes = new List<PropertyIndex>();
                     int counter = 0;
                     //pass on each proprety name and create propertyIndex according to it's index and name
-                    foreach (var item in this.gm.PropertyNames)
+                    foreach (var item in this.fdm.PropertyNames)
                     {
                         PropertyIndex propertyIndex = new PropertyIndex();
                         propertyIndex.Name = item;
@@ -45,7 +54,7 @@ namespace MileStone1.ViewModel
                 //if the values have changed
                 if (e.PropertyName == "PropertyValues")
                 {
-                    List<float> valuesGraph = gm.PropertyValues[0];
+                    List<float> valuesGraph = fdm.PropertyValues[0];
                     Points = new List<DataPoint>();
                     DateTime date = new DateTime(2020, 3, 26, 0, 0, 0);
                     foreach (var item in valuesGraph)
@@ -56,8 +65,8 @@ namespace MileStone1.ViewModel
                     int x = 7;
                 }
             };
-            this.gm.readXml();
-            this.gm.readCsv();
+            this.fdm.readXml();
+            this.fdm.readCsv();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -71,7 +80,7 @@ namespace MileStone1.ViewModel
         // change proprety and show it's values at the graph
         public void changeValues(PropertyIndex property)
         {
-            List<float> valuesGraph = gm.PropertyValues[property.Id];
+            List<float> valuesGraph = fdm.PropertyValues[property.Id];
             Points = new List<DataPoint>();
             DateTime date = new DateTime(2020, 3, 26, 0, 0, 0);
 

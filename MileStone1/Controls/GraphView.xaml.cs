@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,6 @@ namespace MileStone1.Controls
         public GraphView()
         {
             InitializeComponent();
-            Model.GraphModel gm = new Model.GraphModel();
-            gvm = new ViewModel.GraphVM(gm);
             //connects the model and the viewModel (propreties and view)
             DataContext = gvm;
         }
@@ -34,6 +33,40 @@ namespace MileStone1.Controls
             //get the selected proprety index
             PropertyIndex lbi = ((sender as ListBox).SelectedItem as PropertyIndex);
             gvm.changeValues(lbi);
+        }
+
+        public GraphVM Gvm
+        {
+            get
+            {
+                return this.gvm;
+            }
+            set
+            {
+                this.gvm = value;
+                DataContext = gvm;
+
+                gvm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+                {
+                    //if the propreties have changed
+                    if (e.PropertyName == "PropertyNames")
+                    {
+                        gvm.PropertyIndexes = new List<PropertyIndex>();
+                        int counter = 0;
+                        //pass on each proprety name and create propertyIndex according to it's index and name
+                        foreach (var item in gvm.PropertyNames)
+                        {
+                            PropertyIndex propertyIndex = new PropertyIndex();
+                            propertyIndex.Name = item;
+                            propertyIndex.Id = counter++;
+                            gvm.PropertyIndexes.Add(propertyIndex);
+                        }
+
+                    }
+
+                };
+            }
+
         }
 
     }

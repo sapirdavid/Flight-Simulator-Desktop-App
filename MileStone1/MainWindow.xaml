@@ -17,7 +17,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <ProgressBar:ProgressBarView x:Name="animationSlide" Grid.RowSpan="3" LineToTransmit="{Binding VM_LineToTransmit}" RunAnimation="{Binding VM_RunAnimation}"/>
-        <Graph:GraphView x:Name="Graph" Grid.RowSpan="2" Margin="0,0,0,0" HorizontalAlignment="Right"/>
+        <Graph:GraphView x:Name="graph" Grid.RowSpan="2" Margin="0,0,0,0" HorizontalAlignment="Right"/>
         <Navigator:NavigatorStateView x:Name="Navigator" Grid.RowSpan="2" Margin="0,74,283,10" HorizontalAlignment="Right" Width="691" Grid.Row="1"/>
         <Button Name ="b1" Content="LineNumber:" Margin="0,0,682,0" VerticalAlignment="Top" Height="53" Click="Button_Click"/>
     </Grid>

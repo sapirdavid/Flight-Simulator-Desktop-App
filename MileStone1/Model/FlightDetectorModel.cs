@@ -8,6 +8,8 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml;
+using System.Xml.Linq;
 using Transmitter;
 namespace MileStone1
 {
@@ -25,8 +27,13 @@ namespace MileStone1
         /***belong to NavigatorState****/
         double rudder, throttle;
         /*******/
+
+        // Graph parametrs
         public event PropertyChangedEventHandler PropertyChanged;
-        // test
+        public List<String> PropertyNames { get; set; }
+        //list of all proprety's values 
+        public List<List<float>> PropertyValues { get; set; }
+
         public void INotifyPropertyChanged(string propName)
         {
             if (PropertyChanged != null)
@@ -181,6 +188,51 @@ namespace MileStone1
             this.stopTransmitting = true;
             this.tr.CloseConnection();
         }
-    
+
+        public void readXml()
+        {
+            PropertyNames = new List<String>();
+
+            var reader = XmlReader.Create(@"..\..\..\..\playback_small.xml");
+            //read only from the input tag
+            reader.ReadToFollowing("input");
+            //get all features names 
+            while (reader.ReadToFollowing("name"))
+            {
+                string key = reader.ReadElementContentAsString();
+                PropertyNames.Add(key); ;
+            }
+            INotifyPropertyChanged("PropertyNames");
+
+        }
+
+        //parser xml - extract the values of features
+        public void readCsv()
+        {
+            //list of lists - each list will contain the values according to the feature name
+            PropertyValues = new List<List<float>>();
+            for (int i = 0; i < PropertyNames.Count; i++)
+            {
+                PropertyValues.Add(new List<float>());
+            }
+            using (var reader = new StreamReader(@"..\..\..\..\reg_flight.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    //get line
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    int i = 0;
+                    //insert to the list
+                    foreach (var item in values)
+                    {
+                        PropertyValues[i++].Add(float.Parse(item));
+                    }
+                }
+            }
+            //notify of change of the values
+            INotifyPropertyChanged("PropertyValues");
+        }
+
     }
 }

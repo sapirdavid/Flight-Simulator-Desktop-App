@@ -21,8 +21,15 @@ namespace MileStone1
             FlightDetectorModel lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400);
             SliderControlVM ltvm = new SliderControlVM(lt);
             animationSlide.ViewModel = ltvm;
+
+            // create VM for the grpah
             NavigatorStateVM nsvm = new NavigatorStateVM(lt);
             Navigator.Nsvm = nsvm;
+
+            // create VM for the grpah
+            ViewModel.GraphVM gvm = new ViewModel.GraphVM(lt);
+            graph.Gvm = gvm;
+
             lt.StartTransmitting();
         }
 
