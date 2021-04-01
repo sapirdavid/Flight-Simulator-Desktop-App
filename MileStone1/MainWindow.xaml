@@ -8,6 +8,7 @@
         xmlns:Controls="clr-namespace:MileStone1.Controls"
         xmlns:Graph="clr-namespace:MileStone1.Controls"
         xmlns:Navigator="clr-namespace:MileStone1.Controls"
+        xmlns:Data="clr-namespace:MileStone1.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
     <Grid>
@@ -19,7 +20,9 @@
         <ProgressBar:ProgressBarView x:Name="animationSlide" Grid.RowSpan="3" LineToTransmit="{Binding VM_LineToTransmit}" RunAnimation="{Binding VM_RunAnimation}"/>
         <Graph:GraphView x:Name="graph" Grid.RowSpan="2" Margin="0,0,0,0" HorizontalAlignment="Right"/>
         <Navigator:NavigatorStateView x:Name="Navigator" Grid.RowSpan="2" Margin="0,74,283,10" HorizontalAlignment="Right" Width="691" Grid.Row="1"/>
+        <Data:DataInfoView x:Name="DataInfo" Grid.RowSpan="2" Margin="0,0,-235,84" HorizontalAlignment="Right" Width="691"/>
         <Button Name ="b1" Content="LineNumber:" Margin="0,0,682,0" VerticalAlignment="Top" Height="53" Click="Button_Click"/>
+        <Button x:Name="openFile" Content="open file" HorizontalAlignment="Left" Height="53" Margin="145,0,0,0" VerticalAlignment="Top" Width="115" Click="openFile_Click"/>
     </Grid>
 </Window>
 

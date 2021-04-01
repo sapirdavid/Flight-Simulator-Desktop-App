@@ -25,7 +25,7 @@ namespace MileStone1
         bool stopTransmitting = false;
         Thread t;
         /***belong to NavigatorState****/
-        double rudder, throttle, aileron, elevator;
+        double rudder, throttle, aileron, elevator, altimeter, airspeed, direction, pitch, roll, yaw;
         /*******/
 
         // Graph parametrs
@@ -138,6 +138,84 @@ namespace MileStone1
             }
         }
 
+        public double Altimeter
+        {
+            get
+            {
+                return this.altimeter;
+            }
+            set
+            {
+                this.altimeter = value;
+                this.INotifyPropertyChanged("Altimeter");
+            }
+        }
+
+        public double Airspeed
+        {
+            get
+            {
+                return this.airspeed;
+            }
+            set
+            {
+                this.airspeed = value;
+                this.INotifyPropertyChanged("Airspeed");
+            }
+        }
+
+        public double Direction
+        {
+            get
+            {
+                return this.direction;
+            }
+            set
+            {
+                this.direction = value;
+                this.INotifyPropertyChanged("Direction");
+            }
+        }
+
+        public double Pitch
+        {
+            get
+            {
+                return this.pitch;
+            }
+            set
+            {
+                this.pitch = value;
+                this.INotifyPropertyChanged("Pitch");
+            }
+        }
+
+        public double Roll
+        {
+            get
+            {
+                return this.roll;
+            }
+            set
+            {
+                this.roll = value;
+                this.INotifyPropertyChanged("Roll");
+            }
+        }
+
+        public double Yaw
+        {
+            get
+            {
+                return this.yaw;
+            }
+            set
+            {
+                this.yaw = value;
+                this.INotifyPropertyChanged("Yaw");
+            }
+        }
+
         //the function update the values of rudder,throttle,aileron,elevator at specific line
         public void updateJoystickData(string data)
         {
@@ -146,9 +224,16 @@ namespace MileStone1
             Elevator = Double.Parse(curLineSplit[1]);
             Rudder = Double.Parse(curLineSplit[2]);
             Throttle = Double.Parse(curLineSplit[6]);
+            Altimeter = Double.Parse(curLineSplit[22]);
+            Airspeed = Double.Parse(curLineSplit[21]);
+            Pitch = Double.Parse(curLineSplit[18]);
+            Roll = Double.Parse(curLineSplit[17]);
+            /*** need to find the values***/
+            Direction = Double.Parse(curLineSplit[0]);
+            Yaw = Double.Parse(curLineSplit[0]);
         }
 
-      
+
 
         public FlightDetectorModel(List<string> data, string hostName, int port)
         {
