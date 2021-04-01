@@ -15,39 +15,16 @@ namespace MileStone1
     public partial class MainWindow : Window
     {
         string txtPath;
-
+        DashboardWindow dw = null;
         public MainWindow()
         {
             InitializeComponent();
-            FileReader f = new FileReader();
-            f.ReadFile(@"..\..\..\..\reg_flight.csv");
-            FlightDetectorModel lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400);
-            SliderControlVM ltvm = new SliderControlVM(lt);
-            animationSlide.ViewModel = ltvm;
-
-            // create VM for the navigator
-            NavigatorStateVM nsvm = new NavigatorStateVM(lt);
-            Navigator.Nsvm = nsvm;
-
-            // create VM for the dataInfo
-            DataInfoVM divm = new DataInfoVM(lt);
-            DataInfo.Divm = divm;
-
-            // create VM for the grpah
-            ViewModel.GraphVM gvm = new ViewModel.GraphVM(lt);
-            graph.Gvm = gvm;
-
-            lt.StartTransmitting();
+            
+           
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            b1.Content = "Line Number:" + animationSlide.LineToTransmit;
-        }
-
         private void openFile_Click(object sender, RoutedEventArgs e)
         {
-
+            string csvPath = ""; //need to change
             // Create OpenFileDialog
             Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
 
@@ -56,9 +33,22 @@ namespace MileStone1
             // Get the selected file name
             if (result.ToString() != string.Empty)
             {
-                txtPath = openFileDlg.FileName;
+                csvPath = openFileDlg.FileName;
             }
+            this.dw = new DashboardWindow(csvPath);
+        }
 
+        private void startSimulationButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (dw != null)
+            {
+                this.Hide();
+                dw.Show();
+            }
+            else
+            {
+                csvRequestBox.Text = "please choose csv file first";
+            }
         }
     }
 }

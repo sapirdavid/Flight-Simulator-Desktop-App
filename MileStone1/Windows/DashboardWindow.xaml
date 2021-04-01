@@ -1,4 +1,4 @@
-﻿<Window x:Class="MileStone1.MainWindow"
+﻿<Window x:Class="MileStone1.DashboardWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,18 +10,17 @@
         xmlns:Navigator="clr-namespace:MileStone1.Controls"
         xmlns:Data="clr-namespace:MileStone1.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="JoystickWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-
-        <Button x:Name="openFile" Content="open file" HorizontalAlignment="Left" Height="53" Margin="145,0,0,0" VerticalAlignment="Top" Width="115" Click="openFile_Click"/>
-        <Button x:Name="startSimulationButton" Content="Start Simulation" HorizontalAlignment="Left" Margin="282,1,0,0" VerticalAlignment="Top" Height="52" Width="106" Click="startSimulationButton_Click"/>
-        <TextBlock x:Name="csvRequestBox" HorizontalAlignment="Left" Margin="231,40,0,0" Grid.Row="1" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="29" Width="224" FontSize="16"/>
+        <ProgressBar:ProgressBarView x:Name="animationSlide" Grid.RowSpan="3" LineToTransmit="{Binding VM_LineToTransmit}" RunAnimation="{Binding VM_RunAnimation}"/>
+        <Graph:GraphView x:Name="graph" Grid.RowSpan="2" Margin="0,0,0,0" HorizontalAlignment="Right"/>
+        <Navigator:NavigatorStateView x:Name="Navigator" Grid.RowSpan="2" Margin="0,74,283,10" HorizontalAlignment="Right" Width="691" Grid.Row="1"/>
+        <Data:DataInfoView x:Name="DataInfo" Grid.RowSpan="2" Margin="0,0,-235,84" HorizontalAlignment="Right" Width="691"/>
+        <Button Name ="b1" Content="LineNumber:" Margin="0,0,682,0" VerticalAlignment="Top" Height="53" Click="Button_Click"/>
     </Grid>
 </Window>
-
-    
