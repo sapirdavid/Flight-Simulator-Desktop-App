@@ -22,7 +22,7 @@ namespace MileStone1
             SliderControlVM ltvm = new SliderControlVM(lt);
             animationSlide.ViewModel = ltvm;
             NavigatorStateVM nsvm = new NavigatorStateVM(lt);
-            //Navigator.Nsvm = nsvm;
+            Navigator.Nsvm = nsvm;
             lt.StartTransmitting();
         }
 

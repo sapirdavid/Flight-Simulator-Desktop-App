@@ -30,7 +30,7 @@ namespace MileStone1.Controls
 
         }
 
-        /*
+       
         public NavigatorStateVM Nsvm
         {
             get
@@ -62,7 +62,7 @@ namespace MileStone1.Controls
             }
 
         }
-        */
+        
 
     }
 }

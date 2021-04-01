@@ -13,7 +13,7 @@ using Transmitter;
 
 namespace MileStone1
 {
-    class NavigatorStateVM : INotifyPropertyChanged
+    public class NavigatorStateVM : INotifyPropertyChanged
     {
         FlightDetectorModel fdm;
         private double _theValue;
