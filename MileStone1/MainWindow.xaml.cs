@@ -43,6 +43,7 @@ namespace MileStone1
         {
             if (dw != null)
             {
+               // System.Diagnostics.Process.Start("fgfs.exe");
                 this.Hide();
                 dw.Show();
                 dw.StartAnimation();
