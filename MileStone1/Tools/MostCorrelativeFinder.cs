@@ -3,22 +3,86 @@ using System.Collections.Generic;
 using System.Text;
 namespace MileStone1
 {
+    class Point
+    {
+        int x, y;
+        public int X {
+            get { return x; } 
+            set { this.x = value; }
+        }
+        public int Y
+        {
+            get { return y; }
+            set { this.y = value; }
+        }
+        Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+    class Line
+    {
+        float a;
+        float b;
+        // the line is ax + b
+        public float A {
+            get {
+                return this.a; 
+            }
+            set {
+                this.a = value; 
+            } 
+        }
+        public float B
+        {
+            get
+            {
+                return this.b;
+            }
+            set
+            {
+                this.b = value;
+            }
+        }
+        public Line(float a, float b) { //the line is ax+b
+            this.a = a;
+            this.b = b;
+        }
+    }
+
     class MostCorrelativeFinder
     {
         List<int> corrlativColumns;
+        List<Line> linearRegList;
         public List<int> CorrlatedColumns
         {
             get {
                 return this.corrlativColumns;
             }
         }
+        //return list of regression lines that fit to the columns
+        public List<Line> linearRegressionList
+        {
+            get
+            {
+                return this.linearRegList;
+            }
+        }
+        //return the regresion line with the modt corrlative column to the gaven golumn
+        public Line getRegrationLineWithTheMostcorrlative(int column) {
 
-        MostCorrelativeFinder(List<List<float>> dataCulomns) {
-            this.corrlativColumns = new List<int>(dataCulomns.Count);
-            for (int i = 0; i < dataCulomns.Count; i++) {
-               this.corrlativColumns[i] = findTheMostCorrelative(dataCulomns, i);
+            return this.linearRegList[column];
+
+        }
+        MostCorrelativeFinder(List<List<float>> dataColumn) {
+            this.corrlativColumns = new List<int>(dataColumn.Count);
+            this.linearRegList = new List<Line>(dataColumn.Count);
+            int sizeOfColumns = dataColumn.Count;
+            //update the corrlation and linear regresion 
+            for (int i = 0; i < sizeOfColumns; i++) {
+               this.corrlativColumns[i] = findTheMostCorrelative(dataColumn, i);
+                this.linearRegList[i] = linear_reg(dataColumn[i], dataColumn[this.corrlativColumns[i]]);
                     }
-
         }
 
         private int findTheMostCorrelative(List<List<float>> dataCulomns, int column)
@@ -78,6 +142,12 @@ namespace MileStone1
             for (int i = 0; i < size; sum += x[i], i++) ;
             return sum / size;
         }
-
+        // performs a linear regression and returns the line equation
+        Line linear_reg(List<float> x, List<float> y)
+        { 
+            float a = cov(x, y, x.Count) / var(x, x.Count);
+            float b = avg(y, y.Count) - a * (avg(x, x.Count));
+            return new Line(a, b);
+        }
     }
 }
