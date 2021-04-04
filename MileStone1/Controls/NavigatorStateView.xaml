@@ -11,8 +11,8 @@
             <RowDefinition Height="41*"/>
             <RowDefinition Height="184*"/>
         </Grid.RowDefinitions>
-        <Slider Name="RudderSlider" HorizontalAlignment="Left" Height="26" Margin="256,104,0,0" VerticalAlignment="Top" Width="169" Grid.Row="1" Maximum="1" IsEnabled="False"/>
-        <Slider Name="ThrottleSlider" Value="{Binding VM_Throttle, Mode=OneWay}" HorizontalAlignment="Left" Height="117" Margin="212,42,0,0" VerticalAlignment="Top" Width="145" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Maximum="1" IsEnabled="False">
+        <Slider Name="RudderSlider" HorizontalAlignment="Left" Height="26" Margin="257,137,0,0" VerticalAlignment="Top" Width="169" Grid.Row="1" Minimum="-1" Maximum="1" IsEnabled="False"/>
+        <Slider Name="ThrottleSlider" Value="{Binding VM_Throttle, Mode=OneWay}" HorizontalAlignment="Left" Height="117" Margin="212,42,0,0" VerticalAlignment="Top" Width="145" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2" Minimum="0" Maximum="1" IsEnabled="False">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -34,7 +34,7 @@
             </Ellipse.Fill>
         </Ellipse>
         <Ellipse Fill="Black" HorizontalAlignment="Left" Height="80" Margin="301,62,0,0" Stroke="Black" VerticalAlignment="Top" Width="80" Grid.RowSpan="2"/>
-        <TextBlock Background="White" HorizontalAlignment="Left" Height="21" Margin="182,7,0,0" Text="Throttle" TextWrapping="Wrap" VerticalAlignment="Top" Width="48" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+        <TextBlock Background="White" HorizontalAlignment="Left" Height="21" Margin="180,36,0,0" Text="Throttle" TextWrapping="Wrap" VerticalAlignment="Top" Width="48" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -44,7 +44,7 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBlock Background="White" HorizontalAlignment="Left" Height="21" Margin="317,129,0,0" Text="Rudder" TextWrapping="Wrap" VerticalAlignment="Top" Width="48" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+        <TextBlock Background="White" HorizontalAlignment="Left" Height="22" Margin="317,162,0,0" Text="Rudder" TextWrapping="Wrap" VerticalAlignment="Top" Width="48" RenderTransformOrigin="0.401,-0.513" Grid.Row="1">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

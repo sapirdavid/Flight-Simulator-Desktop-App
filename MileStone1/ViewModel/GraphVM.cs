@@ -13,14 +13,17 @@ namespace MileStone1.ViewModel
     {
         //member of the model
         private FlightDetectorModel fdm;
-        //all names
+        public MostCorrelativeFinder mcf;
         public List<PropertyIndex> PropertyIndexes { get; set; }
         //create title
         public String Title { get; set; }
+        public String CorrelatedTitle { get; set; }
         // create data point so we can do create the graph (the graph receives data points)
         public List<DataPoint> Points { get; private set; }
+        public List<DataPoint> CorrelatedPoints { get; private set; }
+
         public bool pressed = false;
-    public long currenLineIndex
+        public long currenLineIndex
         {
             get
             {
@@ -31,7 +34,7 @@ namespace MileStone1.ViewModel
             }
         }
 
-        public long prevLineIndex{ get; set; }
+        public long prevLineIndex { get; set; }
         public List<String> PropertyNames
         {
             get
@@ -68,7 +71,7 @@ namespace MileStone1.ViewModel
                 //if the values have changed
                 if (e.PropertyName == "PropertyValues")
                 {
-              
+
                     List<float> valuesGraph = fdm.PropertyValues[0];
                     Points = new List<DataPoint>();
                     DateTime date = new DateTime(2020, 3, 26, 0, 0, 0);
@@ -78,6 +81,16 @@ namespace MileStone1.ViewModel
                         Points.Add(new DataPoint(DateTimeAxis.ToDouble(date), item));
                         date = date.AddMinutes(1);
                     }
+
+          
+                    List<float> correlatedPropretyGraph = fdm.PropertyValues[0];
+                    CorrelatedPoints = new List<DataPoint>();
+                    foreach (var item in correlatedPropretyGraph)
+                    {
+                        CorrelatedPoints.Add(new DataPoint(DateTimeAxis.ToDouble(date), item));
+                        date = date.AddMinutes(1);
+                    }
+
                 }
 
                 //if the values have changed
@@ -86,11 +99,13 @@ namespace MileStone1.ViewModel
                     //update the values proprety that is chosen at the list box
                     this.currenLineIndex = fdm.LineToTransmit;
                     if (pressed)
-                       INotifyPropertyChanged("UpdateGraph");
+                        INotifyPropertyChanged("UpdateGraph");
                 }
             };
             this.fdm.readXml();
             this.fdm.readCsv();
+            this.mcf = new MostCorrelativeFinder(fdm.PropertyValues);
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -115,6 +130,8 @@ namespace MileStone1.ViewModel
             //update every 3 rows 
             int lineDiff = 3;
             long lineToCopy = 0;
+            int idxOfMostCorrelative = mcf.findTheMostCorrelative(fdm.PropertyValues, property.Id);
+     
             //check if we need update
             if (Math.Abs(this.currenLineIndex - this.prevLineIndex) >= lineDiff)
             {
@@ -127,29 +144,42 @@ namespace MileStone1.ViewModel
             {
                 lineToCopy = prevLineIndex;
             }
-                List<float> AllData = fdm.PropertyValues[property.Id];
-                List<float> valuesGraph = new List<float>();
+            List<float> AllData = fdm.PropertyValues[property.Id];
+            List<float> valuesGraph = new List<float>();
+            List<float> correlatedPropretyData = fdm.PropertyValues[idxOfMostCorrelative];
+            List<float> correlatedPropretyGraph = new List<float>();
 
-                for(int i =0; i < lineToCopy; i++)
-                {
-                    valuesGraph.Add(AllData[i]);
-                }
 
-                Points = new List<DataPoint>();
-                DateTime date = new DateTime(2020, 3, 26, 0, 0, 0);
-               // DateTime date = DateTime.UtcNow;
+            for (int i = 0; i < lineToCopy; i++)
+            {
+                valuesGraph.Add(AllData[i]);
+                correlatedPropretyGraph.Add(correlatedPropretyData[i]);
 
-                foreach (var item in valuesGraph)
-                {
-                    Points.Add(new DataPoint(DateTimeAxis.ToDouble(date), item));
-                    date = date.AddMilliseconds(100);
-                }
+            }
 
-                this.Title = property.Name;
-                NotifyPropertyChanged("Title");
-                NotifyPropertyChanged("Points");
+            Points = new List<DataPoint>();
+            CorrelatedPoints = new List<DataPoint>();
+            DateTime date = new DateTime(2020, 3, 26, 0, 0, 0);
 
-            
+            foreach (var item in valuesGraph)
+            {
+                Points.Add(new DataPoint(DateTimeAxis.ToDouble(date), item));
+                date = date.AddMilliseconds(100);
+            }
+            foreach (var item in correlatedPropretyGraph)
+            {
+                CorrelatedPoints.Add(new DataPoint(DateTimeAxis.ToDouble(date), item));
+                date = date.AddMilliseconds(100);
+            }
+
+            this.Title = property.Name;
+            this.CorrelatedTitle = PropertyIndexes[idxOfMostCorrelative].Name;
+            NotifyPropertyChanged("Title");
+            NotifyPropertyChanged("CorrelatedTitle");
+            NotifyPropertyChanged("Points");
+            NotifyPropertyChanged("CorrelatedPoints");
+
+
         }
     }
     // create class so each proprety will have a name and an index (id)

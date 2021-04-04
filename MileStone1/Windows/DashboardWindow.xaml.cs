@@ -59,5 +59,9 @@ namespace MileStone1
             b1.Content = "Line Number:" + animationSlide.LineToTransmit;
         }
 
+        private void DataInfo_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

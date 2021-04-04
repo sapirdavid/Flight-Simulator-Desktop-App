@@ -6,14 +6,18 @@
         xmlns:local="clr-namespace:MileStone1.Controls"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-       Height="300" Width="400" >
-    <Grid>
+       Height="500" Width="400" >
+    <Grid Margin="-137,-24,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="153*"/>
+        </Grid.ColumnDefinitions>
         <ListBox x:Name="lbx_property_names" ItemsSource="{Binding PropertyIndexes}"
                  SelectedValue="{Binding PropertyIndexesId}" 
                  
              SelectedValuePath="Id" DisplayMemberPath="Name"
-                 HorizontalAlignment="Left" Height="300" Margin="0,0,0,0" VerticalAlignment="Top" Width="80" SelectionChanged="lbx_property_names_SelectionChanged" Background="#FFF3EEEE"/>
-        <oxy:Plot Name="plot" Title="{Binding Title}" Margin="80,0,0,0" Background="#FFEBEBEB">
+                 HorizontalAlignment="Left" Height="259" VerticalAlignment="Top" Width="80" SelectionChanged="lbx_property_names_SelectionChanged" Background="#FFF3EEEE" Grid.ColumnSpan="2" Margin="91,26,0,0"/>
+        <oxy:Plot Name="propretyValue" Title="{Binding Title}" Margin="45,26,183,355" Background="#FFF6EEEE" Grid.Column="1">
             <oxy:Plot.Axes>
                 <oxy:DateTimeAxis Position="Bottom"
                                     StringFormat="mm:ss"
@@ -25,10 +29,26 @@
                                 MajorGridlineStyle="Solid"
                                 MinorGridlineStyle="Dot"
                                 IntervalLength="50" />
+                
             </oxy:Plot.Axes>
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding Points}"/>
             </oxy:Plot.Series>
+        </oxy:Plot>
+        <oxy:Plot x:Name="correlativeProprety" Title="{Binding CorrelatedTitle}" Margin="228,26,0,355" Background="#FFEBEBEB" Grid.Column="1">
+            <oxy:Plot.Axes>
+                <oxy:DateTimeAxis Position="Bottom"
+                    StringFormat="mm:ss"
+                    MajorGridlineStyle="Solid"
+                    MinorGridlineStyle="Dot"
+                    IntervalType="Minutes"
+                    IntervalLength="30" />
+                <oxy:LinearAxis Position="Left"
+                    MajorGridlineStyle="Solid"
+                    MinorGridlineStyle="Dot"
+                    IntervalLength="50" />
+            </oxy:Plot.Axes>
+            <oxy:LineSeries ItemsSource="{Binding CorrelatedPoints}"/>
         </oxy:Plot>
     </Grid>
 </UserControl>
