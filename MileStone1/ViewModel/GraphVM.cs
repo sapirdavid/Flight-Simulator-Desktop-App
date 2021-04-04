@@ -18,9 +18,12 @@ namespace MileStone1.ViewModel
         //create title
         public String Title { get; set; }
         public String CorrelatedTitle { get; set; }
+
         // create data point so we can do create the graph (the graph receives data points)
         public List<DataPoint> Points { get; private set; }
         public List<DataPoint> CorrelatedPoints { get; private set; }
+        public List<DataPoint> RegPoints { get; private set; }
+
 
         public bool pressed = false;
         public long currenLineIndex
@@ -90,6 +93,14 @@ namespace MileStone1.ViewModel
                         CorrelatedPoints.Add(new DataPoint(DateTimeAxis.ToDouble(date), item));
                         date = date.AddMinutes(1);
                     }
+                    List<float> regLinePropretyGraph = fdm.PropertyValues[0];
+                    RegPoints = new List<DataPoint>();
+                    for (int i = 0; i < correlatedPropretyGraph.Count; i++)
+                    {
+                        RegPoints.Add(new DataPoint(valuesGraph[i], correlatedPropretyGraph[i]));
+                        date = date.AddMinutes(1);
+                    }
+
 
                 }
 
@@ -144,9 +155,13 @@ namespace MileStone1.ViewModel
             {
                 lineToCopy = prevLineIndex;
             }
+            //all values of the  current feature column 
             List<float> AllData = fdm.PropertyValues[property.Id];
+            //the relevant points need to be shown at the graph
             List<float> valuesGraph = new List<float>();
+            //all values of the current correlative feature
             List<float> correlatedPropretyData = fdm.PropertyValues[idxOfMostCorrelative];
+            //the relevant points need to be shown at the graph
             List<float> correlatedPropretyGraph = new List<float>();
 
 
@@ -159,18 +174,27 @@ namespace MileStone1.ViewModel
 
             Points = new List<DataPoint>();
             CorrelatedPoints = new List<DataPoint>();
+            RegPoints = new List<DataPoint>();
             DateTime date = new DateTime(2020, 3, 26, 0, 0, 0);
 
-            foreach (var item in valuesGraph)
+            for (int i = 0; i < lineToCopy; i++)
             {
-                Points.Add(new DataPoint(DateTimeAxis.ToDouble(date), item));
+                Points.Add(new DataPoint(DateTimeAxis.ToDouble(date), AllData[i]));
+                CorrelatedPoints.Add(new DataPoint(DateTimeAxis.ToDouble(date), correlatedPropretyData[i]));
+                RegPoints.Add(new DataPoint(correlatedPropretyGraph[i], AllData[i]));
+
                 date = date.AddMilliseconds(100);
             }
-            foreach (var item in correlatedPropretyGraph)
-            {
-                CorrelatedPoints.Add(new DataPoint(DateTimeAxis.ToDouble(date), item));
-                date = date.AddMilliseconds(100);
-            }
+            //for (int i = 0; i < lineToCopy; i++)
+            //{
+               // CorrelatedPoints.Add(new DataPoint(DateTimeAxis.ToDouble(date), correlatedPropretyData[i]));
+               // date = date.AddMilliseconds(100);
+           // }
+            //for(int i=0;i< lineToCopy;i++)
+            //{
+            //    RegPoints.Add(new DataPoint(valuesGraph[i], correlatedPropretyGraph[i]));
+            //    date = date.AddMilliseconds(100);
+           // }
 
             this.Title = property.Name;
             this.CorrelatedTitle = PropertyIndexes[idxOfMostCorrelative].Name;
@@ -178,6 +202,7 @@ namespace MileStone1.ViewModel
             NotifyPropertyChanged("CorrelatedTitle");
             NotifyPropertyChanged("Points");
             NotifyPropertyChanged("CorrelatedPoints");
+            NotifyPropertyChanged("RegPoints");
 
 
         }
