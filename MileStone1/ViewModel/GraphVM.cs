@@ -23,7 +23,9 @@ namespace MileStone1.ViewModel
         public List<DataPoint> Points { get; private set; }
         public List<DataPoint> CorrelatedPoints { get; private set; }
         public List<DataPoint> RegPoints { get; private set; }
-
+        public List<DataPoint> RegLinePoints { get; private set; }
+        public List<float> minCorrelatedPointsXValue { get; private set; }
+        public List<float> maxCorrelatedPointsXValue { get; private set; }
 
         public bool pressed = false;
         public long currenLineIndex
@@ -50,7 +52,6 @@ namespace MileStone1.ViewModel
         //c'tor
         public GraphVM(FlightDetectorModel fdm)
         {
-
             this.fdm = fdm;
             this.prevLineIndex = 0;
             this.fdm.PropertyChanged +=
@@ -74,7 +75,6 @@ namespace MileStone1.ViewModel
                 //if the values have changed
                 if (e.PropertyName == "PropertyValues")
                 {
-
                     List<float> valuesGraph = fdm.PropertyValues[0];
                     Points = new List<DataPoint>();
                     DateTime date = new DateTime(2020, 3, 26, 0, 0, 0);
@@ -85,7 +85,6 @@ namespace MileStone1.ViewModel
                         date = date.AddMinutes(1);
                     }
 
-          
                     List<float> correlatedPropretyGraph = fdm.PropertyValues[0];
                     CorrelatedPoints = new List<DataPoint>();
                     foreach (var item in correlatedPropretyGraph)
@@ -93,6 +92,7 @@ namespace MileStone1.ViewModel
                         CorrelatedPoints.Add(new DataPoint(DateTimeAxis.ToDouble(date), item));
                         date = date.AddMinutes(1);
                     }
+
                     List<float> regLinePropretyGraph = fdm.PropertyValues[0];
                     RegPoints = new List<DataPoint>();
                     for (int i = 0; i < correlatedPropretyGraph.Count; i++)
@@ -101,7 +101,8 @@ namespace MileStone1.ViewModel
                         date = date.AddMinutes(1);
                     }
 
-
+                     RegLinePoints = new List<DataPoint>();
+                     //RegLinePoints.Add(new DataPoint(0, 0));
                 }
 
                 //if the values have changed
@@ -116,7 +117,9 @@ namespace MileStone1.ViewModel
             this.fdm.readXml();
             this.fdm.readCsv();
             this.mcf = new MostCorrelativeFinder(fdm.PropertyValues);
-
+            this.minCorrelatedPointsXValue = new List<float>();
+            this.maxCorrelatedPointsXValue = new List<float>();
+            updateMinMaxValues();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -134,6 +137,21 @@ namespace MileStone1.ViewModel
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+        //the function update for every property the min and max x value of his most correlated property
+        public void updateMinMaxValues()
+        {
+            int i = 0;
+            //pass on each proprety
+            foreach (var property in this.PropertyIndexes)
+            {
+                int idxOfMostCorrelative = mcf.CorrlatedColumns[i];
+                //all values of the current correlative feature
+                List<float> correlatedPropretyData = fdm.PropertyValues[idxOfMostCorrelative];
+                this.minCorrelatedPointsXValue.Add(correlatedPropretyData.Min());
+                this.maxCorrelatedPointsXValue.Add(correlatedPropretyData.Max());
+                i++;
+            }
+        }
 
         // change proprety and show it's values at the graph
         public void changeValues(PropertyIndex property)
@@ -142,6 +160,7 @@ namespace MileStone1.ViewModel
             int lineDiff = 3;
             long lineToCopy = 0;
             int idxOfMostCorrelative = mcf.findTheMostCorrelative(fdm.PropertyValues, property.Id);
+            Line regLine = mcf.linearRegressionList[idxOfMostCorrelative];
      
             //check if we need update
             if (Math.Abs(this.currenLineIndex - this.prevLineIndex) >= lineDiff)
@@ -175,6 +194,8 @@ namespace MileStone1.ViewModel
             Points = new List<DataPoint>();
             CorrelatedPoints = new List<DataPoint>();
             RegPoints = new List<DataPoint>();
+            RegLinePoints = new List<DataPoint>();
+
             DateTime date = new DateTime(2020, 3, 26, 0, 0, 0);
 
             for (int i = 0; i < lineToCopy; i++)
@@ -182,19 +203,15 @@ namespace MileStone1.ViewModel
                 Points.Add(new DataPoint(DateTimeAxis.ToDouble(date), AllData[i]));
                 CorrelatedPoints.Add(new DataPoint(DateTimeAxis.ToDouble(date), correlatedPropretyData[i]));
                 RegPoints.Add(new DataPoint(correlatedPropretyGraph[i], AllData[i]));
-
                 date = date.AddMilliseconds(100);
             }
-            //for (int i = 0; i < lineToCopy; i++)
-            //{
-               // CorrelatedPoints.Add(new DataPoint(DateTimeAxis.ToDouble(date), correlatedPropretyData[i]));
-               // date = date.AddMilliseconds(100);
-           // }
-            //for(int i=0;i< lineToCopy;i++)
-            //{
-            //    RegPoints.Add(new DataPoint(valuesGraph[i], correlatedPropretyGraph[i]));
-            //    date = date.AddMilliseconds(100);
-           // }
+
+
+            if(correlatedPropretyGraph.Count > 0)
+            {
+                RegLinePoints.Add(new DataPoint(minCorrelatedPointsXValue[property.Id], mcf.calcY(regLine, minCorrelatedPointsXValue[property.Id])));
+                RegLinePoints.Add(new DataPoint(maxCorrelatedPointsXValue[property.Id], mcf.calcY(regLine, maxCorrelatedPointsXValue[property.Id])));
+            }
 
             this.Title = property.Name;
             this.CorrelatedTitle = PropertyIndexes[idxOfMostCorrelative].Name;
@@ -203,8 +220,7 @@ namespace MileStone1.ViewModel
             NotifyPropertyChanged("Points");
             NotifyPropertyChanged("CorrelatedPoints");
             NotifyPropertyChanged("RegPoints");
-
-
+            NotifyPropertyChanged("RegLinePoints");
         }
     }
     // create class so each proprety will have a name and an index (id)

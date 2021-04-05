@@ -60,6 +60,7 @@
 
             </oxy:Plot.Axes>
             <oxy:LineSeries ItemsSource="{Binding RegPoints}" Color="Transparent" MarkerFill="BlueViolet" MarkerType="Circle" MarkerSize="1.5"/>
+            <oxy:LineSeries ItemsSource="{Binding RegLinePoints}"/>
         </oxy:Plot>
     </Grid>
 </UserControl>

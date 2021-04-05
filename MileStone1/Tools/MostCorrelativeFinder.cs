@@ -108,7 +108,7 @@ namespace MileStone1
                     continue;
                 if (mostCorrelativeIdx == -1)
                 {
-                    mostCorrelativeIdx = i; //if there isn't yer corrlation
+                    mostCorrelativeIdx = i; //if there isn't yet corrlation
                     mostCorrelativeVal = Math.Abs(pearson(dataCulomns[column], dataCulomns[i]));
                 }
                 else
@@ -126,18 +126,28 @@ namespace MileStone1
 
         private float pearson(List<float> x, List<float> y)
         {
-            return (float)(cov(x, y, x.Count) / (Math.Sqrt(var(x, x.Count)) * Math.Sqrt(var(y, y.Count))));
+            float sqrtVarX = (float)(Math.Sqrt(var(x, x.Count)));
+            float sqrtVarY = (float)(Math.Sqrt(var(y, y.Count)));
+            //check devision in zero
+            if (sqrtVarX != 0 && sqrtVarY != 0)
+            {
+                float covariance = cov(x, y, x.Count);
+                return (covariance / (sqrtVarX * sqrtVarY));
+            } else
+            {
+                return 0;
+            }
         }
         // returns the variance of X and Y
         private float var(List<float> x, int size)
         {
-            float av = avg(x, size);
+            float average = avg(x, size);
             float sum = 0;
             for (int i = 0; i < size; i++)
             {
                 sum += x[i] * x[i];
             }
-            return sum / size - av * av;
+            return ((sum / size) - (average * average));
         }
         // returns the covariance of X and Y
         private float cov(List<float> x, List<float> y, int size)
@@ -149,7 +159,7 @@ namespace MileStone1
             }
             sum /= size;
 
-            return sum - avg(x, size) * avg(y, size);
+            return (sum - (avg(x, size) * avg(y, size)));
         }
         private float avg(List<float> x, int size)
         {
@@ -160,9 +170,24 @@ namespace MileStone1
         // performs a linear regression and returns the line equation
         Line linear_reg(List<float> x, List<float> y)
         {
-            float a = cov(x, y, x.Count) / var(x, x.Count);
-            float b = avg(y, y.Count) - a * (avg(x, x.Count));
+            float varX = var(x, x.Count);
+            float a, b;
+            if (varX != 0)
+            {
+                a = cov(x, y, x.Count) / varX;
+                b = avg(y, y.Count) - a * (avg(x, x.Count));
+            } else
+            {
+                a = 0;
+                b = 0;
+            }
             return new Line(a, b);
+        }
+
+        public float calcY (Line regLine, float x)
+        {
+            return (regLine.A * x + regLine.B);
+
         }
     }
 }
