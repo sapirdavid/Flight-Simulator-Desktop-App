@@ -19,10 +19,10 @@ namespace MileStone1
         public MainWindow()
         {
             InitializeComponent();
-            AnomalyDetector detector = new AnomalyDetector(@"C:\Users\gavri\Desktop\mileStone1\MileStone1_DesktopApp\reg_flight.csv",
-                                                            @"C:\Users\gavri\Desktop\mileStone1\MileStone1_DesktopApp\anomaly_flight.csv",
-                                                            "C: \\Users\\gavri\\Desktop\\dll1t\\dll1t.dll");
-            detector.detectAnomalies();
+            //AnomalyDetector detector = new AnomalyDetector(@"C:\Users\gavri\Desktop\mileStone1\MileStone1_DesktopApp\reg_flight.csv",
+            //                                                @"C:\Users\gavri\Desktop\mileStone1\MileStone1_DesktopApp\anomaly_flight.csv",
+            //                                                "C: \\Users\\gavri\\Desktop\\dll1t\\dll1t.dll");
+            //detector.detectAnomalies();
 
 
            
