@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace MileStone1.Controls
 {
     /// <summary>
@@ -40,6 +39,7 @@ namespace MileStone1.Controls
                 DataContext = divm;
 
                 //if the values of rudder or throttle changed, the slider will change accordingly
+
                 divm.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
                 {
                     if (e.PropertyName == "VM_Altimeter")
@@ -63,6 +63,7 @@ namespace MileStone1.Controls
                             Direction.Text = divm.VM_Direction.ToString("0.###");
                         }));
                     }
+                    /*
                     else if (e.PropertyName == "VM_Pitch")
                     {
                         this.Dispatcher.Invoke((Action)(() =>
@@ -86,11 +87,11 @@ namespace MileStone1.Controls
                         }));
                     }
                 };
-
+                */
+                };
             }
-
         }
     }
 }
-    
+
 

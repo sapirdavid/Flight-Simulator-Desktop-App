@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CircularGauge" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="7.0.1" />
     <PackageReference Include="OxyPlot.WindowsForms" Version="2.0.0" />
     <PackageReference Include="OxyPlot.Wpf" Version="2.0.0" />
+    <PackageReference Include="Syncfusion.SfGauge.WPF" Version="19.1.0.55" />
   </ItemGroup>
 
 </Project>
