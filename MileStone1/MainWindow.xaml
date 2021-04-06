@@ -18,6 +18,11 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
         <Button x:Name="openFile" Content="open file" HorizontalAlignment="Left" Height="53" Margin="145,0,0,0" VerticalAlignment="Top" Width="115" Click="openFile_Click"/>
         <Button x:Name="startSimulationButton" Content="Start Simulation" HorizontalAlignment="Left" Margin="282,1,0,0" VerticalAlignment="Top" Height="52" Width="106" Click="startSimulationButton_Click" Visibility="Visible" IsEnabled="False"/>
     </Grid>

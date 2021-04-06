@@ -16,12 +16,12 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="87*"/>
             <ColumnDefinition Width="43*"/>
             <ColumnDefinition Width="130*"/>
         </Grid.ColumnDefinitions>
-        <Slider x:Name="slider" VerticalAlignment="Center" Height="20" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Background="#FF3D3737" ValueChanged="Slider_ValueChanged" Maximum="100">
+        <Slider x:Name="slider" VerticalAlignment="Stretch" Height="20" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Background="#FF3D3737" ValueChanged="Slider_ValueChanged" Maximum="100">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1"/>
@@ -31,7 +31,7 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Button x:Name="pauseButton" Grid.Column="0" Content="| |" HorizontalAlignment="Left" Margin="-5,0,0,0" VerticalAlignment="Center" Width="25" Height="21" Click="pauseBottum_Click" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Grid.ColumnSpan="1"/>
+        <Button x:Name="pauseButton" Grid.Column="0" Content="| |" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Center" Height="21" Click="pauseBottum_Click" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Grid.ColumnSpan="1"/>
         <Grid Height="20" Grid.Column="1" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
@@ -45,7 +45,7 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="slowButton"   Content="Slower" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.626,0.768" Click="slowButton_Click"/>
             <Button x:Name="fastButton"  Content="faster" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" Width="41" Click="fastButton_Click"/>
-            <Button x:Name="soketContorller" Content="Stop" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Center" Height="20" Width="50" Grid.Column="4" RenderTransformOrigin="0.452,1.79" Click="Button_Click"/>
+            <Button x:Name="soketContorller" Content="Stop" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Center" Height="Auto" Width="Auto" Grid.Column="4" RenderTransformOrigin="0.452,1.79" Click="Button_Click"/>
             <TextBlock x:Name="speedText"  HorizontalAlignment="Left" Margin="46,0,0,0" Text="speed: X1" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="Black" Width="86" FontWeight="Normal" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" Height="20" Grid.Column="1" Grid.ColumnSpan="3"/>
             <TextBlock x:Name="timeBlock" HorizontalAlignment="Left" Text="00:00:00" TextWrapping="Wrap" VerticalAlignment="Center" Height="20" Width="73" Background="Black" Foreground="#FFC6D414" Grid.Column="3" Grid.ColumnSpan="2" Margin="57,0,0,0"/>
         </Grid>

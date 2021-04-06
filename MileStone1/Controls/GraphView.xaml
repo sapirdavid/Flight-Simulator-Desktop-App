@@ -6,18 +6,27 @@
         xmlns:local="clr-namespace:MileStone1.Controls"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-       Height="500" Width="400" >
-    <Grid Margin="-137,-24,0,0">
+             d:Height="300" d:Width="500"
+                                 >
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="47*"/>
-            <ColumnDefinition Width="153*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+
+
+        
         <ListBox x:Name="lbx_property_names" ItemsSource="{Binding PropertyIndexes}"
-                 SelectedValue="{Binding PropertyIndexesId}" 
-                 
-             SelectedValuePath="Id" DisplayMemberPath="Name"
-                 HorizontalAlignment="Left" Height="393" VerticalAlignment="Top" Width="80" SelectionChanged="lbx_property_names_SelectionChanged" Background="#FFF3EEEE" Margin="46,26,0,0"/>
-        <oxy:Plot Name="propretyValue" Title="{Binding Title}" Margin="126,26,205,345" Background="#FFF6EEEE" Grid.ColumnSpan="2">
+                Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  SelectedValue="{Binding PropertyIndexesId}"         
+             SelectedValuePath="Id" DisplayMemberPath="Name" 
+                 HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="lbx_property_names_SelectionChanged" Background="White" />
+         <oxy:Plot Name="propretyValue" Title="{Binding Title}" Grid.Column="2" Background="White" BorderBrush="Black">
             <oxy:Plot.Axes>
                 <oxy:DateTimeAxis Position="Bottom"
                                     StringFormat="mm:ss"
@@ -35,7 +44,7 @@
                 <oxy:LineSeries ItemsSource="{Binding Points}"/>
             </oxy:Plot.Series>
         </oxy:Plot>
-        <oxy:Plot x:Name="correlativeProprety" Title="{Binding CorrelatedTitle}" Margin="206,26,0,345" Background="#FFEBEBEB" Grid.Column="1">
+        <oxy:Plot x:Name="correlativeProprety" Title="{Binding CorrelatedTitle}" Grid.Row="0" Grid.Column="1" Background="#FFEBEBEB" >
             <oxy:Plot.Axes>
                 <oxy:DateTimeAxis Position="Bottom"
                     StringFormat="mm:ss"
@@ -50,7 +59,7 @@
             </oxy:Plot.Axes>
             <oxy:LineSeries ItemsSource="{Binding CorrelatedPoints}"/>
         </oxy:Plot>
-        <oxy:Plot x:Name="regLineGraph" Title="{Binding Title}" Margin="126,215,0,105" Background="#FFF6EEEE" Grid.ColumnSpan="2">
+        <oxy:Plot x:Name="regLineGraph" Title="{Binding Title}"  Background="#FFF6EEEE"  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
             <oxy:Plot.Axes>
 
                 <oxy:LinearAxis Position="Left"
@@ -61,6 +70,6 @@
             </oxy:Plot.Axes>
             <oxy:LineSeries ItemsSource="{Binding RegPoints}" Color="Transparent" MarkerFill="BlueViolet" MarkerType="Circle" MarkerSize="1.5"/>
             <oxy:LineSeries ItemsSource="{Binding RegLinePoints}"/>
-        </oxy:Plot>
+        </oxy:Plot>  
     </Grid>
 </UserControl>

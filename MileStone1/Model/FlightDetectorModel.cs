@@ -18,7 +18,7 @@ namespace MileStone1
     {
         Transmit tr;
         List<string> data;
-        int fps = 0; //default frame per second
+        int fps = 10; //default frame per second
         int currentLine = 0;
         int listSize = 0;
         bool runAnimation = true;
@@ -83,6 +83,7 @@ namespace MileStone1
             set
             {
                 this.fps = value;
+            //    this.INotifyPropertyChanged("fps");
             }
         }
 
