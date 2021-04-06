@@ -4,19 +4,20 @@ using System.Text;
 using System.Runtime.InteropServices;
 namespace MileStone1
 {
-    class AnomalyDetector
+    public class AnomalyDetector
     {
-        [DllImport(@"dll1t.dll")]
+        [DllImport(@"regressionAnomalyDetector.dll")]
         public static extern IntPtr detect(StringBuilder normalCsvPath, StringBuilder regularCsvPath);
 
-        [DllImport(@"dll1t.dll")]
+        [DllImport(@"regressionAnomalyDetector.dll")]
         public static extern void del(IntPtr arr);
 
-        string normalCsvPath;
-        string anomalyCsvPath;
-        string anomalyDetectionAlgorithemPath;
+        protected string normalCsvPath;
+        protected string anomalyCsvPath;
+        protected string anomalyDetectionAlgorithemPath;
         List<List<Tuple<int, int>>> anomalies;
-       public AnomalyDetector(string normalCsvPath, string anomalyCsvPath, string anomalyDetectionAlgorithemPath) {
+        public AnomalyDetector(string normalCsvPath, string anomalyCsvPath, string anomalyDetectionAlgorithemPath)
+        {
             this.normalCsvPath = normalCsvPath;
             this.anomalyCsvPath = anomalyCsvPath;
             this.anomalyDetectionAlgorithemPath = anomalyDetectionAlgorithemPath;
@@ -37,12 +38,13 @@ namespace MileStone1
             Marshal.Copy(arrayPtr, size, 0, 1);
             int[] anomaliesArray = new int[size[0] + 1];
             Marshal.Copy(arrayPtr, anomaliesArray, 0, size[0] + 1); //copy all the anomalies
-            List<List<Tuple<int, int>>>  anomalies =  new List<List<Tuple<int, int>>>();
-            
+            List<List<Tuple<int, int>>> anomalies = new List<List<Tuple<int, int>>>();
+
             int halfSize = size[0] / 2; //to indicate the location of the lines of the anomalies
             //count the number of columns in csv file
-            int columnsNum = 0; 
-            for (int i = 1; i <= halfSize; i++) {
+            int columnsNum = 0;
+            for (int i = 1; i <= halfSize; i++)
+            {
                 if (anomaliesArray[i] == -1)
                     columnsNum++;
             }
@@ -52,8 +54,10 @@ namespace MileStone1
                 anomalies.Add(new List<Tuple<int, int>>());
             }
             int column = 0;
-            for (int i = 1; i <= halfSize; i++) {
-                if (anomaliesArray[i] == -1) { //if end of column
+            for (int i = 1; i <= halfSize; i++)
+            {
+                if (anomaliesArray[i] == -1)
+                { //if end of column
                     column++;
                     continue;
                 }
