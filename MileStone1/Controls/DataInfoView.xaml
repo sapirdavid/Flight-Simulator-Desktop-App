@@ -7,15 +7,16 @@
              xmlns:local="clr-namespace:MileStone1.Controls" xmlns:viewmodel="clr-namespace:MileStone1.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:DataInfoVM}"
              mc:Ignorable="d" 
              >
-    <Grid Height="84" Width="772">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <!--<<< Will resize taking all remaining space -->
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="1.5*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -23,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <gauge:CircularGaugeControl x:Name="Pitch"
-       HorizontalAlignment="Stretch" Grid.Row="0"  Grid.Column="0"
+       HorizontalAlignment="Stretch" Grid.Row="0"  Grid.Column="0" Grid.RowSpan="2"
   Radius="45"
   ScaleRadius="60"
   ScaleStartAngle="120"
@@ -53,7 +54,7 @@
   DialTextColor="Black" />
 
         <gauge:CircularGaugeControl x:Name="Yaw"
-       HorizontalAlignment="Stretch" Grid.Row="0"  Grid.Column="1"
+       HorizontalAlignment="Stretch" Grid.Row="0"  Grid.Column="1" Grid.RowSpan="2"
   Radius="45"
   ScaleRadius="60"
   ScaleStartAngle="120"
@@ -83,7 +84,7 @@
   DialTextColor="Black" />
 
         <gauge:CircularGaugeControl x:Name="Roll"
-       HorizontalAlignment="Stretch" Grid.Row="0"  Grid.Column="2"
+       HorizontalAlignment="Stretch" Grid.Row="0"  Grid.Column="2" Grid.RowSpan="2"
   Radius="45"
   ScaleRadius="60"
   ScaleStartAngle="120"
@@ -112,12 +113,16 @@
   DialText="Roll"
   DialTextColor="Black" />
 
-        <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Text="{Binding VM_Pitch, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom" />
-        <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Text="{Binding VM_Yaw, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
-        <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2" Text="{Binding VM_Roll, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom" />
-        <TextBox HorizontalAlignment="Stretch" Name="Airspeed" Grid.Row="0" Grid.Column="3" Text="Airspeed" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
-        <TextBox HorizontalAlignment="Stretch" Name="Direction" Grid.Row="0" Grid.Column="4" Text="Direction" TextWrapping="Wrap" VerticalAlignment="Bottom" />
-        <TextBox HorizontalAlignment="Stretch" Name="Altimeter" Grid.Row="0" Grid.Column="5" Text="Altimeter" TextWrapping="Wrap" VerticalAlignment="Bottom" />
+        <!-- <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Text="{Binding VM_Pitch, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom" /> -->
+        <!--  <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Text="{Binding VM_Yaw, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom"/> -->
+        <!-- HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2" Text="{Binding VM_Roll, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom" /> -->
+        <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="3" Text="Airspeed" TextWrapping="Wrap" VerticalAlignment="Bottom" />
+        <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="4" Text="Direction" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+        <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="5" Text="Altimeter" TextWrapping="Wrap" VerticalAlignment="Bottom" />
+
+        <TextBox HorizontalAlignment="Stretch" Name="Airspeed" Grid.Row="1" Grid.Column="3"  Text="Airspeed" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Stretch" Name="Direction" Grid.Row="1" Grid.Column="4" Text="Direction" TextWrapping="Wrap" VerticalAlignment="Top" />
+        <TextBox HorizontalAlignment="Stretch" Name="Altimeter" Grid.Row="1" Grid.Column="5" Text="Altimeter" TextWrapping="Wrap" VerticalAlignment="Top" />
 
     </Grid>
 </UserControl>
