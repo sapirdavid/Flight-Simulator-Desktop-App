@@ -20,8 +20,23 @@ namespace MileStone1
     public partial class DashboardWindow : Window
     {
         string csvPath;
-        FlightDetectorModel lt;
-        
+        FlightDetectorModel lt = null;
+        Anomalies anomalies = null;
+
+        public Anomalies Anomalies {
+            get
+            {
+                return this.anomalies;
+            }
+            set
+            {
+                this.anomalies = Anomalies;
+                if (lt != null) { //if there is alredy model
+                    lt.AnomaliesList = this.anomalies.anomaliesList;
+                    lt.CorrlativeCircles = this.anomalies.anomaliesRangeCircles;
+                }
+            }
+        }
 
         public DashboardWindow(string csvPath)
         {
@@ -34,6 +49,13 @@ namespace MileStone1
             FileReader f = new FileReader();
             f.ReadFile(csvPath);
             this.lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400);
+
+            if (anomalies != null) { //if there is anomalies
+                lt.AnomaliesList = this.anomalies.anomaliesList;
+                lt.CorrlativeCircles = this.anomalies.anomaliesRangeCircles;
+            }
+
+
             SliderControlVM ltvm = new SliderControlVM(lt);
             animationSlide.ViewModel = ltvm;
 

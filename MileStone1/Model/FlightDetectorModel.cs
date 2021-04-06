@@ -27,6 +27,37 @@ namespace MileStone1
         /***belong to NavigatorState****/
         double rudder, throttle, aileron, elevator, altimeter, airspeed, direction, pitch, roll, yaw;
         /*******/
+        //anomalies
+        //anomalies[0][0].first is the first anomalie of 0 column with the column anomalies[0][0].first in line anomalies[0][0].second
+        List<List<Tuple<int, int>>> anomaliesList = null;
+        List<CorrlativeCircle> corrlativeCircles = null;
+
+        public List<List<Tuple<int, int>>> AnomaliesList {
+            get
+            {
+                return this.anomaliesList;
+            }
+            set
+            {
+                this.anomaliesList = value;
+                this.INotifyPropertyChanged("AnomaliesList");
+            }
+        }
+        public List<CorrlativeCircle> CorrlativeCircles
+        {
+            get
+            {
+                return this.corrlativeCircles;
+            }
+            set
+            {
+                this.corrlativeCircles = value;
+                this.INotifyPropertyChanged("CorrlativeCircles");
+
+
+            }
+        }
+
 
         // Graph parametrs
         public event PropertyChangedEventHandler PropertyChanged;

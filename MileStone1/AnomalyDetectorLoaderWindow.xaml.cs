@@ -12,6 +12,10 @@ using System.Windows.Shapes;
 
 namespace MileStone1
 {
+    public class Anomalies {
+        public List<List<Tuple<int, int>>> anomaliesList = null;
+        public List<CorrlativeCircle> anomaliesRangeCircles = null;
+    }
     /// <summary>
     /// Interaction logic for AnomalyDetectorLoaderWindow.xaml
     /// </summary>
