@@ -16,16 +16,11 @@ namespace MileStone1
     {
         string txtPath;
         DashboardWindow dw = null;
+        AnomalyDetectorLoaderWindow anomalyDetWin = null;
+        
         public MainWindow()
         {
             InitializeComponent();
-          //  RegressionAnomalyDetector detector = new RegressionAnomalyDetector(@"C:\Users\gavri\Desktop\mileStone1\MileStone1_DesktopApp\reg_flight.csv",
-            //                                                @"C:\Users\gavri\Desktop\mileStone1\MileStone1_DesktopApp\anomaly_flight.csv",
-             //                                               "C: \\Users\\gavri\\Desktop\\dll1t\\dll1t.dll");
-            //detector.detectAnomalies();
-
-
-
         }
         private void openFile_Click(object sender, RoutedEventArgs e)
         {
@@ -42,6 +37,7 @@ namespace MileStone1
             }
             this.dw = new DashboardWindow(csvPath);
             startSimulationButton.IsEnabled = true; //enable the button of the simulation
+            loadAnomalyDet.IsEnabled = true;
         }
 
         private void startSimulationButton_Click(object sender, RoutedEventArgs e)
@@ -54,6 +50,12 @@ namespace MileStone1
                 dw.StartAnimation();
             }
            
+        }
+
+        private void loadAnomalyDet_Click(object sender, RoutedEventArgs e)
+        {
+           AnomalyDetectorLoaderWindow anomalyDetWin = new AnomalyDetectorLoaderWindow(txtPath);
+            anomalyDetWin.Show();
         }
     }
 }

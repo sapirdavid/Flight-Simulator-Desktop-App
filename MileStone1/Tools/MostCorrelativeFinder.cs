@@ -5,18 +5,18 @@ namespace MileStone1
 {
     public class Point
     {
-        int x, y;
-        public int X
+        float x, y;
+        public float X
         {
             get { return x; }
             set { this.x = value; }
         }
-        public int Y
+        public float Y
         {
             get { return y; }
             set { this.y = value; }
         }
-        Point(int x, int y)
+        public Point(float x, float y)
         {
             this.x = x;
             this.y = y;

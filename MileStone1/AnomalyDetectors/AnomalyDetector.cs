@@ -2,15 +2,27 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
+
 namespace MileStone1
 {
     public class AnomalyDetector
     {
-        [DllImport(@"regressionAnomalyDetector.dll")]
-        public static extern IntPtr detect(StringBuilder normalCsvPath, StringBuilder regularCsvPath);
 
-        [DllImport(@"regressionAnomalyDetector.dll")]
-        public static extern void del(IntPtr arr);
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr LoadLibrary(string dllToLoad);
+
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr GetProcAddress(IntPtr hModule, string procedureName);
+
+        [DllImport("kernel32.dll")]
+        public static extern bool FreeLibrary(IntPtr hModule);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate IntPtr Detect(string a,string b);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate IntPtr DelIntArray(IntPtr array);
+        
 
         protected string normalCsvPath;
         protected string anomalyCsvPath;
@@ -26,13 +38,25 @@ namespace MileStone1
 
         public List<List<Tuple<int, int>>> detectAnomalies()
         {
-            StringBuilder normalPath = new StringBuilder();
-            normalPath.Append(normalCsvPath);
 
-            StringBuilder anomalyPath = new StringBuilder();
-            anomalyPath.Append(anomalyCsvPath);
+            IntPtr pDll = LoadLibrary(anomalyDetectionAlgorithemPath);
+            //oh dear, error handling here
+            //if (pDll == IntPtr.Zero)
 
-            IntPtr arrayPtr = detect(normalPath, anomalyPath);
+            IntPtr pAddressOfFunctionToCall = GetProcAddress(pDll, "detect");
+            //oh dear, error handling here
+            //if(pAddressOfFunctionToCall == IntPtr.Zero)
+
+            Detect detect = (Detect)Marshal.GetDelegateForFunctionPointer(
+            pAddressOfFunctionToCall,
+            typeof(Detect));
+
+            IntPtr arrayPtr = detect(normalCsvPath, anomalyCsvPath);
+
+
+            
+           
+            //IntPtr arrayPtr = detect(normalPath, anomalyPath);
             //IntPtr anomaliesArray = detect(this.normalCsvPath, this.regularCsvPath);
             int[] size = new int[1];
             Marshal.Copy(arrayPtr, size, 0, 1);
@@ -63,7 +87,16 @@ namespace MileStone1
                 }
                 anomalies[column].Add(new Tuple<int, int>(anomaliesArray[i], anomaliesArray[i + halfSize])); //add the column of anomaly and line
             }
+
+
+           pAddressOfFunctionToCall = GetProcAddress(pDll, "delIntArray");
+           DelIntArray del = (DelIntArray)Marshal.GetDelegateForFunctionPointer(
+           pAddressOfFunctionToCall,
+           typeof(DelIntArray));
+
+
             del(arrayPtr); //free the array
+            bool result = FreeLibrary(pDll);
             return anomalies;
 
 

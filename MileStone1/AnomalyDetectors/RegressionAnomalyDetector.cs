@@ -8,8 +8,7 @@ namespace MileStone1
     {
 
         public RegressionAnomalyDetector(string normalCsvPath, string anomalyCsvPath, string anomalyDetectionAlgorithemPath) : base(normalCsvPath, anomalyCsvPath, anomalyDetectionAlgorithemPath)
-        {
-        }
+        { }
 
     }
     
