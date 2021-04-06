@@ -40,34 +40,18 @@ namespace MileStone1.Controls
                 //if the values of rudder or throttle changed, the slider will change accordingly
                 nsvm.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
                 {
-                    if (e.PropertyName == "VM_Rudder")
+                    if (e.PropertyName == "VM_Aileron")
                     {
                         this.Dispatcher.Invoke((Action)(() =>
                         {
-                            RudderSlider.Value = nsvm.VM_Rudder;
-                        }));
-                    }
-                    /*
-                    else if (e.PropertyName == "VM_Throttle")
-                    {
-                        this.Dispatcher.Invoke((Action)(() =>
-                        {
-                            ThrottleSlider.Value = nsvm.VM_Throttle;
-                        }));
-                    }
-                    */
-                    else if (e.PropertyName == "VM_Aileron")
-                    {
-                        this.Dispatcher.Invoke((Action)(() =>
-                        {
-                            Canvas.SetLeft(Knob, ((nsvm.VM_Aileron + 1) * 23));
+                            Canvas.SetLeft(Knob, (nsvm.VM_Aileron * 60 + 125));
                         }));
                     }
                     else if (e.PropertyName == "VM_Elevator")
                     {
                         this.Dispatcher.Invoke((Action)(() =>
                         {
-                            Canvas.SetTop(Knob, ((nsvm.VM_Elevator + 1) * 23));
+                            Canvas.SetTop(Knob, (nsvm.VM_Elevator * 60 + 125));
                         }));
 
                     };

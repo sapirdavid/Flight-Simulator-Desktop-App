@@ -102,7 +102,6 @@ namespace MileStone1.ViewModel
                     }
 
                      RegLinePoints = new List<DataPoint>();
-                     //RegLinePoints.Add(new DataPoint(0, 0));
                 }
 
                 //if the values have changed
