@@ -30,10 +30,14 @@ namespace MileStone1
             }
             set
             {
-                this.anomalies = Anomalies;
-                if (lt != null) { //if there is alredy model
-                    lt.AnomaliesList = this.anomalies.anomaliesList;
-                    lt.CorrlativeCircles = this.anomalies.anomaliesRangeCircles;
+                if (value != null)
+                {
+                    this.anomalies = value;
+                    if (lt != null)
+                    { //if there is alredy model
+                        lt.AnomaliesList = this.anomalies.anomaliesList;
+                        lt.CorrlativeCircles = this.anomalies.anomaliesRangeCircles;
+                    }
                 }
             }
         }

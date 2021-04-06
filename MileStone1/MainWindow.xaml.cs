@@ -36,13 +36,9 @@ namespace MileStone1
             {
                 csvPath = openFileDlg.FileName;
             }
+            this.txtPath = csvPath;
             this.dw = new DashboardWindow(csvPath);
-            if (isLoadAnomalyClicked) { //if the user loaded dll
-                Anomalies anomalies = new Anomalies();
-                anomalies.anomaliesList = this.anomalyDetWin.getAnomalies();
-                anomalies.anomaliesRangeCircles = this.anomalyDetWin.getCirclesOfAttr();
-                this.dw.Anomalies = anomalies;
-            }
+            
             startSimulationButton.IsEnabled = true; //enable the button of the simulation
             loadAnomalyDet.IsEnabled = true;
         }
@@ -52,10 +48,10 @@ namespace MileStone1
             if (dw != null)
             {
                 // System.Diagnostics.Process.Start("fgfs.exe");
-               
                 this.Hide();
                 dw.Show();
                 dw.StartAnimation();
+                this.dw.Anomalies = this.dw.Anomalies; //activate the functionality
             }
            
         }
@@ -64,7 +60,17 @@ namespace MileStone1
         {
             this.isLoadAnomalyClicked = true;
            this.anomalyDetWin = new AnomalyDetectorLoaderWindow(txtPath);
-            anomalyDetWin.Show();
+            anomalyDetWin.ShowDialog();
+            //while (anomalyDetWin.) { }
+            //update the anomalies in deshboard window
+            if (this.dw != null)
+            {
+                Anomalies anomalies = new Anomalies();
+                anomalies.anomaliesList = this.anomalyDetWin.getAnomalies();
+                anomalies.anomaliesRangeCircles = this.anomalyDetWin.getCirclesOfAttr();
+                this.dw.Anomalies = anomalies;
+            }
+            
         }
     }
 }
