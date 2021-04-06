@@ -51,10 +51,11 @@ namespace MileStone1
             }
             set
             {
-                this.corrlativeCircles = value;
-                this.INotifyPropertyChanged("CorrlativeCircles");
-
-
+                if (value != null)
+                {
+                    this.corrlativeCircles = value;
+                    this.INotifyPropertyChanged("CorrlativeCircles");
+                }
             }
         }
 
