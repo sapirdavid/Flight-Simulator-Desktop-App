@@ -39,8 +39,11 @@ namespace MileStone1
             }
             set
             {
-                this.anomaliesList = value;
-                this.INotifyPropertyChanged("AnomaliesList");
+                if (value != null)
+                {
+                    this.anomaliesList = value;
+                    this.INotifyPropertyChanged("AnomaliesList");
+                }
             }
         }
         public List<CorrlativeCircle> CorrlativeCircles

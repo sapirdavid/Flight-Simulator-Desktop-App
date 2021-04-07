@@ -17,7 +17,7 @@ namespace MileStone1
         string txtPath;
         DashboardWindow dw = null;
         AnomalyDetectorLoaderWindow anomalyDetWin = null;
-        bool isLoadAnomalyClicked = false;
+        
         
         public MainWindow()
         {
@@ -58,7 +58,7 @@ namespace MileStone1
 
         private void loadAnomalyDet_Click(object sender, RoutedEventArgs e)
         {
-            this.isLoadAnomalyClicked = true;
+            
            this.anomalyDetWin = new AnomalyDetectorLoaderWindow(txtPath);
             anomalyDetWin.ShowDialog();
             //while (anomalyDetWin.) { }
@@ -68,8 +68,10 @@ namespace MileStone1
                 Anomalies anomalies = new Anomalies();
                 anomalies.anomaliesList = this.anomalyDetWin.getAnomalies();
                 anomalies.anomaliesRangeCircles = this.anomalyDetWin.getCirclesOfAttr();
-                this.dw.Anomalies = anomalies;
+                this.dw.Anomalies = anomalies; //update deshboard windows with the anomalies
+                this.anomalyDetWin.Close();
             }
+
             
         }
     }
