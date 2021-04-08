@@ -8,7 +8,6 @@ namespace MileStone1
 {
     public class AnomalyDetector
     {
-
         [DllImport(@"..\..\..\dlls\anomalyDetector.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr detect(string normalCsvPath, string anomalyCsvPath);
 
@@ -65,15 +64,8 @@ namespace MileStone1
                 }
                 anomalies[column].Add(new Tuple<int, int>(anomaliesArray[i], anomaliesArray[i + halfSize])); //add the column of anomaly and line
             }
-
-
-
-
             delIntArray(arrayPtr); //free the array
-            
             return anomalies;
-
-
         }
     }
 }

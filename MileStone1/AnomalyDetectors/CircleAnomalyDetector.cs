@@ -21,19 +21,20 @@ namespace MileStone1
     }
     public class CircleAnomalyDetector : AnomalyDetector
     {
+        [DllImport(@"..\..\..\dlls\anomalyDetector.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr Circle(string normalCsvPath);
+
+
+        [DllImport(@"..\..\..\dlls\anomalyDetector.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr delFloatArray(IntPtr floatArray);
+
 
         public CircleAnomalyDetector(string normalCsvPath, string anomalyCsvPath, string anomalyDetectionAlgorithemPath) : base(normalCsvPath, anomalyCsvPath, anomalyDetectionAlgorithemPath)
         {}
         public List<CorrlativeCircle> getCorrletiveCircles() {
 
 
-            // IntPtr pAddressOfFunctionToCall = GetProcAddress(pDll, "Circle");
-            //oh dear, error handling here
-            //if(pAddressOfFunctionToCall == IntPtr.Zero)
-
-
-            //IntPtr arrayPtr = getAnomaliesCircles(normalCsvPath);
-            IntPtr arrayPtr = new IntPtr();
+            IntPtr arrayPtr = Circle(normalCsvPath);
             float[] size = new float[1];
             Marshal.Copy(arrayPtr, size, 0, 1); //copy the first float
             float[] anomaliesCircles = new float[(int)size[0] + 1];
@@ -52,11 +53,9 @@ namespace MileStone1
                     ));
             }
 
-
-
            
 
-            //del(arrayPtr); //free the array
+            delFloatArray(arrayPtr); //free the array
            
 
             return circlesAndAnomalies;
