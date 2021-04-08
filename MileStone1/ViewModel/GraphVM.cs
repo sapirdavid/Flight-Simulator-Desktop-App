@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace MileStone1.ViewModel
 {
@@ -26,6 +27,10 @@ namespace MileStone1.ViewModel
         public List<DataPoint> RegLinePoints { get; private set; }
         public List<float> minCorrelatedPointsXValue { get; private set; }
         public List<float> maxCorrelatedPointsXValue { get; private set; }
+        public List<List<DataPoint>> AnomaliesPoints { get; private set; }
+        public List<DataPoint> AnomaliesPointsSpecificFeature { get; private set; }
+
+
 
         public bool pressed = false;
         public long currenLineIndex
@@ -102,6 +107,8 @@ namespace MileStone1.ViewModel
                     }
 
                      RegLinePoints = new List<DataPoint>();
+                     AnomaliesPoints = new List<List<DataPoint>>();
+                     AnomaliesPointsSpecificFeature = new List<DataPoint>();
                 }
 
                 //if the values have changed
@@ -118,7 +125,10 @@ namespace MileStone1.ViewModel
             this.mcf = new MostCorrelativeFinder(fdm.PropertyValues);
             this.minCorrelatedPointsXValue = new List<float>();
             this.maxCorrelatedPointsXValue = new List<float>();
-            updateMinMaxValues();
+            //List<int> cor = mcf.CorrlatedColumns;
+            //printCor(cor);
+            //updateMinMaxValues();
+            updateAnomaliesPoints();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -136,6 +146,34 @@ namespace MileStone1.ViewModel
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+      
+        //the function update the anomalies points for every property
+        public void updateAnomaliesPoints()
+        {
+            List<List<Tuple<int, int>>> anomaliesLists = this.fdm.AnomaliesList;
+            int i = 0, firstFeatureColumn, SecondFeatureColumn, anomalyRow;
+            float x, y;
+            //pass on each proprety
+            foreach (var property in this.PropertyIndexes)
+            {
+                List<Tuple<int, int>> anomaliesOfPropertyI = anomaliesLists[i];
+                firstFeatureColumn = i;
+                foreach (var anomaly in anomaliesOfPropertyI)
+                {
+                    SecondFeatureColumn = anomaly.Item1;
+                    if(mcf.CorrlatedColumns[firstFeatureColumn] != SecondFeatureColumn)
+                    {
+                        Debug.WriteLine("error of correlated features: " + firstFeatureColumn + SecondFeatureColumn);
+                    }
+                    anomalyRow = anomaly.Item2;
+                    x = fdm.PropertyValues[firstFeatureColumn][anomalyRow];
+                    y = fdm.PropertyValues[SecondFeatureColumn][anomalyRow];
+                    this.AnomaliesPoints[i].Add(new DataPoint(x, y));
+                }
+            }
+        }
+
+
         //the function update for every property the min and max x value of his most correlated property
         public void updateMinMaxValues()
         {
@@ -152,6 +190,15 @@ namespace MileStone1.ViewModel
             }
         }
 
+        public void printCor(List<int> cor)
+        {
+            for(int i = 0; i < 42; i++)
+            {
+                Debug.WriteLine(this.PropertyNames[i] + "  to  " + this.PropertyNames[mcf.CorrlatedColumns[i]]);
+                Debug.WriteLine("the pearson is: " + this.mcf.pearsonValue[i]);
+            }
+        }
+        
         // change proprety and show it's values at the graph
         public void changeValues(PropertyIndex property)
         {
@@ -160,7 +207,9 @@ namespace MileStone1.ViewModel
             long lineToCopy = 0;
             int idxOfMostCorrelative = mcf.findTheMostCorrelative(fdm.PropertyValues, property.Id);
             Line regLine = mcf.linearRegressionList[idxOfMostCorrelative];
-     
+            //List<int> cor = mcf.CorrlatedColumns;
+
+
             //check if we need update
             if (Math.Abs(this.currenLineIndex - this.prevLineIndex) >= lineDiff)
             {
@@ -194,6 +243,7 @@ namespace MileStone1.ViewModel
             CorrelatedPoints = new List<DataPoint>();
             RegPoints = new List<DataPoint>();
             RegLinePoints = new List<DataPoint>();
+            AnomaliesPointsSpecificFeature = new List<DataPoint>();
 
             DateTime date = new DateTime(2020, 3, 26, 0, 0, 0);
 
@@ -205,11 +255,16 @@ namespace MileStone1.ViewModel
                 date = date.AddMilliseconds(100);
             }
 
-
             if(correlatedPropretyGraph.Count > 0)
             {
                 RegLinePoints.Add(new DataPoint(minCorrelatedPointsXValue[property.Id], mcf.calcY(regLine, minCorrelatedPointsXValue[property.Id])));
                 RegLinePoints.Add(new DataPoint(maxCorrelatedPointsXValue[property.Id], mcf.calcY(regLine, maxCorrelatedPointsXValue[property.Id])));
+            }
+
+            int amountAnomalies = this.AnomaliesPoints[property.Id].Count;
+            for(int i = 0; i < amountAnomalies; i++)
+            {
+                this.AnomaliesPointsSpecificFeature.Add(this.AnomaliesPoints[property.Id][i]);
             }
 
             this.Title = property.Name;
@@ -220,6 +275,7 @@ namespace MileStone1.ViewModel
             NotifyPropertyChanged("CorrelatedPoints");
             NotifyPropertyChanged("RegPoints");
             NotifyPropertyChanged("RegLinePoints");
+            NotifyPropertyChanged("AnomaliesPointsSpecificFeature");
         }
     }
     // create class so each proprety will have a name and an index (id)

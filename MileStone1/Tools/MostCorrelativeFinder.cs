@@ -60,6 +60,7 @@ namespace MileStone1
     {
         List<int> corrlativColumns;
         List<Line> linearRegList;
+        public List<float> pearsonValue;
         public List<int> CorrlatedColumns
         {
             get
@@ -75,6 +76,7 @@ namespace MileStone1
                 return this.linearRegList;
             }
         }
+
         //return the regresion line with the modt corrlative column to the gaven golumn
         // public Line getRegrationLineWithTheMostcorrlative(int column)
         //  {
@@ -87,6 +89,9 @@ namespace MileStone1
             this.corrlativColumns = new List<int>();
 
             this.linearRegList = new List<Line>();
+
+            this.pearsonValue = new List<float>();
+
 
             int sizeOfColumns = dataColumn.Count;
             //update the corrlation and linear regresion 
@@ -121,13 +126,20 @@ namespace MileStone1
                     }
                 }
             }
+            this.pearsonValue.Add(mostCorrelativeVal);
             return mostCorrelativeIdx;
         }
 
         private float pearson(List<float> x, List<float> y)
         {
-            float sqrtVarX = (float)(Math.Sqrt(var(x, x.Count)));
-            float sqrtVarY = (float)(Math.Sqrt(var(y, y.Count)));
+            float varX = var(x, x.Count);
+            float varY = var(y, y.Count);
+            if(varX < 0 || varY < 0)
+            {
+                return 0;
+            }
+            float sqrtVarX = (float)(Math.Sqrt(varX));
+            float sqrtVarY = (float)(Math.Sqrt(varY));
             //check devision in zero
             if (sqrtVarX != 0 && sqrtVarY != 0)
             {
