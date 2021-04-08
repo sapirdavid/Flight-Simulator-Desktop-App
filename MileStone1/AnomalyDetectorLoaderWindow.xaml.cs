@@ -25,23 +25,17 @@ namespace MileStone1
         string anomalyCsvPath;
         string dllAlgorthemPath;
         string normalCsvPath;
-        bool IsCircleAnomalyDetector{
-            get {
-                return (bool)circleDLl.IsChecked;
-            }
-        }
+        
         public AnomalyDetectorLoaderWindow(string anomalyCsvPath)
         {
             this.anomalyCsvPath = anomalyCsvPath;
             InitializeComponent();
-            loadDllButton.IsEnabled = true;
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            string csvPath = ""; //need to change
+            string csvPath = ""; 
             // Create OpenFileDialog
             Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
 
@@ -53,7 +47,8 @@ namespace MileStone1
                 csvPath = openFileDlg.FileName;
             }
             this.dllAlgorthemPath = csvPath;
-            File.Copy(csvPath, @"..\..\..\dlls\anomalyDetector.dll", true);
+            //copy the choosen dll to project directory
+            File.Copy(csvPath, @"anomalyDetector.dll", true);
             LoadNormalPathButton.IsEnabled = true; //enable the button of the simulation
         }
 
@@ -71,31 +66,19 @@ namespace MileStone1
                 csvPath = openFileDlg.FileName;
             }
             this.normalCsvPath = csvPath;
-            circleDLl.IsEnabled = true;
-            regressionDll.IsEnabled = true;
-        }
-
-        private void regressionDll_Checked(object sender, RoutedEventArgs e)
-        {
             this.Hide();
         }
 
-        private void circleDLl_Checked(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-        }
         public List<List<Tuple<int, int>>> getAnomalies() {
             AnomalyDetector anomalyDetector = new AnomalyDetector(normalCsvPath, anomalyCsvPath, dllAlgorthemPath);
             return anomalyDetector.detectAnomalies();
         }
         public List<CorrlativeCircle> getCirclesOfAttr()
         {
-            if (circleDLl.IsChecked == true)
-            {
-                CircleAnomalyDetector anomalyDetector = new CircleAnomalyDetector(normalCsvPath, anomalyCsvPath, dllAlgorthemPath);
-                return anomalyDetector.getCorrletiveCircles();
-            }
-            return null;
+           
+            AnomalyDetector anomalyDetector = new AnomalyDetector(normalCsvPath, anomalyCsvPath, dllAlgorthemPath);
+            return anomalyDetector.getCorrletiveCircles();
+          
         }
 
     }

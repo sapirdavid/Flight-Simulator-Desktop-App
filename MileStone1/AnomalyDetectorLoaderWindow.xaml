@@ -18,8 +18,6 @@
             </Button.RenderTransform>
         </Button>
         <Button x:Name="LoadNormalPathButton" Content="load normal flight (csv)" HorizontalAlignment="Left" Margin="317,38,0,0" VerticalAlignment="Top" Height="51" Width="193" Visibility="Visible" Click="LoadNormalPathButton_Click" IsEnabled="False"/>
-        <CheckBox x:Name="regressionDll" Content="is regression dll" HorizontalAlignment="Left" Margin="170,111,0,0" VerticalAlignment="Top" IsEnabled="False" Checked="regressionDll_Checked"/>
-        <CheckBox x:Name="circleDLl" Content="is circle dll" HorizontalAlignment="Left" Margin="57,111,0,0" VerticalAlignment="Top" Width="108" IsEnabled="False" Checked="circleDLl_Checked"/>
 
     </Grid>
 </Window>

@@ -38,7 +38,7 @@ namespace MileStone1
             }
             this.txtPath = csvPath;
             this.dw = new DashboardWindow(csvPath);
-            
+            this.anomalyDetWin = new AnomalyDetectorLoaderWindow(csvPath);
             startSimulationButton.IsEnabled = true; //enable the button of the simulation
             loadAnomalyDet.IsEnabled = true;
         }
@@ -59,7 +59,6 @@ namespace MileStone1
         private void loadAnomalyDet_Click(object sender, RoutedEventArgs e)
         {
             
-           this.anomalyDetWin = new AnomalyDetectorLoaderWindow(txtPath);
             anomalyDetWin.ShowDialog();
             //while (anomalyDetWin.) { }
             //update the anomalies in deshboard window
@@ -69,10 +68,8 @@ namespace MileStone1
                 anomalies.anomaliesList = this.anomalyDetWin.getAnomalies();
                 anomalies.anomaliesRangeCircles = this.anomalyDetWin.getCirclesOfAttr();
                 this.dw.Anomalies = anomalies; //update deshboard windows with the anomalies
-                this.anomalyDetWin.Close();
             }
-
-            
+            this.anomalyDetWin.Close();
         }
     }
 }
