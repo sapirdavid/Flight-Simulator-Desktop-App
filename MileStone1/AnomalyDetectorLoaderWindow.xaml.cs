@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,6 +35,7 @@ namespace MileStone1
             this.anomalyCsvPath = anomalyCsvPath;
             InitializeComponent();
             loadDllButton.IsEnabled = true;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -51,6 +53,7 @@ namespace MileStone1
                 csvPath = openFileDlg.FileName;
             }
             this.dllAlgorthemPath = csvPath;
+            File.Copy(csvPath, @"..\..\..\dlls\anomalyDetector.dll", true);
             LoadNormalPathButton.IsEnabled = true; //enable the button of the simulation
         }
 

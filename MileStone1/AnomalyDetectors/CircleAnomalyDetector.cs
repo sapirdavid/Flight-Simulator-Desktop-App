@@ -22,28 +22,18 @@ namespace MileStone1
     public class CircleAnomalyDetector : AnomalyDetector
     {
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate IntPtr GetAnomaliesCircles(string path);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate IntPtr DelFloatArray(IntPtr array);
-
         public CircleAnomalyDetector(string normalCsvPath, string anomalyCsvPath, string anomalyDetectionAlgorithemPath) : base(normalCsvPath, anomalyCsvPath, anomalyDetectionAlgorithemPath)
         {}
         public List<CorrlativeCircle> getCorrletiveCircles() {
-            IntPtr pDll = LoadLibrary(anomalyDetectionAlgorithemPath);
-            //oh dear, error handling here
-            //if (pDll == IntPtr.Zero)
 
-            IntPtr pAddressOfFunctionToCall = GetProcAddress(pDll, "Circle");
+
+            // IntPtr pAddressOfFunctionToCall = GetProcAddress(pDll, "Circle");
             //oh dear, error handling here
             //if(pAddressOfFunctionToCall == IntPtr.Zero)
 
-            GetAnomaliesCircles getAnomaliesCircles = (GetAnomaliesCircles)Marshal.GetDelegateForFunctionPointer(
-            pAddressOfFunctionToCall,
-            typeof(GetAnomaliesCircles));
 
-            IntPtr arrayPtr = getAnomaliesCircles(normalCsvPath);
+            //IntPtr arrayPtr = getAnomaliesCircles(normalCsvPath);
+            IntPtr arrayPtr = new IntPtr();
             float[] size = new float[1];
             Marshal.Copy(arrayPtr, size, 0, 1); //copy the first float
             float[] anomaliesCircles = new float[(int)size[0] + 1];
@@ -64,13 +54,10 @@ namespace MileStone1
 
 
 
-            pAddressOfFunctionToCall = GetProcAddress(pDll, "delFloatArray");
-            DelFloatArray del = (DelFloatArray)Marshal.GetDelegateForFunctionPointer(
-            pAddressOfFunctionToCall,
-            typeof(DelFloatArray));
+           
 
-            del(arrayPtr); //free the array
-            bool result = FreeLibrary(pDll);
+            //del(arrayPtr); //free the array
+           
 
             return circlesAndAnomalies;
         }
