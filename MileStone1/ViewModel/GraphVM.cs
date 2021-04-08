@@ -162,6 +162,13 @@ namespace MileStone1.ViewModel
         public void updateAnomaliesPoints()
         {
             List<List<Tuple<int, int>>> anomaliesLists = this.fdm.AnomaliesList;
+
+            AnomaliesPoints = new List<List<DataPoint>>();
+            for (int j = 0; j < 42; j++)
+            {
+                AnomaliesPoints.Add(new List<DataPoint>());
+            }
+
             int i = 0, firstFeatureColumn, SecondFeatureColumn, anomalyRow;
             float x, y;
             //pass on each proprety
@@ -263,11 +270,19 @@ namespace MileStone1.ViewModel
             {
                 Points.Add(new DataPoint(DateTimeAxis.ToDouble(date), AllData[i]));
                 CorrelatedPoints.Add(new DataPoint(DateTimeAxis.ToDouble(date), correlatedPropretyData[i]));
-                RegPoints.Add(new DataPoint(correlatedPropretyGraph[i], AllData[i]));
                 date = date.AddMilliseconds(100);
             }
 
-            if(correlatedPropretyGraph.Count > 0)
+            // we want to show the last 30 seconds, 10 fps -> 30*10 lines to show
+            int linesForReg = 30 * 10;
+            for (int j =(int) Math.Max(0, lineToCopy - linesForReg) ; j < lineToCopy; j++)
+            {
+                RegPoints.Add(new DataPoint(correlatedPropretyGraph[j], AllData[j]));
+
+            }
+
+
+            if (correlatedPropretyGraph.Count > 0)
             {
                 RegLinePoints.Add(new DataPoint(minCorrelatedPointsXValue[property.Id], mcf.calcY(regLine, minCorrelatedPointsXValue[property.Id])));
                 RegLinePoints.Add(new DataPoint(maxCorrelatedPointsXValue[property.Id], mcf.calcY(regLine, maxCorrelatedPointsXValue[property.Id])));
@@ -278,7 +293,8 @@ namespace MileStone1.ViewModel
                 int amountAnomalies = this.AnomaliesPoints[property.Id].Count;
                 for (int i = 0; i < amountAnomalies; i++)
                 {
-                    this.AnomaliesPointsSpecificFeature.Add(this.AnomaliesPoints[property.Id][i]);
+                    if(this.fdm.AnomaliesList[property.Id][i].Item2 <= this.fdm.LineToTransmit)
+                        this.AnomaliesPointsSpecificFeature.Add(this.AnomaliesPoints[property.Id][i]);
                 }
             }
 
