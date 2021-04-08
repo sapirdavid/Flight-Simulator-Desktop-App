@@ -83,7 +83,7 @@ namespace MileStone1.Controls
                 
                 vm.PropertyChanged+=delegate(object sender, PropertyChangedEventArgs e)
                 {
-                    if(e.PropertyName == "VM_LineToTransmitChanged")
+                    if(e.PropertyName == "VM_LineToTransmitChanged") //change only if the listTransmitor in the model changed
                     {
                         this.Dispatcher.Invoke((Action)(() =>
                             {
@@ -111,9 +111,14 @@ namespace MileStone1.Controls
             }
             set
             {
-                this.currentLine = value;
-                SecondFromBegining =(int)(this.currentLine / frameRate);
-               vm.VM_LineToTransmit = value;
+                
+                
+                if (this.currentLine != value)
+                {
+                    this.currentLine = value;
+                    SecondFromBegining = (int)(this.currentLine / frameRate);
+                    vm.VM_LineToTransmit = value;
+                }
 
             }
         }

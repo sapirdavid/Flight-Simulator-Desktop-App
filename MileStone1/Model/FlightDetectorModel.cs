@@ -294,7 +294,7 @@ namespace MileStone1
                 {
                     tr.SendData(data[currentLine]);
                     LineToTransmit++;
-                    this.INotifyPropertyChanged("LineToTransmitChanged");
+                   
                     Thread.Sleep(1000 / this.fps);
                 }
             }
@@ -325,11 +325,16 @@ namespace MileStone1
 
                             }
                         }
+                        int timeToWait = 1000 / FramePerSecond;
+                        var firstTime = DateTime.Now;
                         tr.SendData(data[currentLine]);
                         updateJoystickData(data[currentLine]);
                         LineToTransmit++;
                         this.INotifyPropertyChanged("LineToTransmitChanged");
-                        Thread.Sleep(1000 / FramePerSecond);
+                        var secondTime = DateTime.Now; ;
+                        //update the time to wait Considering the past time
+                        timeToWait = Math.Max(0, timeToWait - (int)(secondTime.Millisecond - firstTime.Millisecond));
+                        Thread.Sleep(timeToWait);
                     }
                 }
 
