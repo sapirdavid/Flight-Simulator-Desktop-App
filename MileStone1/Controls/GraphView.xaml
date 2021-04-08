@@ -70,7 +70,7 @@
             </oxy:Plot.Axes>
             <oxy:LineSeries ItemsSource="{Binding RegPoints}" Color="Transparent" MarkerFill="BlueViolet" MarkerType="Circle" MarkerSize="1.5"/>
             <oxy:LineSeries ItemsSource="{Binding RegLinePoints}"/>
-            <oxy:LineSeries ItemsSource="{Binding AnomaliesPointsSpecificFeature}" Color="Transparent" MarkerFill="Red" MarkerType="Circle" MarkerSize="3"/>
+            <oxy:LineSeries ItemsSource="{Binding AnomaliesPointsSpecificFeature}" Color="Transparent" MarkerFill="Transparent" MarkerStroke="Red" MarkerType="Circle" MarkerSize="2.5"/>
         </oxy:Plot>  
     </Grid>
 </UserControl>

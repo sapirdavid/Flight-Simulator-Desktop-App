@@ -59,6 +59,12 @@ namespace MileStone1.ViewModel
         {
             this.fdm = fdm;
             this.prevLineIndex = 0;
+            AnomaliesPoints = new List<List<DataPoint>>();
+            for (int i = 0; i < 42; i++)
+            {
+                AnomaliesPoints.Add(new List<DataPoint>());
+            }
+            AnomaliesPointsSpecificFeature = new List<DataPoint>();
             this.fdm.PropertyChanged +=
             delegate (Object sender, PropertyChangedEventArgs e)
             {
@@ -107,8 +113,6 @@ namespace MileStone1.ViewModel
                     }
 
                      RegLinePoints = new List<DataPoint>();
-                     AnomaliesPoints = new List<List<DataPoint>>();
-                     AnomaliesPointsSpecificFeature = new List<DataPoint>();
                 }
 
                 //if the values have changed
@@ -119,6 +123,13 @@ namespace MileStone1.ViewModel
                     if (pressed)
                         INotifyPropertyChanged("UpdateGraph");
                 }
+
+                if (e.PropertyName == "AnomaliesList")
+                {
+                    //update the anomalies
+                    updateAnomaliesPoints();
+               
+                }
             };
             this.fdm.readXml();
             this.fdm.readCsv();
@@ -127,8 +138,8 @@ namespace MileStone1.ViewModel
             this.maxCorrelatedPointsXValue = new List<float>();
             //List<int> cor = mcf.CorrlatedColumns;
             //printCor(cor);
-            //updateMinMaxValues();
-            updateAnomaliesPoints();
+            updateMinMaxValues();
+           // updateAnomaliesPoints();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -161,15 +172,16 @@ namespace MileStone1.ViewModel
                 foreach (var anomaly in anomaliesOfPropertyI)
                 {
                     SecondFeatureColumn = anomaly.Item1;
-                    if(mcf.CorrlatedColumns[firstFeatureColumn] != SecondFeatureColumn)
-                    {
-                        Debug.WriteLine("error of correlated features: " + firstFeatureColumn + SecondFeatureColumn);
-                    }
+                    //if(mcf.CorrlatedColumns[firstFeatureColumn] != SecondFeatureColumn)
+                    //{
+                    //    Debug.WriteLine("error of correlated features: " + firstFeatureColumn + SecondFeatureColumn);
+                    //}
                     anomalyRow = anomaly.Item2;
                     x = fdm.PropertyValues[firstFeatureColumn][anomalyRow];
                     y = fdm.PropertyValues[SecondFeatureColumn][anomalyRow];
                     this.AnomaliesPoints[i].Add(new DataPoint(x, y));
                 }
+                i++;
             }
         }
 
@@ -261,10 +273,13 @@ namespace MileStone1.ViewModel
                 RegLinePoints.Add(new DataPoint(maxCorrelatedPointsXValue[property.Id], mcf.calcY(regLine, maxCorrelatedPointsXValue[property.Id])));
             }
 
-            int amountAnomalies = this.AnomaliesPoints[property.Id].Count;
-            for(int i = 0; i < amountAnomalies; i++)
+            if (this.AnomaliesPoints.Count != 0)
             {
-                this.AnomaliesPointsSpecificFeature.Add(this.AnomaliesPoints[property.Id][i]);
+                int amountAnomalies = this.AnomaliesPoints[property.Id].Count;
+                for (int i = 0; i < amountAnomalies; i++)
+                {
+                    this.AnomaliesPointsSpecificFeature.Add(this.AnomaliesPoints[property.Id][i]);
+                }
             }
 
             this.Title = property.Name;

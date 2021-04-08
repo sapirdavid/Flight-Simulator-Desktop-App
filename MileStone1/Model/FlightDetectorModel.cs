@@ -29,7 +29,7 @@ namespace MileStone1
         /*******/
         //anomalies
         //anomalies[0][0].first is the first anomalie of 0 column with the column anomalies[0][0].first in line anomalies[0][0].second
-        List<List<Tuple<int, int>>> anomaliesList = null;
+        List<List<Tuple<int, int>>> anomaliesList = new List<List<Tuple<int, int>>>();
         List<CorrlativeCircle> corrlativeCircles = null;
 
         public List<List<Tuple<int, int>>> AnomaliesList {
