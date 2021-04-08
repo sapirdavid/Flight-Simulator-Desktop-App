@@ -62,17 +62,19 @@ namespace MileStone1.Controls
                             propertyIndex.Name = item;
                             propertyIndex.Id = counter++;
                             gvm.PropertyIndexes.Add(propertyIndex);
-
-
                         }
 
                     }
                     if (e.PropertyName == "UpdateGraph")
-                    {
+                    { 
                         this.Dispatcher.Invoke((Action)(() =>
                         {
                             PropertyIndex prop = lbx_property_names.SelectedItem as PropertyIndex;
+                            propretyValue.InvalidatePlot(true);
+                            correlativeProprety.InvalidatePlot(true);
+                            regLineGraph.InvalidatePlot(true);
                             gvm.changeValues(prop);
+                           
                         }));
                     }
 

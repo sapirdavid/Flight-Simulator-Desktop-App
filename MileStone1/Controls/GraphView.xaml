@@ -44,7 +44,7 @@
                 <oxy:LineSeries ItemsSource="{Binding Points}"/>
             </oxy:Plot.Series>
         </oxy:Plot>
-        <oxy:Plot x:Name="correlativeProprety" Title="{Binding CorrelatedTitle}" Grid.Row="0" Grid.Column="1" Background="#FFEBEBEB" >
+        <oxy:Plot Name="correlativeProprety" Title="{Binding CorrelatedTitle}" Grid.Row="0" Grid.Column="1" Background="#FFEBEBEB" >
             <oxy:Plot.Axes>
                 <oxy:DateTimeAxis Position="Bottom"
                     StringFormat="mm:ss"
@@ -59,7 +59,7 @@
             </oxy:Plot.Axes>
             <oxy:LineSeries ItemsSource="{Binding CorrelatedPoints}"/>
         </oxy:Plot>
-        <oxy:Plot x:Name="regLineGraph" Title="{Binding Title}"  Background="#FFF6EEEE"  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+        <oxy:Plot Name="regLineGraph" Title="{Binding Title}"  Background="#FFF6EEEE"  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
             <oxy:Plot.Axes>
 
                 <oxy:LinearAxis Position="Left"

@@ -228,14 +228,12 @@ namespace MileStone1.ViewModel
             Line regLine = mcf.linearRegressionList[idxOfMostCorrelative];
             //List<int> cor = mcf.CorrlatedColumns;
 
-
             //check if we need update
             if (Math.Abs(this.currenLineIndex - this.prevLineIndex) >= lineDiff)
             {
                 //update the cuurent line
                 this.prevLineIndex = currenLineIndex;
                 lineToCopy = currenLineIndex;
-
             }
             else
             {
@@ -250,17 +248,19 @@ namespace MileStone1.ViewModel
             //the relevant points need to be shown at the graph
             List<float> correlatedPropretyGraph = new List<float>();
 
-
+            //add the relevant values (until the line given)
             for (int i = 0; i < lineToCopy; i++)
             {
                 valuesGraph.Add(AllData[i]);
                 correlatedPropretyGraph.Add(correlatedPropretyData[i]);
-
             }
-
+            //points for the regular gaph
             Points = new List<DataPoint>();
+            //points for the correlated grph
             CorrelatedPoints = new List<DataPoint>();
+            //regression points
             RegPoints = new List<DataPoint>();
+            //line regression points
             RegLinePoints = new List<DataPoint>();
             AnomaliesPointsSpecificFeature = new List<DataPoint>();
 
@@ -278,9 +278,7 @@ namespace MileStone1.ViewModel
             for (int j =(int) Math.Max(0, lineToCopy - linesForReg) ; j < lineToCopy; j++)
             {
                 RegPoints.Add(new DataPoint(correlatedPropretyGraph[j], AllData[j]));
-
             }
-
 
             if (correlatedPropretyGraph.Count > 0)
             {
