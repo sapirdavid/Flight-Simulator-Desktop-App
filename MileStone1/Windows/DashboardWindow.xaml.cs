@@ -89,5 +89,18 @@ namespace MileStone1
         {
 
         }
+
+        private void changeAnomalyDetectorButton_Click(object sender, RoutedEventArgs e)
+        {
+            AnomalyDetectorLoaderWindow anomalyDetectorWin = new AnomalyDetectorLoaderWindow(this.csvPath);
+            anomalyDetectorWin.ShowDialog(); //exeption might be, because the user didnt enter any dll
+            //update the model accordingly
+            if (anomalyDetectorWin.IsAnomalyDetectorInitiated)
+            {
+                lt.AnomaliesList = anomalyDetectorWin.getAnomalies();
+                lt.CorrlativeCircles = anomalyDetectorWin.getCirclesOfAttr();
+            }
+            anomalyDetectorWin.Close();
+        }
     }
 }

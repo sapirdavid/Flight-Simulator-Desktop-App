@@ -25,7 +25,9 @@ namespace MileStone1
         string anomalyCsvPath;
         string dllAlgorthemPath;
         string normalCsvPath;
-        
+        bool isAnomalyDetectorInitiated = false;
+
+        public bool IsAnomalyDetectorInitiated { get; set;}
         public AnomalyDetectorLoaderWindow(string anomalyCsvPath)
         {
             this.anomalyCsvPath = anomalyCsvPath;
@@ -47,9 +49,12 @@ namespace MileStone1
                 csvPath = openFileDlg.FileName;
             }
             this.dllAlgorthemPath = csvPath;
-            //copy the choosen dll to project directory
-            File.Copy(csvPath, @"anomalyDetector.dll", true);
-            LoadNormalPathButton.IsEnabled = true; //enable the button of the simulation
+            if (csvPath != null)
+            {
+                //copy the choosen dll to project directory
+                File.Copy(csvPath, @"anomalyDetector.dll", true);
+                LoadNormalPathButton.IsEnabled = true; //enable the button of the simulation
+            }
         }
 
         private void LoadNormalPathButton_Click(object sender, RoutedEventArgs e)
@@ -66,6 +71,8 @@ namespace MileStone1
                 csvPath = openFileDlg.FileName;
             }
             this.normalCsvPath = csvPath;
+            if (csvPath != null)
+                IsAnomalyDetectorInitiated = true;
             this.Hide();
         }
 

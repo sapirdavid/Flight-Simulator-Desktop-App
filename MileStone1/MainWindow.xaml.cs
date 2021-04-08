@@ -65,9 +65,12 @@ namespace MileStone1
             if (this.dw != null)
             {
                 Anomalies anomalies = new Anomalies();
-                anomalies.anomaliesList = this.anomalyDetWin.getAnomalies();
-                anomalies.anomaliesRangeCircles = this.anomalyDetWin.getCirclesOfAttr();
-                this.dw.Anomalies = anomalies; //update deshboard windows with the anomalies
+                if (this.anomalyDetWin.IsAnomalyDetectorInitiated)
+                {
+                    anomalies.anomaliesList = this.anomalyDetWin.getAnomalies();
+                    anomalies.anomaliesRangeCircles = this.anomalyDetWin.getCirclesOfAttr();
+                    this.dw.Anomalies = anomalies; //update deshboard windows with the anomalies
+                }
             }
             this.anomalyDetWin.Close();
         }

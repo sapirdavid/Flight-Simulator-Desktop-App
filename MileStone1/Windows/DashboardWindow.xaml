@@ -35,6 +35,7 @@
             <Navigator:NavigatorStateView x:Name="Navigator" Grid.Row="2" Grid.RowSpan="1" />
             <Data:DataInfoView x:Name="DataInfo" Margin="350,0,0,0" Grid.Row="0" VerticalContentAlignment="Bottom" HorizontalAlignment="Stretch" Loaded="DataInfo_Loaded" Grid.ColumnSpan="2" Grid.RowSpan="1" />
             <Button Name ="b1" Content="LineNumber:" Margin="0,0,296,0" Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Click="Button_Click"/>
+            <Button x:Name="changeAnomalyDetectorButton"  Content="change anomaly detector" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.358,2.156" Height="25" Width="138" Click="changeAnomalyDetectorButton_Click"/>
         </Grid>
     </Border>
 </Window>
