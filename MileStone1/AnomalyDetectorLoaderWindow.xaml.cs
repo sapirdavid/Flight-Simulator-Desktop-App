@@ -51,8 +51,6 @@ namespace MileStone1
             this.dllAlgorthemPath = csvPath;
             if (csvPath != null)
             {
-                //copy the choosen dll to project directory
-                File.Copy(csvPath, @"anomalyDetector.dll", true);
                 LoadNormalPathButton.IsEnabled = true; //enable the button of the simulation
             }
         }

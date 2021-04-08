@@ -23,19 +23,26 @@ namespace MileStone1
 
     public class AnomalyDetector
     {
-        [DllImport(@"anomalyDetector.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr detect(string normalCsvPath, string anomalyCsvPath);
-        
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr LoadLibrary(string dllToLoad);
 
-        [DllImport(@"anomalyDetector.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr delIntArray(IntPtr intArray);
+        [DllImport("kernel32.dll")]
+        public static extern IntPtr GetProcAddress(IntPtr hModule, string procedureName);
 
-        [DllImport(@"anomalyDetector.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr Circle(string normalCsvPath);
+        [DllImport("kernel32.dll")]
+        public static extern bool FreeLibrary(IntPtr hModule);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate IntPtr Detect(string a, string b);
 
-        [DllImport(@"anomalyDetector.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr delFloatArray(IntPtr floatArray);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void DelIntArray(IntPtr array);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate IntPtr GetAnomaliesCircles(string path);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void DelFloatArray(IntPtr array);
 
 
         protected string normalCsvPath;
@@ -54,8 +61,20 @@ namespace MileStone1
 
         public List<List<Tuple<int, int>>> detectAnomalies()
         {
-            IntPtr arrayPtr = detect(normalCsvPath, anomalyCsvPath);
 
+            IntPtr pDll = LoadLibrary(anomalyDetectionAlgorithemPath);
+            //oh dear, error handling here
+            //if (pDll == IntPtr.Zero)
+
+            IntPtr pAddressOfFunctionToCall = GetProcAddress(pDll, "detect");
+            //oh dear, error handling here
+            //if(pAddressOfFunctionToCall == IntPtr.Zero)
+
+            Detect detect = (Detect)Marshal.GetDelegateForFunctionPointer(
+            pAddressOfFunctionToCall,
+            typeof(Detect));
+
+            IntPtr arrayPtr = detect(normalCsvPath, anomalyCsvPath);
 
             int[] size = new int[1];
             Marshal.Copy(arrayPtr, size, 0, 1);
@@ -86,12 +105,32 @@ namespace MileStone1
                 }
                 anomalies[column].Add(new Tuple<int, int>(anomaliesArray[i], anomaliesArray[i + halfSize])); //add the column of anomaly and line
             }
+
+            pAddressOfFunctionToCall = GetProcAddress(pDll, "delIntArray");
+            DelIntArray delIntArray = (DelIntArray)Marshal.GetDelegateForFunctionPointer(
+            pAddressOfFunctionToCall,
+            typeof(DelIntArray));
+
             delIntArray(arrayPtr); //free the array
+            FreeLibrary(pDll);
             return anomalies;
         }
         public List<CorrlativeCircle> getCorrletiveCircles() //if there is correlative circule 
         {
-            IntPtr arrayPtr = Circle(normalCsvPath);
+            IntPtr pDll = LoadLibrary(anomalyDetectionAlgorithemPath);
+            //oh dear, error handling here
+            //if (pDll == IntPtr.Zero)
+
+            IntPtr pAddressOfFunctionToCall = GetProcAddress(pDll, "Circle");
+            //oh dear, error handling here
+            //if(pAddressOfFunctionToCall == IntPtr.Zero)
+
+            GetAnomaliesCircles getAnomaliesCircles = (GetAnomaliesCircles)Marshal.GetDelegateForFunctionPointer(
+            pAddressOfFunctionToCall,
+            typeof(GetAnomaliesCircles));
+
+            IntPtr arrayPtr = getAnomaliesCircles(normalCsvPath);
+
             float[] size = new float[1];
             Marshal.Copy(arrayPtr, size, 0, 1); //copy the first float
             float[] anomaliesCircles = new float[(int)size[0] + 1];
@@ -110,7 +149,14 @@ namespace MileStone1
                     anomaliesCircles[j++]
                     ));
             }
+
+            pAddressOfFunctionToCall = GetProcAddress(pDll, "delFloatArray");
+            DelFloatArray delFloatArray = (DelFloatArray)Marshal.GetDelegateForFunctionPointer(
+            pAddressOfFunctionToCall,
+            typeof(DelFloatArray));
             delFloatArray(arrayPtr); //free the array
+
+            FreeLibrary(pDll);
             return circlesAndAnomalies;
         }
     }
