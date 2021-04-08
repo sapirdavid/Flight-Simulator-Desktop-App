@@ -52,7 +52,7 @@ namespace MileStone1
         { 
             FileReader f = new FileReader();
             f.ReadFile(csvPath);
-            this.lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400);
+            this.lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400,csvPath);
 
             if (anomalies != null) { //if there is anomalies
                 lt.AnomaliesList = this.anomalies.anomaliesList;

@@ -17,6 +17,9 @@ namespace MileStone1
     public class FlightDetectorModel : INotifyPropertyChanged
     {
         Transmit tr;
+
+        public string csvPath { get; private set; }
+
         List<string> data;
         int fps = 10; //default frame per second
         int currentLine = 0;
@@ -271,8 +274,9 @@ namespace MileStone1
 
 
 
-        public FlightDetectorModel(List<string> data, string hostName, int port)
+        public FlightDetectorModel(List<string> data, string hostName, int port,string csvPath)
         {
+            this.csvPath = csvPath;
             this.data = data;
            // this.fps = fps;
             this.tr = new Transmit(hostName, port);
@@ -367,7 +371,7 @@ namespace MileStone1
             {
                 PropertyValues.Add(new List<float>());
             }
-            using (var reader = new StreamReader(@"..\..\..\..\reg_flight.csv"))
+            using (var reader = new StreamReader(this.csvPath))
             {
                 while (!reader.EndOfStream)
                 {

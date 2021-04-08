@@ -47,7 +47,7 @@ namespace MileStone1.Controls
             {
                 this.gvm = value;
                 DataContext = gvm;
-
+                //regLineGraph.Annotations.Add(new OxyPlot.Wpf.EllipseAnnotation { X = 0, Y = 0, Width = 10, Height = 10,Fill = System.Windows.Media.Color.FromRgb(255,255,255), Stroke = System.Windows.Media.Color.FromRgb(0,0,0) });
                 gvm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
                 {
                     //if the propreties have changed
@@ -75,12 +75,6 @@ namespace MileStone1.Controls
                             gvm.changeValues(prop);
                         }));
                     }
-
-
-
-
-
-
 
                 };
             }
