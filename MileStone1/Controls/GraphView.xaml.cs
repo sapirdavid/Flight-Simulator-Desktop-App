@@ -27,6 +27,7 @@ namespace MileStone1.Controls
             InitializeComponent();
             //connects the model and the viewModel (propreties and view)
             DataContext = gvm;
+       
         }
 
         private void lbx_property_names_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -102,5 +103,15 @@ namespace MileStone1.Controls
 
         }
 
+
+        public void firstTime()
+        {
+            lbx_property_names.SelectedIndex = 0;
+            PropertyIndex prop = lbx_property_names.SelectedItem as PropertyIndex;
+            propretyValue.InvalidatePlot(true);
+            correlativeProprety.InvalidatePlot(true);
+            regLineGraph.InvalidatePlot(true);
+            gvm.changeValues(prop);
+        }
     }
 }

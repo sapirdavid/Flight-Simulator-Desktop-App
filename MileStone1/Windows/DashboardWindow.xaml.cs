@@ -80,6 +80,7 @@ namespace MileStone1
         }
         public void StartAnimation() {
             this.lt.StartTransmitting();
+            this.graph.firstTime();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
