@@ -102,5 +102,36 @@ namespace MileStone1
             }
             anomalyDetectorWin.Close();
         }
+
+        private void closeApp(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Close();
+            }
+            catch(Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void minimizeApp(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.WindowState = WindowState.Minimized;
+            }
+            catch(Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+
+            }
+        }
+
+        private void dragWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
     }
 }
