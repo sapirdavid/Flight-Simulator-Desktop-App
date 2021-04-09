@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="CircularGauge" Version="1.0.0" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.4" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="7.0.1" />
     <PackageReference Include="OxyPlot.WindowsForms" Version="2.0.0" />
     <PackageReference Include="OxyPlot.Wpf" Version="2.0.0" />

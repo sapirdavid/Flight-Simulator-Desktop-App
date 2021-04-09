@@ -12,12 +12,13 @@ using System.Windows.Shapes;
 using MileStone1.ViewModel;
 using System.Windows.Forms;
 using Transmitter;
+using MahApps.Metro.Controls;
 namespace MileStone1
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class DashboardWindow : Window
+    public partial class DashboardWindow : MetroWindow
     {
         string csvPath;
         FlightDetectorModel lt = null;
