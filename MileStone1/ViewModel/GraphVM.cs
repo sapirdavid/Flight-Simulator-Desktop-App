@@ -28,6 +28,8 @@ namespace MileStone1.ViewModel
         public List<float> minCorrelatedPointsXValue { get; private set; }
         public List<float> maxCorrelatedPointsXValue { get; private set; }
         public List<List<DataPoint>> AnomaliesPoints { get; private set; }
+        public List<Circle> Circels { get; private set; }
+
         public List<DataPoint> AnomaliesPointsSpecificFeature { get; private set; }
 
 
@@ -53,6 +55,7 @@ namespace MileStone1.ViewModel
             }
         }
 
+        public bool drawCircle { get; set; }
 
         //c'tor
         public GraphVM(FlightDetectorModel fdm)
@@ -128,7 +131,19 @@ namespace MileStone1.ViewModel
                 {
                     //update the anomalies
                     updateAnomaliesPoints();
-               
+                }
+
+                if (e.PropertyName == "CorrlativeCircles")
+                {
+                    //update the cireles
+                    if (pressed)
+                    {
+                        this.drawCircle = true;
+                        updateCircels();
+                        INotifyPropertyChanged("UpdateCircele");
+
+                    }
+
                 }
             };
             this.fdm.readXml();
@@ -156,6 +171,22 @@ namespace MileStone1.ViewModel
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
+        }
+        // this methos update the circles after change
+        public void updateCircels()
+        {
+          Circels = new List<Circle>();
+
+            for (int j = 0; j < 42; j++)
+            {
+                Circels.Add(new Circle(0,0,0));
+            }
+
+            foreach (CorrlativeCircle circle in this.fdm.CorrlativeCircles)
+            {
+                Circels[circle.feature1] = new Circle(circle.middle, circle.radius);
+            }
+
         }
       
         //the function update the anomalies points for every property

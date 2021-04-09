@@ -6,16 +6,16 @@
         xmlns:local="clr-namespace:MileStone1.Controls"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-             d:Height="300" d:Width="500"
+             
                                  >
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="1.5*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.3*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
@@ -25,19 +25,21 @@
         <ListBox x:Name="lbx_property_names" ItemsSource="{Binding PropertyIndexes}"
                 Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"  SelectedValue="{Binding PropertyIndexesId}"         
              SelectedValuePath="Id" DisplayMemberPath="Name" 
-                 HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="lbx_property_names_SelectionChanged" Background="White" />
-         <oxy:Plot Name="propretyValue" Title="{Binding Title}" Grid.Column="2" Background="White" BorderBrush="Black">
+                 HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="lbx_property_names_SelectionChanged" Background="#FFEBEBEB" />
+        <oxy:Plot Name="propretyValue" Title="{Binding Title}" Grid.Column="2" Background="#FFEBEBEB" BorderBrush="Black">
             <oxy:Plot.Axes>
                 <oxy:DateTimeAxis Position="Bottom"
                                     StringFormat="mm:ss"
                                     MajorGridlineStyle="Solid"
                                     MinorGridlineStyle="Dot"
                                     IntervalType="Minutes"
-                                    IntervalLength="30" />
+                                    IntervalLength="30"
+                                    Title="Time"/>
                 <oxy:LinearAxis Position="Left"
                                 MajorGridlineStyle="Solid"
                                 MinorGridlineStyle="Dot"
-                                IntervalLength="50" />
+                                IntervalLength="50"
+                                Title="{Binding Title}" />
 
             </oxy:Plot.Axes>
             <oxy:Plot.Series>
@@ -51,26 +53,37 @@
                     MajorGridlineStyle="Solid"
                     MinorGridlineStyle="Dot"
                     IntervalType="Minutes"
-                    IntervalLength="30" />
+                    IntervalLength="30"
+                    Title="Time"/>
                 <oxy:LinearAxis Position="Left"
                     MajorGridlineStyle="Solid"
                     MinorGridlineStyle="Dot"
-                    IntervalLength="50" />
+                    IntervalLength="50"
+                    Title="{Binding CorrelatedTitle}"/>
             </oxy:Plot.Axes>
             <oxy:LineSeries ItemsSource="{Binding CorrelatedPoints}"/>
         </oxy:Plot>
-        <oxy:Plot Name="regLineGraph" Title="{Binding Title}"  Background="#FFF6EEEE"  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+        <oxy:Plot Name="regLineGraph" Title="{Binding Title}"  Background="#FFEBEBEB"  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
             <oxy:Plot.Axes>
 
                 <oxy:LinearAxis Position="Left"
                     MajorGridlineStyle="Solid"
                     MinorGridlineStyle="Dot"
-                    IntervalLength="50" />
+                    IsZoomEnabled="True"
+                    IntervalLength="50"
+                    Title="{Binding CorrelatedTitle}"/>
+
+                <oxy:LinearAxis Position="Bottom"
+                    MajorGridlineStyle="Solid"
+                    MinorGridlineStyle="Dot"
+                    IntervalLength="50"
+                    Title="{Binding Title}"/>
+
 
             </oxy:Plot.Axes>
-            <oxy:LineSeries ItemsSource="{Binding RegPoints}" Color="Transparent" MarkerFill="BlueViolet" MarkerType="Circle" MarkerSize="1.5"/>
-            <oxy:LineSeries ItemsSource="{Binding RegLinePoints}"/>
-            <oxy:LineSeries ItemsSource="{Binding AnomaliesPointsSpecificFeature}" Color="Transparent" MarkerFill="Transparent" MarkerStroke="Red" MarkerType="Circle" MarkerSize="2.5"/>
+            <oxy:LineSeries ItemsSource="{Binding RegPoints}" Color="Transparent" MarkerFill="BlueViolet" MarkerType="Circle" MarkerSize="1.5" Title="Regession points" />
+            <oxy:LineSeries ItemsSource="{Binding RegLinePoints}" Title="Regession line"/>
+            <oxy:LineSeries ItemsSource="{Binding AnomaliesPointsSpecificFeature}" Color="Transparent" MarkerFill="Transparent" MarkerStroke="Red" MarkerType="Circle" MarkerSize="2.5" Title="Anommaly"/>
         </oxy:Plot>  
     </Grid>
 </UserControl>

@@ -47,7 +47,6 @@ namespace MileStone1.Controls
             {
                 this.gvm = value;
                 DataContext = gvm;
-                //regLineGraph.Annotations.Add(new OxyPlot.Wpf.EllipseAnnotation { X = 0, Y = 0, Width = 10, Height = 10,Fill = System.Windows.Media.Color.FromRgb(255,255,255), Stroke = System.Windows.Media.Color.FromRgb(0,0,0) });
                 gvm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
                 {
                     //if the propreties have changed
@@ -74,9 +73,29 @@ namespace MileStone1.Controls
                             correlativeProprety.InvalidatePlot(true);
                             regLineGraph.InvalidatePlot(true);
                             gvm.changeValues(prop);
-                           
+                            //if (this.gvm.drawCircle == true)
+                            //{
+                            //    Point p = this.gvm.Circels[prop.Id].center;
+                            //    float r = this.gvm.Circels[prop.Id].radaius;
+                            //    if(r!=0)
+                            //      regLineGraph.Annotations.Add(new OxyPlot.Wpf.EllipseAnnotation { X = p.X, Y = p.Y, Width = r, Height = r, Fill = System.Windows.Media.Color.FromRgb(255, 246, 238),StrokeThickness=1.5, Stroke = System.Windows.Media.Color.FromRgb(0, 0, 0)  });
+                            //}
+
+
                         }));
                     }
+
+                    //if (e.PropertyName == "UpdateCircele")
+                    //{
+                    //    this.Dispatcher.Invoke((Action)(() =>
+                    //    {
+                    //        PropertyIndex prop = lbx_property_names.SelectedItem as PropertyIndex;
+                    //        Point p = this.gvm.Circels[prop.Id].center;
+                    //        float r = this.gvm.Circels[prop.Id].radaius;
+                    //        regLineGraph.Annotations.Add(new OxyPlot.Wpf.EllipseAnnotation { X = p.X, Y = p.Y, Width = r, Height = r, Fill = System.Windows.Media.Color.FromRgb(255, 255, 255), Stroke = System.Windows.Media.Color.FromRgb(0, 0, 0) });
+
+                    //    }));
+                    //}
 
                 };
             }

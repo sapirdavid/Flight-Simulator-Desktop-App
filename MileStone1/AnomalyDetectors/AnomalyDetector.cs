@@ -6,6 +6,23 @@ using System.IO;
 
 namespace MileStone1
 {
+    public class Circle
+    {
+        public float radaius;
+        public Point center;
+        public Circle(Point center, float r)
+        {
+            this.center = center;
+            this.radaius = r;
+        }
+        public Circle(int X,int Y, float r)
+        {
+            this.center = new Point(X,Y);
+            this.radaius = r;
+        }
+
+    }
+
     public class CorrlativeCircle
     {
         public int feature1;
