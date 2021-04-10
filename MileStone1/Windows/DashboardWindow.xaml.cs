@@ -80,9 +80,10 @@ namespace MileStone1
 
 
         }
-        public void StartAnimation() {
-            this.lt.StartTransmitting();
+        public int StartAnimation() {
+            int susccs = this.lt.StartTransmitting();
             this.graph.firstTime();
+            return susccs;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -145,6 +146,7 @@ namespace MileStone1
 
         private void returnToMenuButton_Click(object sender, RoutedEventArgs e)
         {
+            this.lt.StopTransmitting();
             this.Close();
             MainWindow main = new MainWindow();
             main.Show();

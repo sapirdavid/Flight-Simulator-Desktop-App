@@ -61,10 +61,12 @@ namespace MileStone1
                 
                 // System.Diagnostics.Process.Start("fgfs.exe");
                 this.Close();
-                dw.Show();
-                dw.StartAnimation();
+               
+                int res = dw.StartAnimation();
+                if(res != 0) { 
+                    dw.Show();
                 this.dw.Anomalies = this.dw.Anomalies; //activate the functionality
-            
+                 }
            
         }
 
@@ -99,7 +101,7 @@ namespace MileStone1
             if (result != null)
             {
                 csvPath = openFileDlg.FileName;
-                if (!normalCsvPath.Contains(".csv"))
+                if (!csvPath.Contains(".csv"))
                 {
                     System.Windows.MessageBox.Show("You need to load file .CSV file!", "Alert", MessageBoxButton.OK);
                 }

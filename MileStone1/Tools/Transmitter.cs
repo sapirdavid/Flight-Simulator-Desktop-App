@@ -25,15 +25,9 @@ namespace Transmitter
         public void Connect()
         {
             this.client = new TcpClient();
-            try
-            {
                 client.Connect(hostName, port);
                 sWriter = new StreamWriter(client.GetStream());
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
+            
         }
         public void SendData(string data)
         {

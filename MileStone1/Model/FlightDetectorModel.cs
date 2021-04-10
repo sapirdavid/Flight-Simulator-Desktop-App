@@ -306,10 +306,21 @@ namespace MileStone1
 
         //getRudderAndThrottle(data[currentLine]);
 
-        public void StartTransmitting()
+        public int StartTransmitting()
         {
             this.stopTransmitting = false;
-            this.tr.Connect(); //connect with tcp (with the transmitter)
+            try
+            {
+                this.tr.Connect(); //connect with tcp (with the transmitter)
+            }
+            catch
+            {
+                MainWindow main = new MainWindow();
+                main.Show();
+                System.Windows.MessageBox.Show("Cannot conncet to the Flight Gear apllication , please veirfy the connction!", "Alert!", MessageBoxButton.OK);
+                return 0 ;
+
+            }
             this.t = new Thread(delegate () {
                 int listSize = data.Count;
                 while (!stopTransmitting)
@@ -342,6 +353,7 @@ namespace MileStone1
 
             });
             t.Start();
+            return 1;
         }
 
       

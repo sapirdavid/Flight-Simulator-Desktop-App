@@ -62,11 +62,18 @@ namespace MileStone1
             {
                 csvPath = openFileDlg.FileName;
             }
-            this.dllAlgorthemPath = csvPath;
-            if (csvPath != null)
+            if (!csvPath.Contains(".dll"))
             {
-                IsAnomalyDetectorInitiated = true;
-                finishButton.IsEnabled = true; //enable the button of finsh option
+                System.Windows.MessageBox.Show("You need to load file .DLL file!", "Alert", MessageBoxButton.OK);
+            }
+            else
+            {
+                this.dllAlgorthemPath = csvPath;
+                if (csvPath != null)
+                {
+                    IsAnomalyDetectorInitiated = true;
+                    finishButton.IsEnabled = true; //enable the button of finsh option
+                }
             }
         }
 
