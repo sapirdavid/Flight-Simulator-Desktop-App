@@ -8,7 +8,7 @@ With this application we can simulate a flight by using a designated simulator, 
 __Application features:__
 
 •	Progress Bar – after loading the flight data, by using the progress bar we can skip to any time segment of the flight.
-We can move the bar pointer backwards and forward and see the flight data and simulator accordingly.
+We can move the bar pointer backwards and forwards and see the flight data and simulator accordingly.
 
 •	Playback Control -  by enabling playback control we can choose the desired play speed at different levels of speed.
 Also, we can stop and resume the simulator.
