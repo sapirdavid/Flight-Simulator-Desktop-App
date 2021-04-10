@@ -62,8 +62,7 @@ namespace MileStone1
                 this.lt.LineToTransmit = value;
             }
         }
-        public static readonly DependencyProperty VM_LineToTransmitProperty = DependencyProperty.Register("VM_LineToTransmit", typeof(int), typeof(SliderControlVM));
-        public static readonly DependencyProperty VM_RunAnimationProperty = DependencyProperty.Register("VM_RunAnimation", typeof(bool), typeof(SliderControlVM));
+        
         public SliderControlVM(FlightDetectorModel lt)
         {
             this.lt = lt;

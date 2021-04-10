@@ -40,6 +40,23 @@ namespace MileStone1
 
     public class AnomalyDetector
     {
+        float correlationThreshold = -1; //default no corrlation threshold
+
+        public float CorrelationThreshold
+        {
+            get
+            {
+                return this.correlationThreshold;
+            }
+
+            set
+            {
+
+                if (value >= 0 && value <= 1) //if corrlation represent corllatin value
+                    this.correlationThreshold = value;
+            }
+        }
+
         [DllImport("kernel32.dll")]
         public static extern IntPtr LoadLibrary(string dllToLoad);
 
@@ -61,6 +78,9 @@ namespace MileStone1
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void DelFloatArray(IntPtr array);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void SetThreshold(float threshold);
+
 
         protected string normalCsvPath;
         protected string anomalyCsvPath;
@@ -75,13 +95,25 @@ namespace MileStone1
             
         }
         //anomalies[i] contain anomalies with the column i, the first in the tuple is the column that anomaly was detect and the second is the line
-
+ 
         public List<List<Tuple<int, int>>> detectAnomalies()
         {
 
             IntPtr pDll = LoadLibrary(anomalyDetectionAlgorithemPath);
             //oh dear, error handling here
             //if (pDll == IntPtr.Zero)
+
+            //set corrlation thereshold
+            if (correlationThreshold != -1)
+            {
+                IntPtr pAddressOfFunctionToCallT = GetProcAddress(pDll, "setThreshold");
+                //oh dear, error handling here
+                //if(pAddressOfFunctionToCall == IntPtr.Zero)
+                SetThreshold setThreshold = (SetThreshold)Marshal.GetDelegateForFunctionPointer(
+                pAddressOfFunctionToCallT,
+                typeof(SetThreshold));
+                setThreshold(CorrelationThreshold);
+            }
 
             IntPtr pAddressOfFunctionToCall = GetProcAddress(pDll, "detect");
             //oh dear, error handling here
@@ -138,10 +170,25 @@ namespace MileStone1
             //oh dear, error handling here
             //if (pDll == IntPtr.Zero)
 
-            IntPtr pAddressOfFunctionToCall = GetProcAddress(pDll, "Circle");
+
+            //set corrlation thereshold
+            if (correlationThreshold != -1)
+            {
+                IntPtr pAddressOfFunctionToCallT = GetProcAddress(pDll, "setThreshold");
+                //oh dear, error handling here
+                //if(pAddressOfFunctionToCall == IntPtr.Zero)
+                SetThreshold setThreshold = (SetThreshold)Marshal.GetDelegateForFunctionPointer(
+                pAddressOfFunctionToCallT,
+                typeof(SetThreshold));
+                setThreshold(CorrelationThreshold);
+            }
+
+                IntPtr pAddressOfFunctionToCall = GetProcAddress(pDll, "Circle");
             //oh dear, error handling here
             //if(pAddressOfFunctionToCall == IntPtr.Zero)
 
+
+            
             GetAnomaliesCircles getAnomaliesCircles = (GetAnomaliesCircles)Marshal.GetDelegateForFunctionPointer(
             pAddressOfFunctionToCall,
             typeof(GetAnomaliesCircles));
@@ -176,5 +223,8 @@ namespace MileStone1
             FreeLibrary(pDll);
             return circlesAndAnomalies;
         }
+
+
+
     }
 }

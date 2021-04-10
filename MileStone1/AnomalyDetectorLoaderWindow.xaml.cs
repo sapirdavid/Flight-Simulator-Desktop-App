@@ -27,13 +27,26 @@ namespace MileStone1
         string normalCsvPath;
         bool isAnomalyDetectorInitiated = false;
 
+        float corrlationThreshold = -1;
+        public float CorrlationThreshold {
+            get {
+                return this.corrlationThreshold;
+            }
+
+            set {
+
+                if (value >= 0 && value <= 1) //if corrlation represent corllatin value
+                    this.corrlationThreshold = value;
+            }
+                }
+
         public bool IsAnomalyDetectorInitiated { get; set;}
         public AnomalyDetectorLoaderWindow(string anomalyCsvPath)
         {
             this.anomalyCsvPath = anomalyCsvPath;
             InitializeComponent();
         }
-
+        //dll load button
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -51,7 +64,7 @@ namespace MileStone1
             this.dllAlgorthemPath = csvPath;
             if (csvPath != null)
             {
-                LoadNormalPathButton.IsEnabled = true; //enable the button of the simulation
+                LoadNormalPathButton.IsEnabled = true; //enable the button of the  LoadNormalPath
             }
         }
 
@@ -70,21 +83,42 @@ namespace MileStone1
             }
             this.normalCsvPath = csvPath;
             if (csvPath != null)
+            {
                 IsAnomalyDetectorInitiated = true;
-            this.Hide();
+                this.finishButton.IsEnabled = true;
+            }
+            
         }
 
         public List<List<Tuple<int, int>>> getAnomalies() {
             AnomalyDetector anomalyDetector = new AnomalyDetector(normalCsvPath, anomalyCsvPath, dllAlgorthemPath);
+            anomalyDetector.CorrelationThreshold = CorrlationThreshold;
             return anomalyDetector.detectAnomalies();
         }
         public List<CorrlativeCircle> getCirclesOfAttr()
         {
            
             AnomalyDetector anomalyDetector = new AnomalyDetector(normalCsvPath, anomalyCsvPath, dllAlgorthemPath);
+            anomalyDetector.CorrelationThreshold = CorrlationThreshold; 
             return anomalyDetector.getCorrletiveCircles();
           
         }
 
+        private void finishButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (corrlationThresholdTextBox.Text != "") {
+                try { //try to convert to float
+                   CorrlationThreshold =  float.Parse(corrlationThresholdTextBox.Text);
+                }
+                catch(Exception ex)
+                {
+
+                    //do nothing
+                }
+
+            }
+            this.Hide();
+
+        }
     }
 }
