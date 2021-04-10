@@ -27,7 +27,7 @@
         <Button x:Name="startSimulationButton" Content="Start Simulation" HorizontalAlignment="Left" Margin="282,1,0,0" VerticalAlignment="Top" Height="52" Width="106" Click="startSimulationButton_Click" Visibility="Visible" IsEnabled="False"/>
         <Button x:Name="loadAnomalyDet" Content="load anomaly detector" Grid.Column="1" HorizontalAlignment="Left" Margin="80,10,0,0" VerticalAlignment="Top" Height="43" Width="141" Click="loadAnomalyDet_Click" IsEnabled="False"/>
 
-        <Button x:Name="normalFlightCsv" Content="load notmal flight (optional)" Margin="0,83,220,355" Grid.RowSpan="2" IsEnabled="False" Click="normalFlightCsv_Click"/>
+        <Button x:Name="normalFlightCsv" Content="load notmal flight" Margin="0,83,230,361" Grid.RowSpan="2" IsEnabled="False" Click="normalFlightCsv_Click"/>
     </Grid>
 </Window>
 

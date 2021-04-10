@@ -54,7 +54,7 @@ namespace MileStone1
                 }
                 
                 // System.Diagnostics.Process.Start("fgfs.exe");
-                this.Hide();
+                this.Close();
                 dw.Show();
                 dw.StartAnimation();
                 this.dw.Anomalies = this.dw.Anomalies; //activate the functionality

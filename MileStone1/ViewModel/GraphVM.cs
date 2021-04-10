@@ -256,7 +256,7 @@ namespace MileStone1.ViewModel
             //update every 3 rows 
             int lineDiff = 3;
             long lineToCopy = 0;
-            int idxOfMostCorrelative = mcf.findTheMostCorrelative(fdm.AnomalyPropertyValues, property.Id);
+            int idxOfMostCorrelative = mcf.findTheMostCorrelative(fdm.NormalPropertyValues, property.Id);
             Line regLine = mcf.linearRegressionList[idxOfMostCorrelative];
             //List<int> cor = mcf.CorrlatedColumns;
 
