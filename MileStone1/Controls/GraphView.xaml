@@ -21,7 +21,7 @@
             </Grid.ColumnDefinitions>
 
             <ListBox x:Name="lbx_property_names" FontFamily="Yu Gothic UI Semilight" ItemsSource="{Binding PropertyIndexes}"
-                Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" SelectedValue="{Binding PropertyIndexesId}"      
+                Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"      
                 SelectedValuePath="Id" DisplayMemberPath="Name"
                  SelectionChanged="lbx_property_names_SelectionChanged" Margin="10,10,0,10">
                 <ListBox.Resources>
