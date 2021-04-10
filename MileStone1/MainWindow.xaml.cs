@@ -37,13 +37,19 @@ namespace MileStone1
             {
                 csvPath = openFileDlg.FileName;
             }
-            this.anomalyCsvPath = csvPath;
-            this.dw = new DashboardWindow(csvPath, csvPath); //default is to load only anomaly file
-            
-            startSimulationButton.IsEnabled = true; //enable the button of the simulation
-            
-            normalFlightCsv.IsEnabled = true;
+            if (!csvPath.Contains(".csv"))
+            {
+                System.Windows.MessageBox.Show("You need to load file .CSV file!", "Alert", MessageBoxButton.OK);
+            }
+            else
+            {
+                this.anomalyCsvPath = csvPath;
+                this.dw = new DashboardWindow(csvPath, csvPath); //default is to load only anomaly file
 
+                startSimulationButton.IsEnabled = true; //enable the button of the simulation
+
+                normalFlightCsv.IsEnabled = true;
+            }
         }
 
         private void startSimulationButton_Click(object sender, RoutedEventArgs e)
@@ -93,11 +99,18 @@ namespace MileStone1
             if (result != null)
             {
                 csvPath = openFileDlg.FileName;
-                this.normalCsvPath = csvPath;
-                this.dw = new DashboardWindow(anomalyCsvPath, normalCsvPath);
-      
-                this.anomalyDetWin = new AnomalyDetectorLoaderWindow(this.anomalyCsvPath, this.normalCsvPath);
-                loadAnomalyDet.IsEnabled = true; //enable option to enter dll
+                if (!normalCsvPath.Contains(".csv"))
+                {
+                    System.Windows.MessageBox.Show("You need to load file .CSV file!", "Alert", MessageBoxButton.OK);
+                }
+                else
+                {
+                    this.normalCsvPath = csvPath;
+                    this.dw = new DashboardWindow(anomalyCsvPath, normalCsvPath);
+
+                    this.anomalyDetWin = new AnomalyDetectorLoaderWindow(this.anomalyCsvPath, this.normalCsvPath);
+                    loadAnomalyDet.IsEnabled = true; //enable option to enter dll
+                }
             }
             
         }
