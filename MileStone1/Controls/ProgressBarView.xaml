@@ -88,7 +88,7 @@
                     </LinearGradientBrush>
                 </TextBlock.Background>
             </TextBlock>
-            <TextBlock x:Name="timeBlock" FontFamily="/Fonts/#Poppins" HorizontalAlignment="Left" Text="00:00:00" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="73" Background="Black" Foreground="#FFC6D414" Grid.Column="4" Margin="33,2,0,0"/>
+            <TextBlock x:Name="timeBlock" FontFamily="Yu Gothic UI Semilight" HorizontalAlignment="Left" Text="00:00:00" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="73" Background="Black" Foreground="#FFC6D414" Grid.Column="4" Margin="33,2,0,0"/>
         </Grid>
     </Grid>
 

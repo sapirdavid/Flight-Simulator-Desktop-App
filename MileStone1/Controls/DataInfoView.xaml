@@ -6,26 +6,27 @@
              xmlns:gauge="clr-namespace:CircularGauge;assembly=CircularGauge"
              xmlns:local="clr-namespace:MileStone1.Controls" xmlns:viewmodel="clr-namespace:MileStone1.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:DataInfoVM}"
              mc:Ignorable="d" 
-             Height="200"
+             Background="Transparent"
+             BorderBrush="LightGray" Height="210" Width="400"
              >
+    <Border Background="#202020" CornerRadius="20" BorderBrush="LightGray">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90*" />
+                <RowDefinition Height="18*" />
+                <RowDefinition Height="18*" />
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="90*" />
-            <RowDefinition Height="15*" />
-            <RowDefinition Height="15*" />
-
-            <!--<<< Will resize taking all remaining space -->
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.5*" />
-            <ColumnDefinition Width="1.5*" />
-            <ColumnDefinition Width="1.5*" />
+                <!--<<< Will resize taking all remaining space -->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1.5*" />
 
 
-        </Grid.ColumnDefinitions>
+            </Grid.ColumnDefinitions>
 
-        <gauge:CircularGaugeControl x:Name="Pitch" Grid.Row="0"  Grid.Column="0" Grid.RowSpan="1" VerticalAlignment="Center" 
+            <gauge:CircularGaugeControl x:Name="Pitch" Grid.Row="0"  Grid.Column="0" Grid.RowSpan="1" VerticalAlignment="Center" 
   Radius="45"
   ScaleRadius="60"
   ScaleStartAngle="120"
@@ -52,10 +53,10 @@
   OptimalRangeEndValue="700"
   DialTextOffset="53"
   DialText="Pitch"
-  FontFamily="/Fonts/#Poppins"
+  FontFamily="Yu Gothic UI Semilight"
   DialTextColor="White" />
 
-        <gauge:CircularGaugeControl x:Name="Yaw" Grid.Row="0" Grid.RowSpan="1"
+            <gauge:CircularGaugeControl x:Name="Yaw" Grid.Row="0" Grid.RowSpan="1"
   Radius="45"
   ScaleRadius="60"
   ScaleStartAngle="120"
@@ -82,10 +83,10 @@
   OptimalRangeEndValue="700"
   DialTextOffset="53"
   DialText="Yaw"
-  FontFamily="/Fonts/#Poppins"
+  FontFamily="Yu Gothic UI Semilight"
   DialTextColor="White" Grid.ColumnSpan="3" Margin="133,0,133,0" />
 
-        <gauge:CircularGaugeControl x:Name="Roll" Grid.Row="0"  Grid.Column="2" Grid.RowSpan="1"
+            <gauge:CircularGaugeControl x:Name="Roll" Grid.Row="0"  Grid.Column="2" Grid.RowSpan="1"
   Radius="45"
   ScaleRadius="60"
   ScaleStartAngle="120"
@@ -112,19 +113,23 @@
   OptimalRangeEndValue="700"
   DialTextOffset="53"
   DialText="Roll"
-  FontFamily="/Fonts/#Poppins"
+  FontFamily="Yu Gothic UI Semilight"
   DialTextColor="White" />
 
-        <!-- <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Text="{Binding VM_Pitch, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom" /> -->
-        <!--  <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Text="{Binding VM_Yaw, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom"/> -->
-        <!-- HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2" Text="{Binding VM_Roll, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom" /> -->
-        <TextBox Grid.Row="1" Grid.Column="0" IsEnabled="False" FontFamily="/Fonts/#Poppins" Text="Airspeed" TextWrapping="Wrap" VerticalAlignment="Bottom" BorderThickness="3"  BorderBrush="Transparent" Height="22" Background="#7d7c87" FontWeight="Normal" FontStyle="Normal" TextDecorations="{x:Null}"/>
-        <TextBox Grid.Row="1" Text="Direction" IsEnabled="False" FontFamily="/Fonts/#Poppins" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="133,0,133,0" BorderThickness="3"  BorderBrush="Transparent" Grid.ColumnSpan="3" Height="22" Background="#7d7c87"/>
-        <TextBox Grid.Row="1" Grid.Column="2" IsEnabled="False" FontFamily="/Fonts/#Poppins" Text="Altimeter" TextWrapping="Wrap" VerticalAlignment="Bottom" BorderThickness="3" BorderBrush="Transparent" Height="22" Background="#7d7c87" />
+            <!-- <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Text="{Binding VM_Pitch, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom" /> -->
+            <!--  <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Text="{Binding VM_Yaw, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom"/> -->
+            <!-- HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2" Text="{Binding VM_Roll, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom" /> -->
+            <TextBox Grid.Row="1" Grid.Column="0" Width="120"  IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Text="Airspeed" TextWrapping="Wrap" VerticalAlignment="Bottom" BorderThickness="3"  BorderBrush="Transparent" Height="22" Background="#7d7c87" FontWeight="Normal" FontStyle="Normal" TextDecorations="{x:Null}"/>
+            <TextBox Grid.Row="1" Text="Direction"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="133,0,133,0" BorderThickness="3"  BorderBrush="Transparent" Grid.ColumnSpan="3" Height="22" Background="#7d7c87"/>
+            <TextBox Grid.Row="1" Grid.Column="2"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Text="Altimeter" TextWrapping="Wrap" VerticalAlignment="Bottom" BorderThickness="3" BorderBrush="Transparent" Height="22" Background="#7d7c87" />
 
-        <TextBox Name="Airspeed" Grid.Row="2" IsEnabled="False" FontFamily="/Fonts/#Poppins" Grid.Column="0"  Text="Airspeed" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,0,0,0" BorderThickness="3"  BorderBrush="Transparent" Height="22" Background="#7d7c87"/>
-        <TextBox Name="Direction" Grid.Row="2" IsEnabled="False" FontFamily="/Fonts/#Poppins" Text="Direction" TextWrapping="Wrap" VerticalAlignment="Top" Margin="133,0,133,0" BorderThickness="3"  BorderBrush="Transparent" Grid.ColumnSpan="3" Height="22" Background="#7d7c87" />
-        <TextBox Name="Altimeter" Grid.Row="2" IsEnabled="False" FontFamily="/Fonts/#Poppins" Grid.Column="2" Text="Altimeter" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,0,0,0" BorderThickness="3" BorderBrush="Transparent" Height="22" Background="#7d7c87"/>
+            <TextBox Name="Airspeed" Grid.Row="2"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Grid.Column="0"  Text="Airspeed" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,0,0,0" BorderThickness="3"  BorderBrush="Transparent" Height="22" Background="#7d7c87"/>
+            <TextBox Name="Direction" Grid.Row="2"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Text="Direction" TextWrapping="Wrap" VerticalAlignment="Top" Margin="133,0,133,0" BorderThickness="3"  BorderBrush="Transparent" Grid.ColumnSpan="3" Height="22" Background="#7d7c87" />
+            <TextBox Name="Altimeter" Grid.Row="2"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Grid.Column="2" Text="Altimeter" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,0,0,0" BorderThickness="3" BorderBrush="Transparent" Height="22" Background="#7d7c87"/>
 
-    </Grid>
+        </Grid>
+
+    </Border>
+
+        
 </UserControl>

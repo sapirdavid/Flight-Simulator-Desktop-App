@@ -19,7 +19,7 @@
         ShowMaxRestoreButton="False"
         ResizeMode="CanResize"
         Background="Black"
-        AllowsTransparency="True" MouseDown="dragWindow" FontFamily="/Fonts/#Poppins">
+        AllowsTransparency="True" MouseDown="dragWindow" FontFamily="Yu Gothic UI Semilight">
 
     <Border
         Background="Black" 
@@ -39,11 +39,10 @@
             </Grid.ColumnDefinitions>
 
             <ProgressBar:ProgressBarView x:Name="animationSlide" Grid.RowSpan="1" Grid.Row="3" Grid.ColumnSpan="2" LineToTransmit="{Binding VM_LineToTransmit}" RunAnimation="{Binding VM_RunAnimation}" Margin="0,10,0,0"/>
-            <Graph:GraphView x:Name="graph" Grid.RowSpan="2"
-                         Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"/>
-            <Navigator:NavigatorStateView x:Name="Navigator" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Margin="46,179,46,50" />
-            <Data:DataInfoView x:Name="DataInfo"  Loaded="DataInfo_Loaded" Grid.Column="1" Grid.RowSpan="2" Margin="0,56,0,22"/>
-            <Button Name ="b1" FontFamily="/Fonts/#Poppins" Content="LineNumber:" Margin="272,16,24,0" Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Click="Button_Click" Height="20"/>
+            <Graph:GraphView x:Name="graph" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="1" Margin="5,55,13,45"/>
+            <Navigator:NavigatorStateView x:Name="Navigator" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Margin="56,200,56,39" />
+            <Data:DataInfoView x:Name="DataInfo"  Loaded="DataInfo_Loaded" Grid.RowSpan="2" Margin="522,54,-2,14" Grid.ColumnSpan="2"/>
+            <Button Name ="b1" FontFamily="Yu Gothic UI Semilight" Content="LineNumber:" Margin="272,16,24,0" Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Click="Button_Click" Height="20"/>
             <Button x:Name="changeAnomalyDetectorButton" FontFamily="Yu Gothic UI Semilight" BorderThickness="0"  Content="change anomaly detector" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.358,2.156" Height="40" Width="250" VerticalContentAlignment="Center" Click="changeAnomalyDetectorButton_Click" Margin="6,8,0,0" BorderBrush="#FF09F1F8">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
