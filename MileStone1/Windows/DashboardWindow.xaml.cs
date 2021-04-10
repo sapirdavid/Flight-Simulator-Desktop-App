@@ -117,6 +117,7 @@ namespace MileStone1
         {
             try
             {
+                this.lt.StopTransmitting();
                 Close();
             }
             catch(Exception ex)

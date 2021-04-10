@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Windows;
 
 namespace MileStone1
 {
@@ -101,14 +102,22 @@ namespace MileStone1
 
             IntPtr pDll = LoadLibrary(anomalyDetectionAlgorithemPath);
             //oh dear, error handling here
-            //if (pDll == IntPtr.Zero)
+            if (pDll == IntPtr.Zero)
+            {
+                System.Windows.MessageBox.Show("Your dll file is incorrect, please try to load new file", "Alert", MessageBoxButton.OK);
+                return new List<List<Tuple<int, int>>>();
+            }
 
             //set corrlation thereshold
             if (correlationThreshold != -1)
             {
                 IntPtr pAddressOfFunctionToCallT = GetProcAddress(pDll, "setThreshold");
                 //oh dear, error handling here
-                //if(pAddressOfFunctionToCall == IntPtr.Zero)
+               if(pAddressOfFunctionToCallT == IntPtr.Zero)
+                {
+                    System.Windows.MessageBox.Show("Your dll file is incorrect, please try to load new file", "Alert", MessageBoxButton.OK);
+                    return new List<List<Tuple<int, int>>>();
+                }
                 SetThreshold setThreshold = (SetThreshold)Marshal.GetDelegateForFunctionPointer(
                 pAddressOfFunctionToCallT,
                 typeof(SetThreshold));
@@ -117,7 +126,11 @@ namespace MileStone1
 
             IntPtr pAddressOfFunctionToCall = GetProcAddress(pDll, "detect");
             //oh dear, error handling here
-            //if(pAddressOfFunctionToCall == IntPtr.Zero)
+            if(pAddressOfFunctionToCall == IntPtr.Zero)
+            {
+                System.Windows.MessageBox.Show("Your dll file is incorrect, please try to load new file", "Alert", MessageBoxButton.OK);
+                return new List<List<Tuple<int, int>>>();
+            }
 
             Detect detect = (Detect)Marshal.GetDelegateForFunctionPointer(
             pAddressOfFunctionToCall,
@@ -168,7 +181,11 @@ namespace MileStone1
         {
             IntPtr pDll = LoadLibrary(anomalyDetectionAlgorithemPath);
             //oh dear, error handling here
-            //if (pDll == IntPtr.Zero)
+            if (pDll == IntPtr.Zero)
+            {
+                System.Windows.MessageBox.Show("Your dll file is incorrect, please try to load new file", "Alert", MessageBoxButton.OK);
+                return new List<CorrlativeCircle>();
+            }
 
 
             //set corrlation thereshold
@@ -176,7 +193,11 @@ namespace MileStone1
             {
                 IntPtr pAddressOfFunctionToCallT = GetProcAddress(pDll, "setThreshold");
                 //oh dear, error handling here
-                //if(pAddressOfFunctionToCall == IntPtr.Zero)
+                if(pAddressOfFunctionToCallT == IntPtr.Zero)
+                {
+                    System.Windows.MessageBox.Show("Your dll file is incorrect, please try to load new file", "Alert", MessageBoxButton.OK);
+                    return new List<CorrlativeCircle>();
+                }
                 SetThreshold setThreshold = (SetThreshold)Marshal.GetDelegateForFunctionPointer(
                 pAddressOfFunctionToCallT,
                 typeof(SetThreshold));
@@ -185,10 +206,14 @@ namespace MileStone1
 
                 IntPtr pAddressOfFunctionToCall = GetProcAddress(pDll, "Circle");
             //oh dear, error handling here
-            //if(pAddressOfFunctionToCall == IntPtr.Zero)
+            if(pAddressOfFunctionToCall == IntPtr.Zero)
+            {
+                System.Windows.MessageBox.Show("Your dll file is incorrect, please try to load new file", "Alert", MessageBoxButton.OK);
+                return new List<CorrlativeCircle>();
+            }
 
 
-            
+
             GetAnomaliesCircles getAnomaliesCircles = (GetAnomaliesCircles)Marshal.GetDelegateForFunctionPointer(
             pAddressOfFunctionToCall,
             typeof(GetAnomaliesCircles));
