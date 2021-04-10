@@ -215,8 +215,8 @@ namespace MileStone1.ViewModel
                     //    Debug.WriteLine("error of correlated features: " + firstFeatureColumn + SecondFeatureColumn);
                     //}
                     anomalyRow = anomaly.Item2;
-                    x = fdm.PropertyValues[firstFeatureColumn][anomalyRow];
-                    y = fdm.PropertyValues[SecondFeatureColumn][anomalyRow];
+                    x = fdm.PropertyValues[firstFeatureColumn][anomalyRow - 1];
+                    y = fdm.PropertyValues[SecondFeatureColumn][anomalyRow - 1];
                     this.AnomaliesPoints[i].Add(new DataPoint(x, y));
                 }
                 i++;

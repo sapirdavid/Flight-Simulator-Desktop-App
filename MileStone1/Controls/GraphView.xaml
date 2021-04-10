@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:MileStone1.Controls"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
+        Height="400" Width="500"
              
                                  >
     <Grid >
@@ -20,12 +21,23 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-
-
         <ListBox x:Name="lbx_property_names" FontFamily="Yu Gothic UI Semilight" ItemsSource="{Binding PropertyIndexes}"
-                Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" SelectedValue="{Binding PropertyIndexesId}"       
+                Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" SelectedValue="{Binding PropertyIndexesId}"      
                 SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                 SelectionChanged="lbx_property_names_SelectionChanged"/>
+                 SelectionChanged="lbx_property_names_SelectionChanged">
+            <ListBox.Resources>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Background" Value="#303030" />
+                    <Setter Property="FontFamily" Value="Yu Gothic UI Semilight" />
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="ScrollViewer.Background" Value="#303030"/>
+                    <Setter Property="FontStretch" Value="Normal"/>
+                    <Setter Property="Height" Value="50"/>
+                </Style>
+            </ListBox.Resources>
+        </ListBox>
+               
         <oxy:Plot Name="propretyValue" Title="{Binding Title}" TitleFontSize="10" FontFamily="Yu Gothic UI Semilight" Grid.Column="2" Background="#303030" TextColor="White" BorderBrush="Black">
             <oxy:Plot.Axes>
                 <oxy:DateTimeAxis Position="Bottom"
