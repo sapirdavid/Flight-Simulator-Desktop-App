@@ -59,8 +59,7 @@ Each logical part (such as the graphs part, data information , joystick) has a v
 This folder contains the XAMLs of each component as described above and it's code behind. 
 3)	Dlls – 
 contains the dlls of the project.
-4)	Fonts - 
-…………….
+4)	Fonts - contains the fonts files.
 5)	Model –
 the main and only model of the project, implements the MVVM design pattern and its responsible of the business logic of the project.
 Contains the logic parts of the application such as parsing the files given, transmitting information, save and use information that is being used at the view models.
