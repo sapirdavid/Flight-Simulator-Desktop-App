@@ -40,7 +40,7 @@
             <mah:SliderHelper.ThumbFillBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
-                    <GradientStop Color="#FF100F0F" Offset="1"/>
+                    <GradientStop Color="White" />
                 </LinearGradientBrush>
             </mah:SliderHelper.ThumbFillBrush>
         </Slider>

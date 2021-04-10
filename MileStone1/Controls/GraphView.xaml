@@ -37,7 +37,7 @@
                 </ListBox.Resources>
             </ListBox>
 
-            <oxy:Plot Name="propretyValue" Title="{Binding Title}" TitleFontSize="10" TitleHorizontalAlignment="CenteredWithinPlotArea" FontFamily="Yu Gothic UI Semilight" Grid.Column="1" Background="#303030" TextColor="White" BorderBrush="Black" Margin="189,9,9,1" Grid.ColumnSpan="2">
+            <oxy:Plot Name="propretyValue" Title="{Binding Title}" BorderThickness="5" TitleFontSize="10" TitleHorizontalAlignment="CenteredWithinPlotArea" FontFamily="Yu Gothic UI Semilight" Grid.Column="1" Background="#303030" TextColor="White" BorderBrush="Black" Margin="189,9,9,1" Grid.ColumnSpan="2">
                 <oxy:Plot.Axes>
                     <oxy:DateTimeAxis Position="Bottom"
                                     StringFormat="mm:ss"
@@ -56,7 +56,7 @@
                     <oxy:LineSeries ItemsSource="{Binding Points}" Color="#FF09F1F8"/>
                 </oxy:Plot.Series>
             </oxy:Plot>
-            <oxy:Plot Name="correlativeProprety" Title="{Binding CorrelatedTitle}" TitleFontSize="10" FontFamily="Yu Gothic UI Semilight" Grid.Row="0" Background="#303030" TextColor="White" BorderBrush="Black" Grid.ColumnSpan="2" Margin="125,9,5,1" >
+            <oxy:Plot Name="correlativeProprety" Title="{Binding CorrelatedTitle}" BorderThickness="5" TitleFontSize="10" FontFamily="Yu Gothic UI Semilight" Grid.Row="0" Background="#303030" TextColor="White" BorderBrush="Black" Grid.ColumnSpan="2" Margin="125,9,5,1" >
                 <oxy:Plot.Axes>
                     <oxy:DateTimeAxis Position="Bottom"
                     StringFormat="mm:ss"
@@ -73,7 +73,7 @@
                 </oxy:Plot.Axes>
                 <oxy:LineSeries ItemsSource="{Binding CorrelatedPoints}" Color="#FF09F1F8"/>
             </oxy:Plot>
-            <oxy:Plot Name="regLineGraph" Background="#303030" FontFamily="Yu Gothic UI Semilight" Title="Regression Line Graph" TextColor="White"  Grid.Row="1" Grid.ColumnSpan="2" Margin="1,0,9,10" Grid.Column="1">
+            <oxy:Plot Name="regLineGraph" Background="#303030" BorderThickness="5" BorderBrush="Black" FontFamily="Yu Gothic UI Semilight" Title="Regression Line Graph" TextColor="White"  Grid.Row="1" Grid.ColumnSpan="2" Margin="1,0,9,10" Grid.Column="1">
                 <oxy:Plot.Axes>
 
                     <oxy:LinearAxis Position="Left"

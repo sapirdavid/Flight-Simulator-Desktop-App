@@ -119,6 +119,7 @@ namespace MileStone1
             {
                 this.lt.StopTransmitting();
                 Close();
+                System.Environment.Exit(1);
             }
             catch(Exception ex)
             {

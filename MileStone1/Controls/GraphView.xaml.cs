@@ -53,6 +53,7 @@ namespace MileStone1.Controls
                     //if the propreties have changed
                     if (e.PropertyName == "PropertyNames")
                     {
+                        regLineGraph.Annotations.Clear();
                         gvm.PropertyIndexes = new List<PropertyIndex>();
                         int counter = 0;
                         //pass on each proprety name and create propertyIndex according to it's index and name
@@ -74,14 +75,15 @@ namespace MileStone1.Controls
                             correlativeProprety.InvalidatePlot(true);
                             regLineGraph.InvalidatePlot(true);
                             gvm.changeValues(prop);
-                            //if (this.gvm.drawCircle == true)
-                            //{
-                            //    Point p = this.gvm.Circels[prop.Id].center;
-                            //    float r = this.gvm.Circels[prop.Id].radaius;
-                            //    if(r!=0)
-                            //      regLineGraph.Annotations.Add(new OxyPlot.Wpf.EllipseAnnotation { X = p.X, Y = p.Y, Width = r, Height = r, Fill = System.Windows.Media.Color.FromRgb(255, 246, 238),StrokeThickness=1.5, Stroke = System.Windows.Media.Color.FromRgb(0, 0, 0)  });
-                            //}
+                            regLineGraph.Annotations.Clear();
+                            if (this.gvm.drawCircle == true)
+                            {
+                                Point p = this.gvm.Circels[prop.Id].center;
+                                float r = this.gvm.Circels[prop.Id].radaius;
 
+                                if (r != 0)
+                                    regLineGraph.Annotations.Add(new OxyPlot.Wpf.EllipseAnnotation { X = p.X, Y = p.Y, Width = r, Height = r, Fill = System.Windows.Media.Color.FromRgb(48, 48, 48), StrokeThickness = 1.5, Stroke = System.Windows.Media.Color.FromRgb(255, 246, 238) });
+                            }   
 
                         }));
                     }
