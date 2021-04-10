@@ -39,7 +39,7 @@ namespace MileStone1
             }
             this.anomalyCsvPath = csvPath;
             this.dw = new DashboardWindow(csvPath, csvPath); //default is to load only anomaly file
-            this.anomalyDetWin = new AnomalyDetectorLoaderWindow(this.anomalyCsvPath ,this.normalCsvPath);
+            
             startSimulationButton.IsEnabled = true; //enable the button of the simulation
             
             normalFlightCsv.IsEnabled = true;
@@ -95,6 +95,8 @@ namespace MileStone1
                 csvPath = openFileDlg.FileName;
                 this.normalCsvPath = csvPath;
                 this.dw = new DashboardWindow(anomalyCsvPath, normalCsvPath);
+      
+                this.anomalyDetWin = new AnomalyDetectorLoaderWindow(this.anomalyCsvPath, this.normalCsvPath);
                 loadAnomalyDet.IsEnabled = true; //enable option to enter dll
             }
             
