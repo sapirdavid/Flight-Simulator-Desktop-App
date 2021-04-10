@@ -2,7 +2,8 @@
 
 __Introduction:__
 
-This project is a WPF application which represents flight data and features by using a designated simulator.
+This project is a WPF applictaion which represents a flight simulation. 
+With this application we can simulate a flight by using a designated simulator, detect anomalies and receive information regarding the flight and it's features.
 
 __Application features:__
 
@@ -88,7 +89,10 @@ __Installation requirements:__
 
 __Installation Instructions:__
 
-1)	Update the FlightGear's settings: 
+
+1) Add playback_small.xml to data/protocol folder in FlightGear installation path.
+
+2)	Update the FlightGear's settings: 
 
 --generic=socket,in,10,127.0.0.1,5400,tcp,playback_small
 
@@ -100,6 +104,6 @@ __Example:__
 
 
 
-2)	Open the application and upload an data file to investigate.
+3)	Open the application and upload an data file to investigate.
 
-3)	Launch  our app!
+4)	Launch  our app!
