@@ -96,7 +96,12 @@ namespace MileStone1
 
         private void changeAnomalyDetectorButton_Click(object sender, RoutedEventArgs e)
         {
-            AnomalyDetectorLoaderWindow anomalyDetectorWin = new AnomalyDetectorLoaderWindow(this.anomalyCsvPath);
+            if (anomalyCsvPath == normalCsvPath) {
+                System.Windows.MessageBox.Show("You need to load normal flight file in the main window, (the normal csv and the anomaly csv need to be different)","Alert",MessageBoxButton.OK);
+                return;
+            
+            }
+            AnomalyDetectorLoaderWindow anomalyDetectorWin = new AnomalyDetectorLoaderWindow(this.anomalyCsvPath, this.normalCsvPath);
             anomalyDetectorWin.ShowDialog(); //exeption might be, because the user didnt enter any dll
             //update the model accordingly
             if (anomalyDetectorWin.IsAnomalyDetectorInitiated)
@@ -136,6 +141,13 @@ namespace MileStone1
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void returnToMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            MainWindow main = new MainWindow();
+            main.Show();
         }
     }
 }

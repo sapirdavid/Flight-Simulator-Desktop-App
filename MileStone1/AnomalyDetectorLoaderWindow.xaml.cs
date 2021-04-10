@@ -41,9 +41,10 @@ namespace MileStone1
                 }
 
         public bool IsAnomalyDetectorInitiated { get; set;}
-        public AnomalyDetectorLoaderWindow(string anomalyCsvPath)
+        public AnomalyDetectorLoaderWindow(string anomalyCsvPath, string normalCsvPath)
         {
             this.anomalyCsvPath = anomalyCsvPath;
+            this.normalCsvPath = normalCsvPath;
             InitializeComponent();
         }
         //dll load button
@@ -64,31 +65,12 @@ namespace MileStone1
             this.dllAlgorthemPath = csvPath;
             if (csvPath != null)
             {
-                LoadNormalPathButton.IsEnabled = true; //enable the button of the  LoadNormalPath
-            }
-        }
-
-        private void LoadNormalPathButton_Click(object sender, RoutedEventArgs e)
-        {
-            string csvPath = ""; //need to change
-            // Create OpenFileDialog
-            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
-
-            // Launch OpenFileDialog by calling ShowDialog method
-            Nullable<bool> result = openFileDlg.ShowDialog();
-            // Get the selected file name
-            if (result.ToString() != string.Empty)
-            {
-                csvPath = openFileDlg.FileName;
-            }
-            this.normalCsvPath = csvPath;
-            if (csvPath != null)
-            {
                 IsAnomalyDetectorInitiated = true;
-                this.finishButton.IsEnabled = true;
+                finishButton.IsEnabled = true; //enable the button of finsh option
             }
-            
         }
+
+        
 
         public List<List<Tuple<int, int>>> getAnomalies() {
             AnomalyDetector anomalyDetector = new AnomalyDetector(normalCsvPath, anomalyCsvPath, dllAlgorthemPath);
