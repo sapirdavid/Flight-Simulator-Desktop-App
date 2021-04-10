@@ -18,8 +18,8 @@ namespace MileStone1
     {
         Transmit tr;
 
-        public string csvPath { get; private set; }
-
+        public string AnomalyCsvPath { get; private set; }
+        public string NormalCsvPath { get; private set; }
         List<string> data;
         int fps = 10; //default frame per second
         int currentLine = 0;
@@ -70,7 +70,8 @@ namespace MileStone1
         public event PropertyChangedEventHandler PropertyChanged;
         public List<String> PropertyNames { get; set; }
         //list of all proprety's values 
-        public List<List<float>> PropertyValues { get; set; }
+        public List<List<float>> AnomalyPropertyValues { get; set; }
+        public List<List<float>> NormalPropertyValues { get; set; }
 
         public void INotifyPropertyChanged(string propName)
         {
@@ -274,9 +275,10 @@ namespace MileStone1
 
 
 
-        public FlightDetectorModel(List<string> data, string hostName, int port,string csvPath)
+        public FlightDetectorModel(List<string> data, string hostName, int port,string anomalyCsvPath, string normalCsvPath)
         {
-            this.csvPath = csvPath;
+            this.AnomalyCsvPath = anomalyCsvPath;
+            this.NormalCsvPath = normalCsvPath;
             this.data = data;
            // this.fps = fps;
             this.tr = new Transmit(hostName, port);
@@ -368,15 +370,15 @@ namespace MileStone1
         }
 
         //parser xml - extract the values of features
-        public void readCsv()
+        public List<List<float>> readCsv(string path)
         {
             //list of lists - each list will contain the values according to the feature name
-            PropertyValues = new List<List<float>>();
+            List<List<float>> PropertyValues = new List<List<float>>();
             for (int i = 0; i < PropertyNames.Count; i++)
             {
                 PropertyValues.Add(new List<float>());
             }
-            using (var reader = new StreamReader(this.csvPath))
+            using (var reader = new StreamReader(path))
             {
                 while (!reader.EndOfStream)
                 {
@@ -391,8 +393,19 @@ namespace MileStone1
                     }
                 }
             }
+            return PropertyValues;
             //notify of change of the values
-            INotifyPropertyChanged("PropertyValues");
+           // INotifyPropertyChanged("AbomalyPropertyValues");
+        }
+        public void readAnomalyCsv() {
+            AnomalyPropertyValues = readCsv(AnomalyCsvPath);
+            //notify of change of the values
+            INotifyPropertyChanged("AnomalyPropertyValues");
+        }
+        public void readNormalCsv() {
+            NormalPropertyValues = readCsv(NormalCsvPath);
+            //notify of change of the values
+            INotifyPropertyChanged("NormalPropertyValues");
         }
 
     }

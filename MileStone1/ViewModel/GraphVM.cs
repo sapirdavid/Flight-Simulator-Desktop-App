@@ -87,9 +87,9 @@ namespace MileStone1.ViewModel
 
                 }
                 //if the values have changed
-                if (e.PropertyName == "PropertyValues")
+                if (e.PropertyName == "AnomalyPropertyValues")
                 {
-                    List<float> valuesGraph = fdm.PropertyValues[0];
+                    List<float> valuesGraph = fdm.AnomalyPropertyValues[0];
                     Points = new List<DataPoint>();
                     DateTime date = new DateTime(2020, 3, 26, 0, 0, 0);
                     //create data points aacording to the time and value
@@ -99,7 +99,7 @@ namespace MileStone1.ViewModel
                         date = date.AddMinutes(1);
                     }
 
-                    List<float> correlatedPropretyGraph = fdm.PropertyValues[0];
+                    List<float> correlatedPropretyGraph = fdm.AnomalyPropertyValues[0];
                     CorrelatedPoints = new List<DataPoint>();
                     foreach (var item in correlatedPropretyGraph)
                     {
@@ -107,7 +107,7 @@ namespace MileStone1.ViewModel
                         date = date.AddMinutes(1);
                     }
 
-                    List<float> regLinePropretyGraph = fdm.PropertyValues[0];
+                    List<float> regLinePropretyGraph = fdm.AnomalyPropertyValues[0];
                     RegPoints = new List<DataPoint>();
                     for (int i = 0; i < correlatedPropretyGraph.Count; i++)
                     {
@@ -147,8 +147,9 @@ namespace MileStone1.ViewModel
                 }
             };
             this.fdm.readXml();
-            this.fdm.readCsv();
-            this.mcf = new MostCorrelativeFinder(fdm.PropertyValues);
+            this.fdm.readAnomalyCsv();
+            this.fdm.readNormalCsv();
+            this.mcf = new MostCorrelativeFinder(fdm.NormalPropertyValues);
             this.minCorrelatedPointsXValue = new List<float>();
             this.maxCorrelatedPointsXValue = new List<float>();
             //List<int> cor = mcf.CorrlatedColumns;
@@ -215,8 +216,8 @@ namespace MileStone1.ViewModel
                     //    Debug.WriteLine("error of correlated features: " + firstFeatureColumn + SecondFeatureColumn);
                     //}
                     anomalyRow = anomaly.Item2;
-                    x = fdm.PropertyValues[firstFeatureColumn][anomalyRow - 1];
-                    y = fdm.PropertyValues[SecondFeatureColumn][anomalyRow - 1];
+                    x = fdm.AnomalyPropertyValues[firstFeatureColumn][anomalyRow - 1];
+                    y = fdm.AnomalyPropertyValues[SecondFeatureColumn][anomalyRow - 1];
                     this.AnomaliesPoints[i].Add(new DataPoint(x, y));
                 }
                 i++;
@@ -233,7 +234,7 @@ namespace MileStone1.ViewModel
             {
                 int idxOfMostCorrelative = mcf.CorrlatedColumns[i];
                 //all values of the current correlative feature
-                List<float> correlatedPropretyData = fdm.PropertyValues[idxOfMostCorrelative];
+                List<float> correlatedPropretyData = fdm.AnomalyPropertyValues[idxOfMostCorrelative];
                 this.minCorrelatedPointsXValue.Add(correlatedPropretyData.Min());
                 this.maxCorrelatedPointsXValue.Add(correlatedPropretyData.Max());
                 i++;
@@ -255,7 +256,7 @@ namespace MileStone1.ViewModel
             //update every 3 rows 
             int lineDiff = 3;
             long lineToCopy = 0;
-            int idxOfMostCorrelative = mcf.findTheMostCorrelative(fdm.PropertyValues, property.Id);
+            int idxOfMostCorrelative = mcf.findTheMostCorrelative(fdm.AnomalyPropertyValues, property.Id);
             Line regLine = mcf.linearRegressionList[idxOfMostCorrelative];
             //List<int> cor = mcf.CorrlatedColumns;
 
@@ -271,11 +272,11 @@ namespace MileStone1.ViewModel
                 lineToCopy = prevLineIndex;
             }
             //all values of the  current feature column 
-            List<float> AllData = fdm.PropertyValues[property.Id];
+            List<float> AllData = fdm.AnomalyPropertyValues[property.Id];
             //the relevant points need to be shown at the graph
             List<float> valuesGraph = new List<float>();
             //all values of the current correlative feature
-            List<float> correlatedPropretyData = fdm.PropertyValues[idxOfMostCorrelative];
+            List<float> correlatedPropretyData = fdm.AnomalyPropertyValues[idxOfMostCorrelative];
             //the relevant points need to be shown at the graph
             List<float> correlatedPropretyGraph = new List<float>();
 

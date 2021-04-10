@@ -20,10 +20,11 @@ namespace MileStone1
     /// </summary>
     public partial class DashboardWindow : MetroWindow
     {
-        string csvPath;
+        string anomalyCsvPath;
+        string normalCsvPath;
         FlightDetectorModel lt = null;
         Anomalies anomalies = null;
-
+        
         public Anomalies Anomalies {
             get
             {
@@ -43,17 +44,18 @@ namespace MileStone1
             }
         }
 
-        public DashboardWindow(string csvPath)
+        public DashboardWindow(string anomalyCsvPath, string normalCsvPath)
         {
-            this.csvPath = csvPath; //update the path to data file
+            this.anomalyCsvPath = anomalyCsvPath; //update the path to data file
+            this.normalCsvPath = normalCsvPath;
             InitializeComponent();
             initializeComponents();
         }
         private void initializeComponents()
         { 
             FileReader f = new FileReader();
-            f.ReadFile(csvPath);
-            this.lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400,csvPath);
+            f.ReadFile(anomalyCsvPath);
+            this.lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400, anomalyCsvPath, normalCsvPath);
 
             if (anomalies != null) { //if there is anomalies
                 lt.AnomaliesList = this.anomalies.anomaliesList;
@@ -94,7 +96,7 @@ namespace MileStone1
 
         private void changeAnomalyDetectorButton_Click(object sender, RoutedEventArgs e)
         {
-            AnomalyDetectorLoaderWindow anomalyDetectorWin = new AnomalyDetectorLoaderWindow(this.csvPath);
+            AnomalyDetectorLoaderWindow anomalyDetectorWin = new AnomalyDetectorLoaderWindow(this.anomalyCsvPath);
             anomalyDetectorWin.ShowDialog(); //exeption might be, because the user didnt enter any dll
             //update the model accordingly
             if (anomalyDetectorWin.IsAnomalyDetectorInitiated)

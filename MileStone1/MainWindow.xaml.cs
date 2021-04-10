@@ -14,7 +14,8 @@ namespace MileStone1
     /// </summary>
     public partial class MainWindow : Window
     {
-        string txtPath;
+        string anomalyCsvPath;
+        string normalCsvPath = ""; //intiate normal csv with empty string
         DashboardWindow dw = null;
         AnomalyDetectorLoaderWindow anomalyDetWin = null;
         
@@ -23,9 +24,9 @@ namespace MileStone1
         {
             InitializeComponent();
         }
-        private void openFile_Click(object sender, RoutedEventArgs e)
+        private void loadAnomalyClicked(object sender, RoutedEventArgs e)
         {
-            string csvPath = ""; //need to change
+            string csvPath = ""; 
             // Create OpenFileDialog
             Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
 
@@ -36,23 +37,28 @@ namespace MileStone1
             {
                 csvPath = openFileDlg.FileName;
             }
-            this.txtPath = csvPath;
-            this.dw = new DashboardWindow(csvPath);
+            this.anomalyCsvPath = csvPath;
+            this.dw = new DashboardWindow(csvPath, csvPath); //default is to load only anomaly file
             this.anomalyDetWin = new AnomalyDetectorLoaderWindow(csvPath);
             startSimulationButton.IsEnabled = true; //enable the button of the simulation
             loadAnomalyDet.IsEnabled = true;
+            normalFlightCsv.IsEnabled = true;
+
         }
 
         private void startSimulationButton_Click(object sender, RoutedEventArgs e)
         {
-            if (dw != null)
-            {
+            
+                if (normalCsvPath == string.Empty) { //no normal flight csv was entered
+                    this.normalCsvPath = this.anomalyCsvPath;
+                }
+                
                 // System.Diagnostics.Process.Start("fgfs.exe");
                 this.Hide();
                 dw.Show();
                 dw.StartAnimation();
                 this.dw.Anomalies = this.dw.Anomalies; //activate the functionality
-            }
+            
            
         }
 
@@ -73,6 +79,24 @@ namespace MileStone1
                 }
             }
             this.anomalyDetWin.Close();
+        }
+
+        private void normalFlightCsv_Click(object sender, RoutedEventArgs e)
+        {
+            string csvPath = "";
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog openFileDlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Launch OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = openFileDlg.ShowDialog();
+            // Get the selected file name
+            if (result.ToString() != string.Empty)
+            {
+                csvPath = openFileDlg.FileName;
+                this.normalCsvPath = csvPath;
+                this.dw = new DashboardWindow(anomalyCsvPath, normalCsvPath);
+            }
+            
         }
     }
 }
