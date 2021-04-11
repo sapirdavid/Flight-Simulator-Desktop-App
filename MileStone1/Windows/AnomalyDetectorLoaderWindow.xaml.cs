@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -20,7 +21,7 @@ namespace MileStone1
     /// <summary>
     /// Interaction logic for AnomalyDetectorLoaderWindow.xaml
     /// </summary>
-    public partial class AnomalyDetectorLoaderWindow : Window
+    public partial class AnomalyDetectorLoaderWindow : MetroWindow
     {
         string anomalyCsvPath;
         string dllAlgorthemPath;
@@ -93,6 +94,38 @@ namespace MileStone1
           
         }
 
+        private void closeApp(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Close();
+                System.Environment.Exit(1);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void minimizeApp(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.WindowState = WindowState.Minimized;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+
+            }
+        }
+
+        private void dragWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
         private void finishButton_Click(object sender, RoutedEventArgs e)
         {
             if (corrlationThresholdTextBox.Text != "") {
@@ -107,7 +140,6 @@ namespace MileStone1
 
             }
             this.Hide();
-
         }
     }
 }

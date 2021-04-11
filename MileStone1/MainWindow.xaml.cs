@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using Transmitter;
+using MahApps.Metro.Controls;
+using System.Windows.Input;
+
 namespace MileStone1
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         string anomalyCsvPath;
         string normalCsvPath = ""; //intiate normal csv with empty string
@@ -95,6 +98,32 @@ namespace MileStone1
             this.anomalyDetWin.Close();
         }
 
+        private void closeApp(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Close();
+                System.Environment.Exit(0);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void minimizeApp(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.WindowState = WindowState.Minimized;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+
+            }
+        }
+
         private void normalFlightCsv_Click(object sender, RoutedEventArgs e)
         {
             string csvPath = "";
@@ -119,6 +148,18 @@ namespace MileStone1
                 }
             }
             
+        }
+
+        private void dragWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+        private void instructionButton(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            System.Windows.MessageBox.Show(this,"Please upload CSV file.\nfor simulation click on start.\nfor anomaly detection upload normal CSV + DLL and click start.\nEnjoy!", "Instruction");
+
         }
     }
 }
