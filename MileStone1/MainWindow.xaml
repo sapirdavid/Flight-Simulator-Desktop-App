@@ -44,7 +44,7 @@
             <Button x:Name="startSimulationButton"   FontFamily="Yu Gothic UI Semilight" Content="Start Simulation"  Margin="315,416,315,30" VerticalAlignment="Bottom" Height="70" Width="170" Click="startSimulationButton_Click" Visibility="Visible" IsEnabled="False" Grid.Row="1" FontWeight="Bold" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
             <Button x:Name="loadAnomalyDet" FontFamily="Yu Gothic UI Semilight" Content="load anomaly detector" HorizontalAlignment="Left" Margin="18,320,0,0" VerticalAlignment="Top" Height="53" Width="170" Click="loadAnomalyDet_Click" IsEnabled="False" Grid.Row="1"/>
 
-            <Button x:Name="normalFlightCsv" FontFamily="Yu Gothic UI Semilight" Content="normal Flight Csv" HorizontalAlignment="Left" Height="53" Margin="18,230,0,0" VerticalAlignment="Top" Width="170" Click="normalFlightCsv_Click" Grid.Row="1"/>
+            <Button x:Name="normalFlightCsv" FontFamily="Yu Gothic UI Semilight"  Visibility="Visible"  IsEnabled="False"  Content="normal Flight Csv" HorizontalAlignment="Left" Height="53" Margin="18,230,0,0" VerticalAlignment="Top" Width="170" Click="normalFlightCsv_Click" Grid.Row="1"/>
 
 
             <Ellipse Fill="Red" Grid.Row="0" Grid.Column="2" Height="15" VerticalAlignment="Top" HorizontalAlignment="Right" Width="15" MouseLeftButtonDown="closeApp" Margin="0,2,4,0" />
