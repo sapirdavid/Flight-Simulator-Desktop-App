@@ -401,7 +401,15 @@ namespace MileStone1
                     //insert to the list
                     foreach (var item in values)
                     {
-                        PropertyValues[i++].Add(float.Parse(item));
+                        try
+                        {
+                            PropertyValues[i++].Add(float.Parse(item));
+                        }
+                        catch
+                        {
+                            System.Windows.MessageBox.Show("Error - can't prase yor csv file,please try to load a new fle", "Alert", MessageBoxButton.OK);
+                            break;
+                        }
                     }
                 }
             }
