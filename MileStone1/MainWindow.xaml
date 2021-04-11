@@ -12,6 +12,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800" WindowStyle="None"
+                 MinHeight="600" MinWidth="800"
         ShowTitleBar="False"
         ShowCloseButton="False"
         ShowMinButton="False"
@@ -19,8 +20,8 @@
         ResizeMode="CanResize"
         MouseDown="dragWindow"
         AllowsTransparency="True" FontFamily="Yu Gothic UI Semilight">
-    
-        <Border
+
+    <Border
             CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
@@ -36,22 +37,24 @@
             </Grid.ColumnDefinitions>
 
             <Grid.Background>
-                <ImageBrush ImageSource="C:\Users\IlayBor\Desktop\MileStone1_DesktopApp\MileStone1\MileStone1\Icon\flight_3.jpg" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="\Image\flight.jpg" Stretch="UniformToFill"/>
             </Grid.Background>
 
-            <Button x:Name="anomalyCsvButton" FontFamily="Yu Gothic UI Semilight" Content="load flight to interrogate" HorizontalAlignment="Left" Height="53" Margin="18,139,0,0" VerticalAlignment="Top" Width="170" Click="loadAnomalyClicked" Grid.Row="1"/>
-            <Button x:Name="startSimulationButton" Background="Transparent"  FontFamily="Yu Gothic UI Semilight" Content="Start Simulation" HorizontalAlignment="Left" Margin="315,401,0,0" VerticalAlignment="Top" Height="70" Width="170" Click="startSimulationButton_Click" Visibility="Visible" IsEnabled="False" Grid.Row="1" FontWeight="Bold" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
-            <Button x:Name="loadAnomalyDet" FontFamily="Yu Gothic UI Semilight" Content="load anomaly detector" HorizontalAlignment="Left" Margin="22,314,0,0" VerticalAlignment="Top" Height="53" Width="170" Click="loadAnomalyDet_Click" IsEnabled="False" Grid.Row="1"/>
+            <Button x:Name="anomalyCsvButton" FontFamily="Yu Gothic UI Semilight" Content="load flight to interrogate" HorizontalAlignment="Left" Height="53" Margin="18,140,0,0" VerticalAlignment="Top" Width="170" Click="loadAnomalyClicked" Grid.Row="1"/>
+            <Button x:Name="startSimulationButton"   FontFamily="Yu Gothic UI Semilight" Content="Start Simulation"  Margin="315,416,315,30" VerticalAlignment="Bottom" Height="70" Width="170" Click="startSimulationButton_Click" Visibility="Visible" IsEnabled="False" Grid.Row="1" FontWeight="Bold" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+            <Button x:Name="loadAnomalyDet" FontFamily="Yu Gothic UI Semilight" Content="load anomaly detector" HorizontalAlignment="Left" Margin="18,320,0,0" VerticalAlignment="Top" Height="53" Width="170" Click="loadAnomalyDet_Click" IsEnabled="False" Grid.Row="1"/>
 
-            <Button x:Name="normalFlightCsv" Visibility="Visible" FontFamily="Yu Gothic UI Semilight" Content="load normal flight" Margin="20,228,210,147" IsEnabled="False" Click="normalFlightCsv_Click" Height="53" Width="170" Grid.Row="1"/>
+            <Button x:Name="normalFlightCsv" FontFamily="Yu Gothic UI Semilight" Content="normal Flight Csv" HorizontalAlignment="Left" Height="53" Margin="18,230,0,0" VerticalAlignment="Top" Width="170" Click="normalFlightCsv_Click" Grid.Row="1"/>
+
+
             <Ellipse Fill="Red" Grid.Row="0" Grid.Column="2" Height="15" VerticalAlignment="Top" HorizontalAlignment="Right" Width="15" MouseLeftButtonDown="closeApp" Margin="0,2,4,0" />
             <Ellipse Fill="Yellow" Grid.Row="0" Grid.Column="2" Height="15" VerticalAlignment="Top" Margin="0,2,24,0" HorizontalAlignment="Right" Width="15" MouseLeftButtonDown="minimizeApp" />
-            <TextBox HorizontalAlignment="Left" IsReadOnly="True" FontSize="70" FontStretch="Normal" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontFamily="Bahnschrift SemiBold" Height="91" Margin="256,-13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" Text="Welcome" FontWeight="Normal" Grid.ColumnSpan="3"/>
-            <TextBox HorizontalAlignment="Left" IsReadOnly="True" FontSize="38" FontStretch="Normal" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontFamily="Bahnschrift Light Condensed" Height="59" Margin="268,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="304"  Text="Flight Simulator 2021" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
-            <TextBox HorizontalAlignment="Left" IsReadOnly="True" FontSize="25" FontStretch="Normal" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontFamily="Bahnschrift Light Condensed" Height="143" Margin="8,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="780"  Text="&#x9;Welcome aboard and thank you for being part of this flight simulator. &#xA;        Our simulator offers  flight simulation, flight interrogation and anomalies detections." Grid.ColumnSpan="3" Grid.Row="1"/>
+            <TextBox IsReadOnly="True" FontSize="70" FontStretch="Normal" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontFamily="Bahnschrift SemiBold" Height="91" Margin="258,-13,214,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" Text="Welcome" FontWeight="Normal" Grid.ColumnSpan="3" BorderThickness="0" />
+            <TextBox  IsReadOnly="True" FontSize="38" FontStretch="Normal" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontFamily="Bahnschrift Light Condensed" Height="59" Margin="272,52,224,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="304"  Text="Flight Simulator 2021" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderThickness="0"/>
+            <TextBox IsReadOnly="True" FontSize="25" FontStretch="Normal" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontFamily="Bahnschrift Light Condensed" Height="143" Margin="8,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="780" BorderThickness="0"  Text="&#x9;Welcome aboard and thank you for being part of this flight simulator. &#xA;        Our simulator offers  flight simulation, flight interrogation and anomalies detections." Grid.ColumnSpan="3" Grid.Row="1"/>
             <Button Content="?" Foreground="White" FontSize="20" Background="Transparent" HorizontalAlignment="Left" Height="42" Margin="12,7,0,0" VerticalAlignment="Top" Width="40" MouseMove="instructionButton"/>
 
-    </Grid>
+        </Grid>
     </Border>
 </mah:MetroWindow>
 

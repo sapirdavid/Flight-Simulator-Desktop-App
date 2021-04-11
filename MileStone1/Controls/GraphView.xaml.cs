@@ -36,6 +36,7 @@ namespace MileStone1.Controls
             PropertyIndex lbi = ((sender as ListBox).SelectedItem as PropertyIndex);
             gvm.changeValues(lbi);
             gvm.pressed = true;
+            regLineGraph.ResetAllAxes();
         }
 
         public GraphVM Gvm
@@ -63,6 +64,7 @@ namespace MileStone1.Controls
                             propertyIndex.Name = item;
                             propertyIndex.Id = counter++;
                             gvm.PropertyIndexes.Add(propertyIndex);
+
                         }
 
                     }
@@ -71,10 +73,6 @@ namespace MileStone1.Controls
                         this.Dispatcher.Invoke((Action)(() =>
                         {
                             PropertyIndex prop = lbx_property_names.SelectedItem as PropertyIndex;
-                            propretyValue.InvalidatePlot(true);
-                            correlativeProprety.InvalidatePlot(true);
-                            regLineGraph.InvalidatePlot(true);
-                            gvm.changeValues(prop);
                             regLineGraph.Annotations.Clear();
                             if (this.gvm.drawCircle == true)
                             {
@@ -82,10 +80,17 @@ namespace MileStone1.Controls
                                 float r = this.gvm.Circels[prop.Id].radaius;
 
                                 if (r != 0)
-                                    regLineGraph.Annotations.Add(new OxyPlot.Wpf.EllipseAnnotation { X = p.X, Y = p.Y, Width = r, Height = r, Fill = System.Windows.Media.Color.FromRgb(48, 48, 48), StrokeThickness = 1.5, Stroke = System.Windows.Media.Color.FromRgb(255, 246, 238) });
-                            }   
-
+                                    regLineGraph.Annotations.Add(new OxyPlot.Wpf.EllipseAnnotation { X = p.X, Y = p.Y, Width = r, Height = r, Fill = System.Windows.Media.Colors.Transparent ,  StrokeThickness = 1.5, Stroke = System.Windows.Media.Color.FromRgb(255, 246, 238)});
+                            }
+                            propretyValue.InvalidatePlot(true);
+                            correlativeProprety.InvalidatePlot(true);
+                            regLineGraph.InvalidatePlot(true);
+                            gvm.changeValues(prop);
                         }));
+                    }
+                    if(e.PropertyName == "P")
+                    {
+
                     }
 
                     //if (e.PropertyName == "UpdateCircele")

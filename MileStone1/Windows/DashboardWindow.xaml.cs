@@ -149,8 +149,8 @@ namespace MileStone1
         private void returnToMenuButton_Click(object sender, RoutedEventArgs e)
         {
             this.lt.StopTransmitting();
-            this.Close();
             MainWindow main = new MainWindow();
+            this.Close();
             main.Show();
         }
     }

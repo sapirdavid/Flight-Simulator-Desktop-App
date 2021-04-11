@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Image\flight.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Image\flight.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CircularGauge" Version="1.0.0" />
     <PackageReference Include="MahApps.Metro" Version="2.4.4" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="7.0.1" />

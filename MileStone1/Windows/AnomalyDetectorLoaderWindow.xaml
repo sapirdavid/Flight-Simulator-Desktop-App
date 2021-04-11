@@ -19,7 +19,7 @@
         <Grid>
 
             <Grid.Background>
-                <ImageBrush ImageSource="C:\Users\IlayBor\Desktop\MileStone1_DesktopApp\MileStone1\MileStone1\Icon\flight_3.jpg" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="\Image\flight.jpg" Stretch="UniformToFill"/>
             </Grid.Background>
             <Button x:Name="loadDllButton" Content="load dll" HorizontalAlignment="Left" Margin="24,121,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="54" Width="210" Click="Button_Click">
                 <Button.RenderTransform>
