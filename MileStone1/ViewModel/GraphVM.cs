@@ -178,7 +178,7 @@ namespace MileStone1.ViewModel
         {
           Circels = new List<Circle>();
 
-            for (int j = 0; j < 42; j++)
+            for (int j = 0; j < 42; j++) //42 is the number of columns
             {
                 Circels.Add(new Circle(0,0,0));
             }
@@ -196,31 +196,34 @@ namespace MileStone1.ViewModel
             List<List<Tuple<int, int>>> anomaliesLists = this.fdm.AnomaliesList;
 
             AnomaliesPoints = new List<List<DataPoint>>();
-            for (int j = 0; j < 42; j++)
+            for (int j = 0; j < 42; j++) //42 is the number of columns
             {
                 AnomaliesPoints.Add(new List<DataPoint>());
             }
 
             int i = 0, firstFeatureColumn, SecondFeatureColumn, anomalyRow;
             float x, y;
-            //pass on each proprety
-            foreach (var property in this.PropertyIndexes)
-            {
-                List<Tuple<int, int>> anomaliesOfPropertyI = anomaliesLists[i];
-                firstFeatureColumn = i;
-                foreach (var anomaly in anomaliesOfPropertyI)
+            if (anomaliesLists.Count != 0)
+            { //if the value initiated
+              //pass on each proprety
+                foreach (var property in this.PropertyIndexes)
                 {
-                    SecondFeatureColumn = anomaly.Item1;
-                    //if(mcf.CorrlatedColumns[firstFeatureColumn] != SecondFeatureColumn)
-                    //{
-                    //    Debug.WriteLine("error of correlated features: " + firstFeatureColumn + SecondFeatureColumn);
-                    //}
-                    anomalyRow = anomaly.Item2;
-                    x = fdm.AnomalyPropertyValues[firstFeatureColumn][anomalyRow - 1];
-                    y = fdm.AnomalyPropertyValues[SecondFeatureColumn][anomalyRow - 1];
-                    this.AnomaliesPoints[i].Add(new DataPoint(x, y));
+                    List<Tuple<int, int>> anomaliesOfPropertyI = anomaliesLists[i];
+                    firstFeatureColumn = i;
+                    foreach (var anomaly in anomaliesOfPropertyI)
+                    {
+                        SecondFeatureColumn = anomaly.Item1;
+                        //if(mcf.CorrlatedColumns[firstFeatureColumn] != SecondFeatureColumn)
+                        //{
+                        //    Debug.WriteLine("error of correlated features: " + firstFeatureColumn + SecondFeatureColumn);
+                        //}
+                        anomalyRow = anomaly.Item2;
+                        x = fdm.AnomalyPropertyValues[firstFeatureColumn][anomalyRow - 1];
+                        y = fdm.AnomalyPropertyValues[SecondFeatureColumn][anomalyRow - 1];
+                        this.AnomaliesPoints[i].Add(new DataPoint(x, y));
+                    }
+                    i++;
                 }
-                i++;
             }
         }
 

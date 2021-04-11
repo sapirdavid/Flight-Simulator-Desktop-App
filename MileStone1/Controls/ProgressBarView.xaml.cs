@@ -61,7 +61,7 @@ namespace MileStone1.Controls
         public double Speed {
             get { return this.speed; }
             set {
-                if ((value <= 3) && (value > 0))
+                if ((value <= 2) && (value > 0))
                 { //2 is the limit speed
                     this.speed = value;
                     this.vm.VM_FramePerSecond = (int)(FrameRate * value);

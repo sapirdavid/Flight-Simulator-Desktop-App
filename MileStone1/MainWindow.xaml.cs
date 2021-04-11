@@ -72,8 +72,14 @@ namespace MileStone1
 
         private void loadAnomalyDet_Click(object sender, RoutedEventArgs e)
         {
-            
-            anomalyDetWin.ShowDialog();
+            try
+            {
+                this.anomalyDetWin = new AnomalyDetectorLoaderWindow(this.anomalyCsvPath, this.normalCsvPath);
+                anomalyDetWin.ShowDialog();
+            }
+            catch (Exception exp) {
+                return;
+            }
             //while (anomalyDetWin.) { }
             //update the anomalies in deshboard window
             if (this.dw != null)
@@ -109,8 +115,6 @@ namespace MileStone1
                 {
                     this.normalCsvPath = csvPath;
                     this.dw = new DashboardWindow(anomalyCsvPath, normalCsvPath);
-
-                    this.anomalyDetWin = new AnomalyDetectorLoaderWindow(this.anomalyCsvPath, this.normalCsvPath);
                     loadAnomalyDet.IsEnabled = true; //enable option to enter dll
                 }
             }
