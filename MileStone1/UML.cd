@@ -107,7 +107,7 @@
     <Position X="19.25" Y="6" Width="2" />
     <TypeIdentifier>
       <HashCode>ABAgAAAEAAAAAIAAAAAAAAACgAAAAAAAAAAAABABAAE=</HashCode>
-      <FileName>ViewModel\SliderControlVM.cs</FileName>
+      <FileName>ViewModel\ProgressBarVM.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="fdm" />
