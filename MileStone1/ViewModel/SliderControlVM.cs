@@ -11,12 +11,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using Transmitter;
 
-
 namespace MileStone1
 {
-    public class SliderControlVM : INotifyPropertyChanged
+    public class ProgressBarVM : INotifyPropertyChanged
     {
-        FlightDetectorModel lt;
+        FlightDetectorModel fdm;
         public event PropertyChangedEventHandler PropertyChanged;
         //notify all observers
         public void NotifyPropertyChanged(string propName)
@@ -28,14 +27,14 @@ namespace MileStone1
         }
         public bool VM_RunAnimation
         {
-            get { return lt.RunAnimation; }
-            set { lt.RunAnimation = value; }
+            get { return fdm.RunAnimation; }
+            set { fdm.RunAnimation = value; }
         }
         public int VM_ListSize
         {
             get
             {
-                return lt.ListSize;
+                return fdm.ListSize;
             }
 
         }
@@ -43,11 +42,11 @@ namespace MileStone1
         {
             get
             {
-                return this.lt.FramePerSecond;
+                return this.fdm.FramePerSecond;
             }
             set
             {
-                this.lt.FramePerSecond = value;
+                this.fdm.FramePerSecond = value;
             }
 
         }
@@ -55,18 +54,18 @@ namespace MileStone1
         {
             get
             {
-                return this.lt.LineToTransmit;
+                return this.fdm.LineToTransmit;
             }
             set
             {
-                this.lt.LineToTransmit = value;
+                this.fdm.LineToTransmit = value;
             }
         }
         
-        public SliderControlVM(FlightDetectorModel lt)
+        public ProgressBarVM(FlightDetectorModel fdm)
         {
-            this.lt = lt;
-            this.lt.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
+            this.fdm = fdm;
+            this.fdm.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
@@ -74,14 +73,13 @@ namespace MileStone1
 
         public void VM_StartTransimttion()
         {
-            lt.StartTransmitting();
+            fdm.StartTransmitting();
         }
 
         public void VM_StopTransimttion()
         {
-            lt.StopTransmitting();
+            fdm.StopTransmitting();
         }
-
 
     }
 }

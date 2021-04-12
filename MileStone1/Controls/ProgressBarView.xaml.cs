@@ -14,7 +14,7 @@ namespace MileStone1.Controls
         public static readonly DependencyProperty LineToTransmitProperty = DependencyProperty.Register("LineToTransmit", typeof(int), typeof(ProgressBarView));
         public static readonly DependencyProperty RunAnimationProperty = DependencyProperty.Register("RunAnimation", typeof(bool), typeof(ProgressBarView));
         int currentLine;
-        SliderControlVM vm;
+        ProgressBarVM pbvm;
         int sliderLine;
         //bool animationChanged = false;
         bool runAnimation = true;
@@ -55,7 +55,7 @@ namespace MileStone1.Controls
         {
             get { return this.runAnimation; }
             set { this.runAnimation = value;
-                this.vm.VM_RunAnimation = value; ////////////////////////////need to remove
+                this.pbvm.VM_RunAnimation = value; ////////////////////////////need to remove
             }
         }
         public double Speed {
@@ -64,32 +64,32 @@ namespace MileStone1.Controls
                 if ((value <= 2) && (value > 0))
                 { //2 is the limit speed
                     this.speed = value;
-                    this.vm.VM_FramePerSecond = (int)(FrameRate * value);
+                    this.pbvm.VM_FramePerSecond = (int)(FrameRate * value);
                 }
             }
         }
 
 
-        public SliderControlVM ViewModel
+        public ProgressBarVM Pbvm
             {
             get
             {
-                return this.vm;
+                return this.pbvm;
             }
             set
             {
-                this.vm = value;
-                DataContext = vm;
-                
-                vm.PropertyChanged+=delegate(object sender, PropertyChangedEventArgs e)
+                this.pbvm = value;
+                DataContext = pbvm;
+
+                pbvm.PropertyChanged+=delegate(object sender, PropertyChangedEventArgs e)
                 {
                     if(e.PropertyName == "VM_LineToTransmitChanged") //change only if the listTransmitor in the model changed
                     {
                         this.Dispatcher.Invoke((Action)(() =>
                             {
-                                if (slider.Value != ((double)vm.VM_LineToTransmit / vm.VM_ListSize) * slider.Maximum)
+                                if (slider.Value != ((double)pbvm.VM_LineToTransmit / pbvm.VM_ListSize) * slider.Maximum)
                                 {
-                                    slider.Value = ((double)vm.VM_LineToTransmit / vm.VM_ListSize) * slider.Maximum;
+                                    slider.Value = ((double)pbvm.VM_LineToTransmit / pbvm.VM_ListSize) * slider.Maximum;
                                 }
                             }));
                            
@@ -97,7 +97,7 @@ namespace MileStone1.Controls
                     
                 };
 
-                vm.VM_FramePerSecond = FrameRate; //in the begining the fps is the frame rate (speed is x1)
+                pbvm.VM_FramePerSecond = FrameRate; //in the begining the fps is the frame rate (speed is x1)
                 //binding propeties
                 
             }
@@ -117,7 +117,7 @@ namespace MileStone1.Controls
                 {
                     this.currentLine = value;
                     SecondFromBegining = (int)(this.currentLine / frameRate);
-                    vm.VM_LineToTransmit = value;
+                    pbvm.VM_LineToTransmit = value;
                 }
 
             }
@@ -137,7 +137,7 @@ namespace MileStone1.Controls
             System.Windows.Controls.Slider sliderOb = sender as System.Windows.Controls.Slider;
             //double ratio = e.NewValue / sliderOb.ActualWidth; //check what with zero
             double ratio = e.NewValue / sliderOb.Maximum; //check what with zero
-            SliderLine = (int)(ratio * vm.VM_ListSize);
+            SliderLine = (int)(ratio * pbvm.VM_ListSize);
             LineToTransmit = SliderLine;
             
         }
@@ -174,12 +174,12 @@ namespace MileStone1.Controls
             // start the socker to the flighgeart
             if (soketContorller.Content == "Start")
             {
-                ViewModel.VM_StartTransimttion();
+                Pbvm.VM_StartTransimttion();
                 soketContorller.Content = "Stop";
             }
             else
             {
-                ViewModel.VM_StopTransimttion();
+                Pbvm.VM_StopTransimttion();
                 soketContorller.Content = "Start";
             }
         }

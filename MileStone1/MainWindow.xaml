@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MileStone1"
-        xmlns:ProgressBar="clr-namespace:MileStone1.Controls" d:DataContext="{d:DesignInstance Type=local:SliderControlVM}"
+        xmlns:ProgressBar="clr-namespace:MileStone1.Controls" d:DataContext="{d:DesignInstance Type=local:ProgressBarVM}"
         xmlns:Controls="clr-namespace:MileStone1.Controls"
         xmlns:Graph="clr-namespace:MileStone1.Controls"
         xmlns:Navigator="clr-namespace:MileStone1.Controls"

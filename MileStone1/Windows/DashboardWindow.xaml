@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MileStone1"
-        xmlns:ProgressBar="clr-namespace:MileStone1.Controls" d:DataContext="{d:DesignInstance Type=local:SliderControlVM}"
+        xmlns:ProgressBar="clr-namespace:MileStone1.Controls" d:DataContext="{d:DesignInstance Type=local:ProgressBarVM}"
         xmlns:Controls="clr-namespace:MileStone1.Controls"
         xmlns:Graph="clr-namespace:MileStone1.Controls"
         xmlns:Navigator="clr-namespace:MileStone1.Controls"
@@ -38,7 +38,7 @@
                 <ColumnDefinition Width="49*"/>
             </Grid.ColumnDefinitions>
 
-            <ProgressBar:ProgressBarView x:Name="animationSlide" Grid.RowSpan="1" Grid.Row="3" Grid.ColumnSpan="2" LineToTransmit="{Binding VM_LineToTransmit}" RunAnimation="{Binding VM_RunAnimation}" Margin="0,10,0,0"/>
+            <ProgressBar:ProgressBarView x:Name="ProgressBar" Grid.RowSpan="1" Grid.Row="3" Grid.ColumnSpan="2" LineToTransmit="{Binding VM_LineToTransmit}" RunAnimation="{Binding VM_RunAnimation}" Margin="0,10,0,0"/>
             <Graph:GraphView x:Name="graph" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="1" Margin="5,55,13,45"/>
             <Navigator:NavigatorStateView x:Name="Navigator" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Margin="56,200,56,39" />
             <Data:DataInfoView x:Name="DataInfo"  Loaded="DataInfo_Loaded" Grid.RowSpan="2" Margin="522,54,-2,14" Grid.ColumnSpan="2"/>

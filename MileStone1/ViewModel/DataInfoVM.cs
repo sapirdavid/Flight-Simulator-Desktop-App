@@ -8,6 +8,7 @@ namespace MileStone1.ViewModel
     public class DataInfoVM : INotifyPropertyChanged
     {
         FlightDetectorModel fdm;
+
         public event PropertyChangedEventHandler PropertyChanged;
         //notify all observers
         public void NotifyPropertyChanged(string propName)

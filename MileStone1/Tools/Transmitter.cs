@@ -46,6 +46,7 @@ namespace Transmitter
             this.client.Close();
             sWriter.Close();
         }
+
     }
 
     public class FileReader
@@ -71,6 +72,7 @@ namespace Transmitter
             }
             file.Close();
         }
+
     }
 }
 

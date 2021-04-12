@@ -21,7 +21,10 @@ namespace MileStone1
         public string AnomalyCsvPath { get; private set; }
         public string NormalCsvPath { get; private set; }
         List<string> data;
-        int fps = 10; //default frame per second
+        int fps = 10; //defau
+                      //
+                      //
+                      //frame per second
         int currentLine = 0;
         int listSize = 0;
         bool runAnimation = true;

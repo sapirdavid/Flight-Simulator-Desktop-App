@@ -32,8 +32,6 @@ namespace MileStone1.ViewModel
 
         public List<DataPoint> AnomaliesPointsSpecificFeature { get; private set; }
 
-
-
         public bool pressed = false;
         public long currenLineIndex
         {
@@ -341,6 +339,7 @@ namespace MileStone1.ViewModel
             NotifyPropertyChanged("RegLinePoints");
             NotifyPropertyChanged("AnomaliesPointsSpecificFeature");
         }
+
     }
     // create class so each proprety will have a name and an index (id)
     public class PropertyIndex

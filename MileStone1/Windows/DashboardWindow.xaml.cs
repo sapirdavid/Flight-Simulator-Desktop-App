@@ -22,7 +22,7 @@ namespace MileStone1
     {
         string anomalyCsvPath;
         string normalCsvPath;
-        FlightDetectorModel lt = null;
+        FlightDetectorModel fdm = null;
         Anomalies anomalies = null;
         
         public Anomalies Anomalies {
@@ -35,10 +35,10 @@ namespace MileStone1
                 if (value != null)
                 {
                     this.anomalies = value;
-                    if (lt != null)
+                    if (fdm != null)
                     { //if there is alredy model
-                        lt.AnomaliesList = this.anomalies.anomaliesList;
-                        lt.CorrlativeCircles = this.anomalies.anomaliesRangeCircles;
+                        fdm.AnomaliesList = this.anomalies.anomaliesList;
+                        fdm.CorrlativeCircles = this.anomalies.anomaliesRangeCircles;
                     }
                 }
             }
@@ -55,39 +55,39 @@ namespace MileStone1
         { 
             FileReader f = new FileReader();
             f.ReadFile(anomalyCsvPath);
-            this.lt = new FlightDetectorModel(f.LinesOfData, "localhost", 5400, anomalyCsvPath, normalCsvPath);
+            this.fdm = new FlightDetectorModel(f.LinesOfData, "localhost", 5400, anomalyCsvPath, normalCsvPath);
 
             if (anomalies != null) { //if there is anomalies
-                lt.AnomaliesList = this.anomalies.anomaliesList;
-                lt.CorrlativeCircles = this.anomalies.anomaliesRangeCircles;
+                fdm.AnomaliesList = this.anomalies.anomaliesList;
+                fdm.CorrlativeCircles = this.anomalies.anomaliesRangeCircles;
             }
 
 
-            SliderControlVM ltvm = new SliderControlVM(lt);
-            animationSlide.ViewModel = ltvm;
+            ProgressBarVM pbvm = new ProgressBarVM(fdm);
+            ProgressBar.Pbvm = pbvm;
 
             // create VM for the navigator
-            NavigatorStateVM nsvm = new NavigatorStateVM(lt);
+            NavigatorStateVM nsvm = new NavigatorStateVM(fdm);
             Navigator.Nsvm = nsvm;
 
             // create VM for the dataInfo
-            DataInfoVM divm = new DataInfoVM(lt);
+            DataInfoVM divm = new DataInfoVM(fdm);
             DataInfo.Divm = divm;
 
             // create VM for the grpah
-            ViewModel.GraphVM gvm = new ViewModel.GraphVM(lt);
+            GraphVM gvm = new GraphVM(fdm);
             graph.Gvm = gvm;
 
 
         }
         public int StartAnimation() {
-            int susccs = this.lt.StartTransmitting();
+            int susccs = this.fdm.StartTransmitting();
             this.graph.firstTime();
             return susccs;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            b1.Content = "Line Number:" + animationSlide.LineToTransmit;
+            b1.Content = "Line Number:" + ProgressBar.LineToTransmit;
         }
 
         private void DataInfo_Loaded(object sender, RoutedEventArgs e)
@@ -107,8 +107,8 @@ namespace MileStone1
             //update the model accordingly
             if (anomalyDetectorWin.IsAnomalyDetectorInitiated)
             {
-                lt.AnomaliesList = anomalyDetectorWin.getAnomalies();
-                lt.CorrlativeCircles = anomalyDetectorWin.getCirclesOfAttr();
+                fdm.AnomaliesList = anomalyDetectorWin.getAnomalies();
+                fdm.CorrlativeCircles = anomalyDetectorWin.getCirclesOfAttr();
             }
             anomalyDetectorWin.Close();
         }
@@ -117,9 +117,9 @@ namespace MileStone1
         {
             try
             {
-                this.lt.StopTransmitting();
+                this.fdm.StopTransmitting();
                 Close();
-                System.Environment.Exit(1);
+                System.Environment.Exit(0);
             }
             catch(Exception ex)
             {
@@ -148,7 +148,7 @@ namespace MileStone1
 
         private void returnToMenuButton_Click(object sender, RoutedEventArgs e)
         {
-            this.lt.StopTransmitting();
+            this.fdm.StopTransmitting();
             MainWindow main = new MainWindow();
             this.Close();
             main.Show();
