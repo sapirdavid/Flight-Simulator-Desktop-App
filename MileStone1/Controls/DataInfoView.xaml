@@ -119,18 +119,17 @@
             <!-- <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Text="{Binding VM_Pitch, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom" /> -->
             <!--  <TextBox HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Text="{Binding VM_Yaw, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom"/> -->
             <!-- HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="2" Text="{Binding VM_Roll, Mode=OneWay}" TextWrapping="Wrap" VerticalAlignment="Bottom" /> -->
-            <TextBox Grid.Row="1" Grid.Column="0" Width="120"  IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Text="Airspeed" TextWrapping="Wrap" VerticalAlignment="Bottom" BorderThickness="3"  BorderBrush="Transparent" Height="22" Background="#7d7c87" FontWeight="Normal" FontStyle="Normal" TextDecorations="{x:Null}"/>
-            <TextBox Grid.Row="1" Text="Direction"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="133,0,133,0" BorderThickness="3"  BorderBrush="Transparent" Grid.ColumnSpan="3" Height="22" Background="#7d7c87"/>
-            <TextBox Grid.Row="1" Grid.Column="2"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Text="A
-                     imeter" TextWrapping="Wrap" VerticalAlignment="Bottom" BorderThickness="3" BorderBrush="Transparent" Height="22" Background="#7d7c87" />
+            <TextBox Grid.Row="1" Grid.Column="0" Width="120"  IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Text="Airspeed" TextWrapping="Wrap" VerticalAlignment="Center" BorderThickness="3"  BorderBrush="Transparent" Height="30" Background="#7d7c87" FontWeight="Normal" FontStyle="Normal" TextDecorations="{x:Null}" Margin="6,0,7,0"/>
+            <TextBox Grid.Row="1" Text="Direction"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="133,0,133,0" BorderThickness="3"  BorderBrush="Transparent" Grid.ColumnSpan="3" Height="30" Background="#7d7c87"/>
+            <TextBox Grid.Row="1" Grid.Column="2"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Text="Altimeter" TextWrapping="Wrap" VerticalAlignment="Bottom" BorderThickness="3" BorderBrush="Transparent" Height="30" Background="#7d7c87" />
 
-            <TextBox Name="Airspeed" Grid.Row="2"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Grid.Column="0"  Text="Airspeed" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,0,0,0" BorderThickness="3"  BorderBrush="Transparent" Height="22" Background="#7d7c87"/>
-            <TextBox Name="Direction" Grid.Row="2"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Text="Direction" TextWrapping="Wrap" VerticalAlignment="Top" Margin="133,0,133,0" BorderThickness="3"  BorderBrush="Transparent" Grid.ColumnSpan="3" Height="22" Background="#7d7c87" />
-            <TextBox Name="Altimeter" Grid.Row="2"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Grid.Column="2" Text="Altimeter" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,0,0,0" BorderThickness="3" BorderBrush="Transparent" Height="22" Background="#7d7c87"/>
+            <TextBox Name="Airspeed" Grid.Row="2"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Grid.Column="0"  Text="Airspeed" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,0,0,0" BorderThickness="3"  BorderBrush="Transparent" Height="30" Background="#7d7c87"/>
+            <TextBox Name="Direction" Grid.Row="2"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Text="Direction" TextWrapping="Wrap" VerticalAlignment="Top" Margin="133,0,133,0" BorderThickness="3"  BorderBrush="Transparent" Grid.ColumnSpan="3" Height="30" Background="#7d7c87" />
+            <TextBox Name="Altimeter" Grid.Row="2"  Width="120" IsReadOnly="True" FontFamily="Yu Gothic UI Semilight" Grid.Column="2" Text="Altimeter" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,0,0,0" BorderThickness="3" BorderBrush="Transparent" Height="30" Background="#7d7c87"/>
 
         </Grid>
 
     </Border>
 
-        
+
 </UserControl>
