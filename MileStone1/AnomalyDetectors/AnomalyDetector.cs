@@ -209,7 +209,7 @@ namespace MileStone1
             //oh dear, error handling here
             if(pAddressOfFunctionToCall == IntPtr.Zero)
             {
-                //if dll is not support in circles
+                //if dll is not support circles
                 return new List<CorrlativeCircle>();
             }
 

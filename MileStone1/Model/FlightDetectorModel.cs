@@ -21,10 +21,7 @@ namespace MileStone1
         public string AnomalyCsvPath { get; private set; }
         public string NormalCsvPath { get; private set; }
         List<string> data;
-        int fps = 10; //defau
-                      //
-                      //
-                      //frame per second
+        int fps = 10; //default frame per second
         int currentLine = 0;
         int listSize = 0;
         bool runAnimation = true;
@@ -271,9 +268,8 @@ namespace MileStone1
             Airspeed = Double.Parse(curLineSplit[21]);
             Pitch = Double.Parse(curLineSplit[18]);
             Roll = Double.Parse(curLineSplit[17]);
-            /*** need to find the values***/
-            Direction = Double.Parse(curLineSplit[0]);
-            Yaw = Double.Parse(curLineSplit[0]);
+            Direction = Double.Parse(curLineSplit[19]);
+            Yaw = Double.Parse(curLineSplit[20]);
         }
 
 

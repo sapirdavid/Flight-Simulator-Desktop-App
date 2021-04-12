@@ -236,7 +236,6 @@
   <Class Name="MileStone1.DashboardWindow">
     <Position X="9.25" Y="0.5" Width="2.75" />
     <Members>
-      <Method Name="Button_Click" Hidden="true" />
       <Method Name="changeAnomalyDetectorButton_Click" Hidden="true" />
       <Method Name="closeApp" Hidden="true" />
       <Method Name="DataInfo_Loaded" Hidden="true" />
@@ -247,7 +246,7 @@
       <Method Name="StartAnimation" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AQAAAAAQAACAAAAAAAgEAAEoAAAAAEAAAAACBABBAgA=</HashCode>
+      <HashCode>AQAAAAAQAACAAAAAAAgEAAAoAAAAAEAAAAACBABBAgA=</HashCode>
       <FileName>Windows\DashboardWindow.xaml.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

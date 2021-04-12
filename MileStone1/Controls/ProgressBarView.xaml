@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MileStone1.Controls"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="MileStone1.Controls.ProgressBarView"
              mc:Ignorable="d" 
-             d:DesignHeight="40" d:DesignWidth="800">
+             d:DesignHeight="50" d:DesignWidth="800">
     <Grid>
 
         <Grid.Effect>
@@ -56,39 +56,11 @@
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="103*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="slowButton" FontFamily="Yu Gothic UI Semilight" Content="Slower" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="-0.626,0.768" Click="slowButton_Click" Width="48" Grid.ColumnSpan="2" Margin="9,0,0,0">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="#FF09F1F8" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
-            <Button x:Name="fastButton"  FontFamily="Yu Gothic UI Semilight"  Content="faster" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" Width="47" Click="fastButton_Click" Margin="20,0,0,0" Grid.ColumnSpan="2">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="#FF09F1F8" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
-            <Button x:Name="soketContorller" FontFamily="Yu Gothic UI Semilight" Content="Stop" HorizontalAlignment="Left" VerticalAlignment="Center" Height="Auto" Width="Auto" Grid.Column="4" RenderTransformOrigin="0.452,1.79" Click="Button_Click" Margin="113,0,0,0">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="#FF09F1F8" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
-            <TextBlock x:Name="speedText" FontFamily="Yu Gothic UI Semilight"  HorizontalAlignment="Left" Text="SPEED: X1" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="Black" Width="86" Height="20"  Grid.Column="2" Grid.ColumnSpan="3" Margin="19,0,0,0">
-                <TextBlock.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="#FF09F1F8" Offset="1"/>
-                    </LinearGradientBrush>
-                </TextBlock.Background>
-            </TextBlock>
-            <TextBlock x:Name="timeBlock" FontFamily="Yu Gothic UI Semilight" HorizontalAlignment="Left" Text="00:00:00" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="73" Background="Black" Foreground="#FFC6D414" Grid.Column="4" Margin="33,2,0,0"/>
+            <Button x:Name="slowButton" FontSize="10" FontFamily="Yu Gothic UI Semilight" Content="Slower" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="-0.626,0.768" Click="slowButton_Click" Width="48" Grid.ColumnSpan="2" Margin="9,0,0,0" BorderBrush="#FFF7F5F5"/>
+            <Button x:Name="fastButton" FontSize="10"  FontFamily="Yu Gothic UI Semilight"  Content="faster" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" Width="47" Click="fastButton_Click" Margin="20,0,0,0" Grid.ColumnSpan="2"/>
+            <Button x:Name="soketContorller" FontSize="10" FontFamily="Yu Gothic UI Semilight" Content="Stop" HorizontalAlignment="Left" VerticalAlignment="Center" Height="Auto" Width="Auto" Grid.Column="4" RenderTransformOrigin="0.452,1.79" Click="Button_Click" Margin="89,0,0,0"/>
+            <TextBlock x:Name="speedText" FontSize="12" Background="White" FontFamily="Yu Gothic UI Semilight"  HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="Black" Width="71" Height="20"  Grid.Column="2" Grid.ColumnSpan="2" Margin="19,0,0,0"><Run Text=" "/><Run Text="SPEED: X1"/></TextBlock>
+            <TextBlock x:Name="timeBlock" FontSize="16" FontFamily="Yu Gothic UI Semilight" HorizontalAlignment="Left" Text="00:00:00" TextWrapping="Wrap" VerticalAlignment="Center" Height="24" Width="78" Background="Black" Foreground="#FFC6D414" Grid.Column="4" Margin="4,0,0,0"/>
         </Grid>
     </Grid>
 

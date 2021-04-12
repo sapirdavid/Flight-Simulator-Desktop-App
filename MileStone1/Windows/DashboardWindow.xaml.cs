@@ -85,11 +85,7 @@ namespace MileStone1
             this.graph.firstTime();
             return susccs;
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            b1.Content = "Line Number:" + ProgressBar.LineToTransmit;
-        }
-
+       
         private void DataInfo_Loaded(object sender, RoutedEventArgs e)
         {
 

@@ -42,18 +42,10 @@
             <Graph:GraphView x:Name="graph" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="1" Margin="5,55,13,45"/>
             <Navigator:NavigatorStateView x:Name="Navigator" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Margin="56,200,56,39" />
             <Data:DataInfoView x:Name="DataInfo"  Loaded="DataInfo_Loaded" Grid.RowSpan="2" Margin="522,54,-2,14" Grid.ColumnSpan="2"/>
-            <Button Name ="b1" FontFamily="Yu Gothic UI Semilight" Content="LineNumber:" Margin="272,16,24,0" Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Click="Button_Click" Height="20"/>
-            <Button x:Name="changeAnomalyDetectorButton" FontFamily="Yu Gothic UI Semilight" BorderThickness="0"  Content="change anomaly detector" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.358,2.156" Height="40" Width="250" VerticalContentAlignment="Center" Click="changeAnomalyDetectorButton_Click" Margin="6,8,0,0" BorderBrush="#FF09F1F8">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="#FF04F7FF" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
+            <Button x:Name="changeAnomalyDetectorButton" FontFamily="Yu Gothic UI Semilight" BorderThickness="0"  Content="change anomaly detector" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.358,2.156" Height="40" Width="162" VerticalContentAlignment="Center" Click="changeAnomalyDetectorButton_Click" Margin="6,8,0,0" BorderBrush="#FF09F1F8" Background="#FFF0F5F4"/>
             <Ellipse Fill="Red" Grid.Row="0" Grid.Column="1" Height="15" VerticalAlignment="Top" HorizontalAlignment="Right" Width="15" MouseLeftButtonDown="closeApp" Margin="0,2,4,0" />
             <Ellipse Fill="Yellow" Grid.Row="0" Grid.Column="1" Height="15" VerticalAlignment="Top" Margin="0,2,24,0" HorizontalAlignment="Right" Width="15" MouseLeftButtonDown="minimizeApp" />
-            <Button x:Name="returnToMenuButton" Content="return to menu" Grid.Column="1" HorizontalAlignment="Left" Margin="235,10,0,0" VerticalAlignment="Top" Click="returnToMenuButton_Click"/>
+            <Button x:Name="returnToMenuButton" FontFamily="Yu Gothic UI Semilight" Content="return to menu" Margin="184,8,237,0" VerticalAlignment="Top" Click="returnToMenuButton_Click" Height="40"/>
 
         </Grid>
     </Border>

@@ -21,7 +21,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="\Image\flight.jpg" Stretch="UniformToFill"/>
             </Grid.Background>
-            <Button x:Name="loadDllButton" Content="load dll" HorizontalAlignment="Left" Margin="24,121,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="54" Width="210" Click="Button_Click">
+            <Button x:Name="loadDllButton" Content="load dll" HorizontalAlignment="Center" Margin="0,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="54" Width="210" Click="Button_Click">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -31,9 +31,9 @@
                     </TransformGroup>
                 </Button.RenderTransform>
             </Button>
-            <TextBox x:Name="corrlationThresholdTextBox" HorizontalAlignment="Left" Margin="228,29,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="42" FontSize="20"/>
-            <TextBlock x:Name="corrlationThresholdBlock" HorizontalAlignment="Left" Margin="25,29,0,0" Text="set correlation threshold: (optional)" TextWrapping="Wrap" VerticalAlignment="Top" Height="48" Width="177" Foreground="#FF711919" FontSize="16"/>
-            <Button x:Name="finishButton" Content="finish" HorizontalAlignment="Left" Margin="67,206,0,0" VerticalAlignment="Top" Height="76" Width="117" Click="finishButton_Click" IsEnabled="False"/>
+            <TextBox x:Name="corrlationThresholdTextBox" Foreground="Black" FontFamily="Yu Gothic UI Semilight" HorizontalAlignment="Left" Margin="569,15,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" Height="32" FontSize="20" RenderTransformOrigin="-0.096,0.405"/>
+            <TextBlock x:Name="corrlationThresholdBlock"  Foreground="Black" FontFamily="Bahnschrift SemiBold" HorizontalAlignment="Center" Margin="0,18,0,0" Text="set correlation threshold (optional):" TextWrapping="Wrap" VerticalAlignment="Top" Height="31" Width="328" FontSize="20" FontWeight="Bold"/>
+            <Button x:Name="finishButton" Content="finish" HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" Height="32" Width="116" Click="finishButton_Click" IsEnabled="False"/>
             <Ellipse Fill="Red" Grid.Row="0" Grid.Column="2" Height="15" VerticalAlignment="Top" HorizontalAlignment="Right" Width="15" MouseLeftButtonDown="closeApp" Margin="0,2,4,0" />
             <Ellipse Fill="Yellow" Grid.Row="0" Grid.Column="2" Height="15" VerticalAlignment="Top" Margin="0,2,24,0" HorizontalAlignment="Right" Width="15" MouseLeftButtonDown="minimizeApp" />
         </Grid>

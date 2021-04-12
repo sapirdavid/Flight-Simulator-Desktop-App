@@ -19,11 +19,11 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-
-            <ListBox x:Name="lbx_property_names" FontFamily="Yu Gothic UI Semilight" ItemsSource="{Binding PropertyIndexes}"
+            <ScrollViewer FlowDirection="RightToLeft"  Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" CanContentScroll="True" VerticalScrollBarVisibility="Auto" Background="#303030">
+                <ListBox x:Name="lbx_property_names" FontFamily="Yu Gothic UI Semilight" ItemsSource="{Binding PropertyIndexes}"
                 Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"      
                 SelectedValuePath="Id" DisplayMemberPath="Name" 
-                 SelectionChanged="lbx_property_names_SelectionChanged" Margin="10,10,0,10">
+                 SelectionChanged="lbx_property_names_SelectionChanged" Margin="10,10,0,10" Height="490" Width="135">
                 <ListBox.Resources>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="Background" Value="#303030" />
@@ -36,6 +36,7 @@
                     </Style>
                 </ListBox.Resources>
             </ListBox>
+            </ScrollViewer>
 
             <oxy:Plot Name="propretyValue" Title="{Binding Title}" BorderThickness="5" TitleFontSize="10" TitleHorizontalAlignment="CenteredWithinPlotArea" FontFamily="Yu Gothic UI Semilight" Grid.Column="1" Background="#303030" TextColor="White" BorderBrush="Black" Margin="189,9,9,1" Grid.ColumnSpan="2">
                 <oxy:Plot.Axes>
