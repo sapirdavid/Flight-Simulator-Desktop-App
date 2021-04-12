@@ -209,7 +209,7 @@ namespace MileStone1
             //oh dear, error handling here
             if(pAddressOfFunctionToCall == IntPtr.Zero)
             {
-                System.Windows.MessageBox.Show("Your dll file is incorrect, please try to load new file", "Alert", MessageBoxButton.OK);
+                //if dll is not support in circles
                 return new List<CorrlativeCircle>();
             }
 

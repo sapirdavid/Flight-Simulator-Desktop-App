@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="MileStone1.FlightDetectorModel">
-    <Position X="12.25" Y="0.5" Width="2.25" />
+    <Position X="13.25" Y="0.5" Width="2.25" />
     <Members>
       <Field Name="aileron" Hidden="true" />
       <Property Name="Aileron" Hidden="true" />
@@ -9,16 +9,20 @@
       <Property Name="Airspeed" Hidden="true" />
       <Field Name="altimeter" Hidden="true" />
       <Property Name="Altimeter" Hidden="true" />
+      <Property Name="AnomalyCsvPath" Hidden="true" />
       <Field Name="corrlativeCircles" Hidden="true" />
+      <Property Name="CorrlativeCircles" Hidden="true" />
       <Field Name="currentLine" Hidden="true" />
       <Field Name="direction" Hidden="true" />
       <Property Name="Direction" Hidden="true" />
       <Field Name="elevator" Hidden="true" />
       <Property Name="Elevator" Hidden="true" />
+      <Field Name="fps" Hidden="true" />
       <Property Name="FramePerSecond" Hidden="true" />
       <Property Name="LineToTransmit" Hidden="true" />
       <Field Name="listSize" Hidden="true" />
       <Property Name="ListSize" Hidden="true" />
+      <Property Name="NormalCsvPath" Hidden="true" />
       <Field Name="pitch" Hidden="true" />
       <Property Name="Pitch" Hidden="true" />
       <Property Name="PropertyNames" Hidden="true" />
@@ -43,18 +47,24 @@
       <HashCode>AhJAYCQCAUggIAUIhSBAhAQggAkYBkAEFBRRQBRAAUA=</HashCode>
       <FileName>Model\FlightDetectorModel.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="tr" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MileStone1.ViewModel.DataInfoVM">
-    <Position X="1.25" Y="6" Width="2" />
+    <Position X="8" Y="6.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIIAAAAAAAAAAgQAAAAAQAAAAAAAjIAA=</HashCode>
       <FileName>ViewModel\DataInfoVM.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="fdm" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MileStone1.ViewModel.GraphVM">
-    <Position X="4" Y="6" Width="2.5" />
+    <Position X="13" Y="5.75" Width="2.5" />
     <Members>
       <Property Name="AnomaliesPoints" Hidden="true" />
       <Property Name="CorrelatedTitle" Hidden="true" />
@@ -76,34 +86,47 @@
       <HashCode>EAQAJAAggAAAgMQAQBAEggAAgCBAAIAgAAEQQAABgwA=</HashCode>
       <FileName>ViewModel\GraphVM.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="fdm" />
+      <Field Name="mcf" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MileStone1.NavigatorStateVM">
-    <Position X="10.25" Y="6" Width="2" />
+    <Position X="23.25" Y="6" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAIAAgAAAAAAAgAAAAAABBAAAAAABACA=</HashCode>
       <FileName>ViewModel\NavigatorStateVM.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="fdm" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MileStone1.ProgressBarVM">
-    <Position X="7.5" Y="6" Width="2" />
+    <Position X="19.25" Y="6" Width="2" />
     <TypeIdentifier>
       <HashCode>ABAgAAAEAAAAAIAAAAAAAAACgAAAAAAAAAAAABABAAE=</HashCode>
       <FileName>ViewModel\SliderControlVM.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="fdm" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MileStone1.Controls.DataInfoView">
-    <Position X="1.25" Y="11" Width="1.5" />
+    <Position X="6" Y="11" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
       <FileName>Controls\DataInfoView.xaml.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="divm" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MileStone1.Controls.GraphView">
-    <Position X="4" Y="11" Width="2.75" />
+    <Position X="12.75" Y="11.25" Width="2.75" />
     <Members>
       <Method Name="firstTime" Hidden="true" />
     </Members>
@@ -111,75 +134,49 @@
       <HashCode>AAAAAAAAAEAAAAAAAAAABAAAAAAAAAAAAAAAgAAAAIA=</HashCode>
       <FileName>Controls\GraphView.xaml.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="gvm" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MileStone1.Controls.ProgressBarView">
-    <Position X="7.5" Y="11" Width="2" />
+    <Position X="19.25" Y="11" Width="2" />
     <TypeIdentifier>
       <HashCode>gAGAAAAAEEAAABAAgQAACBUBgAgAIQAEACAAQAAAAIA=</HashCode>
       <FileName>Controls\ProgressBarView.xaml.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pbvm" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MileStone1.Controls.NavigatorStateView">
-    <Position X="10.25" Y="11" Width="2.5" />
+    <Position X="23.5" Y="11.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controls\NavigatorStateView.xaml.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="nsvm" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="MileStone1.Point">
-    <Position X="0.5" Y="17.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAYAA=</HashCode>
-      <FileName>Tools\MostCorrelativeFinder.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MileStone1.Line">
-    <Position X="2.25" Y="17.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAQAAIAEAAAA=</HashCode>
-      <FileName>Tools\MostCorrelativeFinder.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="MileStone1.MostCorrelativeFinder">
-    <Position X="4" Y="17.5" Width="1.75" />
+    <Position X="15.5" Y="14.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAgAAICBAAAAAUAEAAgAAQAABAAAAAAAAAAAAAAAQCA=</HashCode>
       <FileName>Tools\MostCorrelativeFinder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Transmitter.Transmit">
-    <Position X="9" Y="17.5" Width="1.5" />
+    <Position X="26.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAIAACAAAAAAAAJAAAAAAAAgAAAAABAAAAAA=</HashCode>
       <FileName>Tools\Transmitter.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Transmitter.FileReader">
-    <Position X="7.25" Y="17.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABQAAAAAAAAAAAIAAAgAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Tools\Transmitter.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MileStone1.Circle">
-    <Position X="13.75" Y="17.5" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAgAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>AnomalyDetectors\AnomalyDetector.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MileStone1.CorrlativeCircle">
-    <Position X="16.25" Y="17.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAgAAAAACAQAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
-      <FileName>AnomalyDetectors\AnomalyDetector.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="MileStone1.AnomalyDetector">
-    <Position X="11.5" Y="17.5" Width="2" />
+    <Position X="29.25" Y="0.75" Width="2.75" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -216,32 +213,62 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MileStone1.MainWindow">
-    <Position X="0.5" Y="0.5" Width="2.5" />
+    <Position X="5.75" Y="0.5" Width="2.5" />
+    <Members>
+      <Method Name="closeApp" Hidden="true" />
+      <Method Name="dragWindow" Hidden="true" />
+      <Method Name="instructionButton" Hidden="true" />
+      <Method Name="loadAnomalyClicked" Hidden="true" />
+      <Method Name="loadAnomalyDet_Click" Hidden="true" />
+      <Method Name="minimizeApp" Hidden="true" />
+      <Method Name="normalFlightCsv_Click" Hidden="true" />
+      <Method Name="startSimulationButton_Click" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>AAAAAQAAEACAAAAAgAAAAAAgAAgAACACBAACBAAAAgA=</HashCode>
       <FileName>MainWindow.xaml.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="dw" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MileStone1.DashboardWindow">
-    <Position X="3.75" Y="0.5" Width="2.75" />
+    <Position X="9.25" Y="0.5" Width="2.75" />
+    <Members>
+      <Method Name="Button_Click" Hidden="true" />
+      <Method Name="changeAnomalyDetectorButton_Click" Hidden="true" />
+      <Method Name="closeApp" Hidden="true" />
+      <Method Name="DataInfo_Loaded" Hidden="true" />
+      <Method Name="dragWindow" Hidden="true" />
+      <Method Name="initializeComponents" Hidden="true" />
+      <Method Name="minimizeApp" Hidden="true" />
+      <Method Name="returnToMenuButton_Click" Hidden="true" />
+      <Method Name="StartAnimation" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>AQAAAAAQAACAAAAAAAgEAAEoAAAAAEAAAAACBABBAgA=</HashCode>
       <FileName>Windows\DashboardWindow.xaml.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="fdm" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="MileStone1.Anomalies">
-    <Position X="7" Y="0.5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AABAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Windows\AnomalyDetectorLoaderWindow.xaml.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="MileStone1.AnomalyDetectorLoaderWindow">
-    <Position X="9.25" Y="0.5" Width="2.5" />
+    <Position X="2.25" Y="0.5" Width="2.5" />
+    <Members>
+      <Method Name="Button_Click" Hidden="true" />
+      <Method Name="closeApp" Hidden="true" />
+      <Method Name="dragWindow" Hidden="true" />
+      <Method Name="finishButton_Click" Hidden="true" />
+      <Method Name="getCirclesOfAttr" Hidden="true" />
+      <Field Name="isAnomalyDetectorInitiated" Hidden="true" />
+      <Property Name="IsAnomalyDetectorInitiated" Hidden="true" />
+      <Method Name="minimizeApp" Hidden="true" />
+    </Members>
     <TypeIdentifier>
-      <HashCode>IAAAACgBAACAAAEABAAAAAEgAACAAAAAAAACBAAAAwA=</HashCode>
+      <HashCode>IAAAACgBAACAAAEAAAAAAAEgAACAAAACAAACBAAAAwA=</HashCode>
       <FileName>Windows\AnomalyDetectorLoaderWindow.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />

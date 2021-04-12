@@ -24,7 +24,7 @@ namespace MileStone1
         string normalCsvPath;
         FlightDetectorModel fdm = null;
         Anomalies anomalies = null;
-        
+
         public Anomalies Anomalies {
             get
             {

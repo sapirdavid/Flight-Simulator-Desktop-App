@@ -24,7 +24,7 @@ namespace MileStone1
     public partial class AnomalyDetectorLoaderWindow : MetroWindow
     {
         string anomalyCsvPath;
-        string dllAlgorthemPath;
+        string dllAlgorithmPath;
         string normalCsvPath;
         bool isAnomalyDetectorInitiated = false;
 
@@ -69,7 +69,7 @@ namespace MileStone1
             }
             else
             {
-                this.dllAlgorthemPath = csvPath;
+                this.dllAlgorithmPath = csvPath;
                 if (csvPath != null)
                 {
                     IsAnomalyDetectorInitiated = true;
@@ -81,14 +81,14 @@ namespace MileStone1
         
 
         public List<List<Tuple<int, int>>> getAnomalies() {
-            AnomalyDetector anomalyDetector = new AnomalyDetector(normalCsvPath, anomalyCsvPath, dllAlgorthemPath);
+            AnomalyDetector anomalyDetector = new AnomalyDetector(normalCsvPath, anomalyCsvPath, dllAlgorithmPath);
             anomalyDetector.CorrelationThreshold = CorrlationThreshold;
             return anomalyDetector.detectAnomalies();
         }
         public List<CorrlativeCircle> getCirclesOfAttr()
         {
            
-            AnomalyDetector anomalyDetector = new AnomalyDetector(normalCsvPath, anomalyCsvPath, dllAlgorthemPath);
+            AnomalyDetector anomalyDetector = new AnomalyDetector(normalCsvPath, anomalyCsvPath, dllAlgorithmPath);
             anomalyDetector.CorrelationThreshold = CorrlationThreshold; 
             return anomalyDetector.getCorrletiveCircles();
           
