@@ -37,7 +37,7 @@
                 </ListBox.Resources>
             </ListBox>
 
-            <TextBox  Grid.Row="0" BorderThickness="0" TextAlignment="Center" Panel.ZIndex="500" Text="{Binding Title}" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="125,1,192,0" Background="Transparent" Foreground="White"/>
+            <TextBox  Grid.Row="0" BorderThickness="0" TextAlignment="Center" Panel.ZIndex="500" Text="{Binding Title}" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="125,-4,192,0" Background="Transparent" Foreground="White"/>
 
 
             <oxy:Plot Name="propretyValue"  BorderThickness="5" TitleFontSize="10" TitleHorizontalAlignment="CenteredWithinPlotArea" FontFamily="Yu Gothic UI Semilight" Grid.Column="1" Background="#303030" TextColor="White" BorderBrush="Black" Margin="191,29,9,1" Grid.ColumnSpan="2">
@@ -59,7 +59,7 @@
                     <oxy:LineSeries ItemsSource="{Binding Points}" Color="#FF09F1F8"/>
                 </oxy:Plot.Series>
             </oxy:Plot>
-            <TextBox  Grid.Row="0" BorderThickness="0" TextAlignment="Center" Panel.ZIndex="500" Text="{Binding CorrelatedTitle}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="2,-5,10,0" Background="Transparent" Foreground="White" Grid.Column="2"/>
+            <TextBox  Grid.Row="0" BorderThickness="0" TextAlignment="Center" Panel.ZIndex="500" Text="{Binding CorrelatedTitle}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="1,-4,10,0" Background="Transparent" Foreground="White" Grid.Column="2"/>
 
             <oxy:Plot Name="correlativeProprety"  BorderThickness="5" TitleFontSize="10" FontFamily="Yu Gothic UI Semilight" Grid.Row="0" Background="#303030" TextColor="White" BorderBrush="Black" Grid.ColumnSpan="2" Margin="125,29,5,1" >
                 <oxy:Plot.Axes>
