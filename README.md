@@ -5,6 +5,15 @@ __Introduction:__
 This project is a WPF applictaion which represents a flight simulation. 
 With this application we can simulate a flight by using a designated simulator, detect anomalies and receive information regarding the flight and it's features.
 
+
+__Application open screen:__
+![openScreen](https://i.postimg.cc/W3s0FJ8f/open-window.jpg)
+
+
+
+
+
+
 __Application features:__
 
 •	Progress Bar – after loading the flight data, by using the progress bar we can skip to any time segment of the flight.
@@ -43,7 +52,7 @@ Also, we can choose an algorithm  and investigate the flight by using this chose
 All the algorithms are implemented as a plug-in, meaning that all algorithms are DLL files which are loaded dynamically at the beginning of the simulation.
 
 __Features Implementation:__
-![UI picture](https://i.postimg.cc/Kz8Spbg7/UI-screen.jpg)
+![UI picture](https://i.postimg.cc/LX76dcJB/app.jpg)
 
 
 
