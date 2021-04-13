@@ -51,6 +51,12 @@ This application allows the user to choose different algorithms of detection ano
 Also, we can choose an algorithm  and investigate the flight by using this chosen algorithm, afterward  we cand load a different algorithm and investigate the flight by using this second chosen  algorithm.
 All the algorithms are implemented as a plug-in, meaning that all algorithms are DLL files which are loaded dynamically at the beginning of the simulation.
 
+Moreover:
+1. we added a question mark symbol at the upper left corner to remind the user how to start the applictaion and it's settings.
+2. if the file uploaded is not vaidte, there will be a messege reagrding to issue represented to the user
+
+
+
 __Features Implementation:__
 ![UI picture](https://i.postimg.cc/LX76dcJB/app.jpg)
 
