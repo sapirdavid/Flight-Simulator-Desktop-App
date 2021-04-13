@@ -100,7 +100,7 @@
 
 
                 </oxy:Plot.Axes>
-                <oxy:LineSeries ItemsSource="{Binding RegPoints}" Color="Transparent" MarkerFill="Yellow" MarkerType="Circle" MarkerSize="1.5" Title="Regession points"  />
+                <oxy:LineSeries ItemsSource="{Binding RegPoints}" Color="Transparent" MarkerFill="Yellow" MarkerType="Circle" MarkerSize="1.5" Title="Regession points" />
                 <oxy:LineSeries ItemsSource="{Binding RegLinePoints}" Title="Regession line" Color="#FF00FF"/>
                 <oxy:LineSeries ItemsSource="{Binding AnomaliesPointsSpecificFeature}" Color="Transparent" MarkerFill="Transparent" MarkerStroke="Red" MarkerType="Circle" MarkerSize="2.5" Title="Anommaly"/>
             </oxy:Plot>

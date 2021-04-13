@@ -233,9 +233,8 @@ namespace MileStone1.ViewModel
             //pass on each proprety
             foreach (var property in this.PropertyIndexes)
             {
-                int idxOfMostCorrelative = mcf.CorrlatedColumns[i];
                 //all values of the current correlative feature
-                List<float> correlatedPropretyData = fdm.AnomalyPropertyValues[idxOfMostCorrelative];
+                List<float> correlatedPropretyData = fdm.AnomalyPropertyValues[i];
                 this.minCorrelatedPointsXValue.Add(correlatedPropretyData.Min());
                 this.maxCorrelatedPointsXValue.Add(correlatedPropretyData.Max());
                 i++;
@@ -258,7 +257,9 @@ namespace MileStone1.ViewModel
             int lineDiff = 3;
             long lineToCopy = 0;
             int idxOfMostCorrelative = mcf.findTheMostCorrelative(fdm.NormalPropertyValues, property.Id);
-            Line regLine = mcf.linearRegressionList[idxOfMostCorrelative];
+           // Line regLine = mcf.linearRegressionList[idxOfMostCorrelative];
+            Line regLine = mcf.linearRegressionList[property.Id];
+
             //List<int> cor = mcf.CorrlatedColumns;
 
             //check if we need update
@@ -310,13 +311,21 @@ namespace MileStone1.ViewModel
             int linesForReg = 30 * 10;
             for (int j =(int) Math.Max(0, lineToCopy - linesForReg) ; j < lineToCopy; j++)
             {
-                RegPoints.Add(new DataPoint(correlatedPropretyGraph[j], AllData[j]));
+                RegPoints.Add(new DataPoint( AllData[j], correlatedPropretyGraph[j]));
             }
 
             if (correlatedPropretyGraph.Count > 0)
             {
-                RegLinePoints.Add(new DataPoint(minCorrelatedPointsXValue[property.Id], mcf.calcY(regLine, minCorrelatedPointsXValue[property.Id])));
-                RegLinePoints.Add(new DataPoint(maxCorrelatedPointsXValue[property.Id], mcf.calcY(regLine, maxCorrelatedPointsXValue[property.Id])));
+                if ((minCorrelatedPointsXValue[property.Id] != maxCorrelatedPointsXValue[property.Id]))
+                {
+                    RegLinePoints.Add(new DataPoint(minCorrelatedPointsXValue[property.Id], mcf.calcY(regLine, minCorrelatedPointsXValue[property.Id])));
+                    RegLinePoints.Add(new DataPoint(maxCorrelatedPointsXValue[property.Id], mcf.calcY(regLine, maxCorrelatedPointsXValue[property.Id])));
+                }
+                else
+                {
+                    RegLinePoints.Add(new DataPoint(minCorrelatedPointsXValue[property.Id],minCorrelatedPointsXValue[idxOfMostCorrelative]));
+                    RegLinePoints.Add(new DataPoint(maxCorrelatedPointsXValue[property.Id], maxCorrelatedPointsXValue[idxOfMostCorrelative]));
+                }
             }
 
             if (this.AnomaliesPoints.Count != 0)
