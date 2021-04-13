@@ -53,6 +53,7 @@
             <TextBox  IsReadOnly="True" FontSize="38" FontStretch="Normal" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontFamily="Bahnschrift Light Condensed" Height="59" Margin="272,52,224,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="304"  Text="Flight Simulator 2021" Grid.RowSpan="2" Grid.ColumnSpan="3" BorderThickness="0"/>
             <TextBox IsReadOnly="True" FontSize="25" FontStretch="Normal" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontFamily="Bahnschrift Light Condensed" Height="143" Margin="8,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="780" BorderThickness="0"  Text="&#x9;Welcome aboard and thank you for being part of this flight simulator. &#xA;        Our simulator offers  flight simulation, flight interrogation and anomalies detections." Grid.ColumnSpan="3" Grid.Row="1"/>
             <Button Content="?" Foreground="White" FontSize="20" Background="Transparent" HorizontalAlignment="Left" Height="42" Margin="12,7,0,0" VerticalAlignment="Top" Width="40" MouseMove="instructionButton"/>
+            <Button Content="save xml for flight" Foreground="White" FontSize="7" Background="Transparent" HorizontalAlignment="Left" Height="42" Margin="70,7,0,0" VerticalAlignment="Top" Width="90" Click="downloadXML" />
 
         </Grid>
     </Border>

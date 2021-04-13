@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Transmitter;
 using MahApps.Metro.Controls;
 using System.Windows.Input;
+using System.IO;
 
 namespace MileStone1
 {
@@ -158,8 +159,25 @@ namespace MileStone1
 
         private void instructionButton(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            System.Windows.MessageBox.Show(this, "Please open the FlightGear app and fly with the following settings: \n--generic=socket,in,10,127.0.0.1,5400,tcp,playback_small \n--fdm=null\nPlease upload CSV file.\nfor simulation click on start.\nfor anomaly detection upload normal CSV + DLL and click start.\nEnjoy!", "Instruction");
+            System.Windows.MessageBox.Show(this, "Instructions to begin simulation:\n" +
+                "1)Click on the \"save xml for flight \" button,save the file on your PC and copy the file to the directory of FlightGeat \\data\\Protocols (also you can save directly the file the the FG app with administrator access) \n\n" +
+                "2)Please open the FlightGear app and fly with the following settings: \n--generic=socket,in,10,127.0.0.1,5400,tcp,playback_small \n--fdm=null\n\n" +
+                "3)Please upload CSV file.\nfor simulation click on start.\nfor anomaly detection upload normal CSV + DLL and click start.\nEnjoy!", "Instruction");
 
+        }
+
+        private void downloadXML(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog save = new Microsoft.Win32.SaveFileDialog();
+            save.InitialDirectory = @"C:\Program Files";
+            save.RestoreDirectory = true;
+            save.FileName = "playback_small.xml";
+            save.DefaultExt = "playback_small.xml";
+            save.Filter = "xml fles (*.xml) | *.xml";
+            if(save.ShowDialog()==true)
+            {
+                File.Copy(@"..\..\..\..\playback_small.xml", save.FileName, true);
+            }
         }
     }
 }
