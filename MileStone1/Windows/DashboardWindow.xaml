@@ -12,6 +12,8 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Height="600" Width="920"
+        MinHeight="600" MinWidth="920"
+        MaxHeight="700" MaxWidth="1120"
         WindowStyle="None"
         ShowTitleBar="False"
         ShowCloseButton="False"

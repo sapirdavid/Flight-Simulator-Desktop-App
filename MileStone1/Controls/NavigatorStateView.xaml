@@ -153,10 +153,10 @@
                 </Canvas>
             </Viewbox>
 
-            <Slider Name="RudderSlider" Value="{Binding VM_Rudder, Mode=OneWay}" Minimum="-1" Maximum="1" IsEnabled="False" Margin="15,2,28,15" Grid.Column="1" Grid.Row="1"/>
+            <Slider Name="RudderSlider" Value="{Binding VM_Rudder, Mode=OneWay}" Minimum="-1" Maximum="1" IsEnabled="False" Margin="15,249,28,19" Grid.Column="1" Grid.RowSpan="2"/>
 
 
-            <Slider Grid.Column="0" Name="ThrottleSlider" Value="{Binding VM_Throttle, Mode=OneWay}" Minimum="0" Maximum="1" IsEnabled="False" Grid.ColumnSpan="2" Margin="6,223,91,4"  >
+            <Slider Grid.Column="0" Name="ThrottleSlider" Value="{Binding VM_Throttle, Mode=OneWay}" Minimum="0" Maximum="1" IsEnabled="False" Grid.ColumnSpan="2" Margin="13,223,84,4"  >
                 <Slider.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -166,9 +166,9 @@
                     </TransformGroup>
                 </Slider.RenderTransform>
             </Slider>
-            <TextBox Text="Rudder" TextWrapping="Wrap" Grid.Column="1" Margin="75,14,89,-1" Grid.Row="1" Background="Transparent" Foreground="White" BorderBrush="Transparent" />
+            <TextBox Text="Rudder" TextWrapping="Wrap" Grid.Column="1" Margin="88,16,76,-3" Grid.Row="1" Background="Transparent" Foreground="White" BorderBrush="Transparent" BorderThickness="0" />
 
-            <TextBox Text="Throttle" TextWrapping="Wrap" Margin="-29,122,233,103" Background="Transparent" Foreground="White" RenderTransformOrigin="0.5,0.5"  BorderBrush="Transparent" Grid.ColumnSpan="2">
+            <TextBox Text="Throttle" BorderThickness="0" TextWrapping="Wrap" Margin="-30,122,234,103" Background="Transparent" Foreground="White" RenderTransformOrigin="0.5,0.5"  BorderBrush="Transparent" Grid.ColumnSpan="2">
                 <TextBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
