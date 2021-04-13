@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-                <ListBox x:Name="lbx_property_names" FontFamily="Yu Gothic UI Semilight" ItemsSource="{Binding PropertyIndexes}"
+            <ListBox x:Name="lbx_property_names" FontFamily="Yu Gothic UI Semilight" ItemsSource="{Binding PropertyIndexes}"
                 Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"      
                 SelectedValuePath="Id" DisplayMemberPath="Name"  ScrollViewer.VerticalScrollBarVisibility ="Visible"
                  SelectionChanged="lbx_property_names_SelectionChanged" Margin="10,10,0,10">
@@ -32,12 +32,15 @@
                         <Setter Property="ScrollViewer.Background" Value="#303030"/>
                         <Setter Property="FontStretch" Value="Normal"/>
                         <Setter Property="Height" Value="50"/>
-                        
+
                     </Style>
                 </ListBox.Resources>
             </ListBox>
 
-            <oxy:Plot Name="propretyValue" Title="{Binding Title}" BorderThickness="5" TitleFontSize="10" TitleHorizontalAlignment="CenteredWithinPlotArea" FontFamily="Yu Gothic UI Semilight" Grid.Column="1" Background="#303030" TextColor="White" BorderBrush="Black" Margin="189,9,9,1" Grid.ColumnSpan="2">
+            <TextBox  Grid.Row="0" BorderThickness="0" TextAlignment="Center" Panel.ZIndex="500" Text="{Binding Title}" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="125,1,192,0" Background="Transparent" Foreground="White"/>
+
+
+            <oxy:Plot Name="propretyValue"  BorderThickness="5" TitleFontSize="10" TitleHorizontalAlignment="CenteredWithinPlotArea" FontFamily="Yu Gothic UI Semilight" Grid.Column="1" Background="#303030" TextColor="White" BorderBrush="Black" Margin="191,29,9,1" Grid.ColumnSpan="2">
                 <oxy:Plot.Axes>
                     <oxy:DateTimeAxis Position="Bottom"
                                     StringFormat="mm:ss"
@@ -56,7 +59,9 @@
                     <oxy:LineSeries ItemsSource="{Binding Points}" Color="#FF09F1F8"/>
                 </oxy:Plot.Series>
             </oxy:Plot>
-            <oxy:Plot Name="correlativeProprety" Title="{Binding CorrelatedTitle}" BorderThickness="5" TitleFontSize="10" FontFamily="Yu Gothic UI Semilight" Grid.Row="0" Background="#303030" TextColor="White" BorderBrush="Black" Grid.ColumnSpan="2" Margin="125,9,5,1" >
+            <TextBox  Grid.Row="0" BorderThickness="0" TextAlignment="Center" Panel.ZIndex="500" Text="{Binding CorrelatedTitle}" TextWrapping="Wrap" VerticalAlignment="Top" Margin="2,-5,10,0" Background="Transparent" Foreground="White" Grid.Column="2"/>
+
+            <oxy:Plot Name="correlativeProprety"  BorderThickness="5" TitleFontSize="10" FontFamily="Yu Gothic UI Semilight" Grid.Row="0" Background="#303030" TextColor="White" BorderBrush="Black" Grid.ColumnSpan="2" Margin="125,29,5,1" >
                 <oxy:Plot.Axes>
                     <oxy:DateTimeAxis Position="Bottom"
                     StringFormat="mm:ss"

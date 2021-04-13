@@ -158,7 +158,7 @@ namespace MileStone1
 
         private void instructionButton(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            System.Windows.MessageBox.Show(this,"Please upload CSV file.\nfor simulation click on start.\nfor anomaly detection upload normal CSV + DLL and click start.\nEnjoy!", "Instruction");
+            System.Windows.MessageBox.Show(this, "Please open the FlightGear app and fly with the following settings: \n--generic=socket,in,10,127.0.0.1,5400,tcp,playback_small \n--fdm=null\nPlease upload CSV file.\nfor simulation click on start.\nfor anomaly detection upload normal CSV + DLL and click start.\nEnjoy!", "Instruction");
 
         }
     }
