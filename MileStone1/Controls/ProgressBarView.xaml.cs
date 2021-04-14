@@ -30,7 +30,6 @@ namespace MileStone1.Controls
             set
             {
                 this.secondFromBegining = value;
-                //////////////need to change the default values
                 timeBlock.Text = new DateTime(2021,4,1,SecondFromBegining / 3600, SecondFromBegining / 60, SecondFromBegining % 60).ToString("HH:mm:ss");
             }
 
@@ -55,7 +54,7 @@ namespace MileStone1.Controls
         {
             get { return this.runAnimation; }
             set { this.runAnimation = value;
-                this.pbvm.VM_RunAnimation = value; ////////////////////////////need to remove
+                this.pbvm.VM_RunAnimation = value;
             }
         }
         public double Speed {
@@ -160,27 +159,27 @@ namespace MileStone1.Controls
         private void fastButton_Click(object sender, RoutedEventArgs e)
         {
             this.Speed = this.Speed + 0.25;
-            this.speedText.Text = "speed: X" + Speed;
+            this.speedText.Text = "SPEED: X" + Speed;
         }
 
         private void slowButton_Click(object sender, RoutedEventArgs e)
         {
             this.Speed = this.Speed - 0.25;
-            this.speedText.Text = "speed: X" + Speed;
+            this.speedText.Text = "SPEED: X" + Speed;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // start the socker to the flighgeart
-            if (soketContorller.Content == "Start")
+            if (soketContorller.Content == "Open Socket")
             {
                 Pbvm.VM_StartTransimttion();
-                soketContorller.Content = "Stop";
+                soketContorller.Content = "Close Socket";
             }
             else
             {
                 Pbvm.VM_StopTransimttion();
-                soketContorller.Content = "Start";
+                soketContorller.Content = "Open Socket";
             }
         }
     }

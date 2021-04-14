@@ -11,8 +11,8 @@
         xmlns:Data="clr-namespace:MileStone1.Controls"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Height="600" Width="920"
-        MinHeight="600" MinWidth="920"
+        Height="640" Width="920"
+        MinHeight="640" MinWidth="920"
         MaxHeight="700" MaxWidth="1120"
         WindowStyle="None"
         ShowTitleBar="False"
@@ -40,14 +40,14 @@
                 <ColumnDefinition Width="49*"/>
             </Grid.ColumnDefinitions>
 
-            <ProgressBar:ProgressBarView x:Name="ProgressBar" Grid.RowSpan="1" Grid.Row="3" Grid.ColumnSpan="2" LineToTransmit="{Binding VM_LineToTransmit}" RunAnimation="{Binding VM_RunAnimation}" Margin="0,10,0,0"/>
-            <Graph:GraphView x:Name="graph" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="1" Margin="5,55,13,45"/>
-            <Navigator:NavigatorStateView x:Name="Navigator" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Margin="56,200,56,39" />
-            <Data:DataInfoView x:Name="DataInfo"  Loaded="DataInfo_Loaded" Grid.RowSpan="2" Margin="522,54,-2,14" Grid.ColumnSpan="2"/>
-            <Button x:Name="changeAnomalyDetectorButton" FontFamily="Yu Gothic UI Semilight" BorderThickness="0"  Content="change anomaly detector" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.358,2.156" Height="40" Width="162" VerticalContentAlignment="Center" Click="changeAnomalyDetectorButton_Click" Margin="6,8,0,0" BorderBrush="#FF09F1F8" Background="#FFF0F5F4"/>
+            <ProgressBar:ProgressBarView x:Name="ProgressBar" Grid.Row="2" Grid.ColumnSpan="2" LineToTransmit="{Binding VM_LineToTransmit}" RunAnimation="{Binding VM_RunAnimation}" Margin="0,277,0,-4" Grid.RowSpan="2"/>
+            <Graph:GraphView x:Name="graph" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="1" Margin="3,53,15,12"/>
+            <Navigator:NavigatorStateView x:Name="Navigator" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Margin="56,193,56,9" />
+            <Data:DataInfoView x:Name="DataInfo"  Loaded="DataInfo_Loaded" Grid.RowSpan="2" Margin="518,62,2,25" Grid.ColumnSpan="2"/>
+            <Button x:Name="changeAnomalyDetectorButton" FontFamily="Yu Gothic UI Semilight" BorderThickness="0"  Content="change anomaly detector" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.358,2.156" Height="40" Width="162" VerticalContentAlignment="Center" Click="changeAnomalyDetectorButton_Click" Margin="6,4,0,0" BorderBrush="#FF09F1F8" Background="#FFF0F5F4"/>
             <Ellipse Fill="Red" Grid.Row="0" Grid.Column="1" Height="15" VerticalAlignment="Top" HorizontalAlignment="Right" Width="15" MouseLeftButtonDown="closeApp" Margin="0,2,4,0" />
             <Ellipse Fill="Yellow" Grid.Row="0" Grid.Column="1" Height="15" VerticalAlignment="Top" Margin="0,2,24,0" HorizontalAlignment="Right" Width="15" MouseLeftButtonDown="minimizeApp" />
-            <Button x:Name="returnToMenuButton" FontFamily="Yu Gothic UI Semilight" Content="return to menu" Margin="184,8,237,0" VerticalAlignment="Top" Click="returnToMenuButton_Click" Height="40"/>
+            <Button x:Name="returnToMenuButton" FontFamily="Yu Gothic UI Semilight" Content="return to menu" Margin="184,4,237,0" VerticalAlignment="Top" Click="returnToMenuButton_Click" Height="40"/>
 
         </Grid>
     </Border>

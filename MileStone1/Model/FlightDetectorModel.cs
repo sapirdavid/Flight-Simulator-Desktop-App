@@ -13,7 +13,7 @@ using System.Xml.Linq;
 using Transmitter;
 namespace MileStone1
 {
-    //model!
+    //model
     public class FlightDetectorModel : INotifyPropertyChanged
     {
         Transmit tr;
@@ -27,9 +27,7 @@ namespace MileStone1
         bool runAnimation = true;
         bool stopTransmitting = false;
         Thread t;
-        /***belong to NavigatorState****/
         double rudder, throttle, aileron, elevator, altimeter, airspeed, direction, pitch, roll, yaw;
-        /*******/
         //anomalies
         //anomalies[0][0].first is the first anomalie of 0 column with the column anomalies[0][0].first in line anomalies[0][0].second
         List<List<Tuple<int, int>>> anomaliesList = new List<List<Tuple<int, int>>>();

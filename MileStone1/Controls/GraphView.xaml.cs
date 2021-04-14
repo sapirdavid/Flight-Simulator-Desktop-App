@@ -88,23 +88,6 @@ namespace MileStone1.Controls
                             gvm.changeValues(prop);
                         }));
                     }
-                    if(e.PropertyName == "P")
-                    {
-
-                    }
-
-                    //if (e.PropertyName == "UpdateCircele")
-                    //{
-                    //    this.Dispatcher.Invoke((Action)(() =>
-                    //    {
-                    //        PropertyIndex prop = lbx_property_names.SelectedItem as PropertyIndex;
-                    //        Point p = this.gvm.Circels[prop.Id].center;
-                    //        float r = this.gvm.Circels[prop.Id].radaius;
-                    //        regLineGraph.Annotations.Add(new OxyPlot.Wpf.EllipseAnnotation { X = p.X, Y = p.Y, Width = r, Height = r, Fill = System.Windows.Media.Color.FromRgb(255, 255, 255), Stroke = System.Windows.Media.Color.FromRgb(0, 0, 0) });
-
-                    //    }));
-                    //}
-
                 };
             }
 

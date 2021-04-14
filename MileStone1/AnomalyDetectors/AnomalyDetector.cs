@@ -41,8 +41,7 @@ namespace MileStone1
 
     public class AnomalyDetector
     {
-        float correlationThreshold = -1; //defau
-                                         //no corrlation threshold
+        float correlationThreshold = -1; //default - no corrlation threshold
 
         public float CorrelationThreshold
         {

@@ -63,31 +63,6 @@ namespace MileStone1.Controls
                             Direction.Text = divm.VM_Direction.ToString("0.###");
                         }));
                     }
-                    /*
-                    else if (e.PropertyName == "VM_Pitch")
-                    {
-                        this.Dispatcher.Invoke((Action)(() =>
-                        {
-                            Pitch.Text = divm.VM_Pitch.ToString("0.###");
-                        }));
-
-                    }
-                    else if (e.PropertyName == "VM_Roll")
-                    {
-                        this.Dispatcher.Invoke((Action)(() =>
-                        {
-                            Roll.Text = divm.VM_Roll.ToString("0.###");
-                        }));
-                    }
-                    else if (e.PropertyName == "VM_Yaw")
-                    {
-                        this.Dispatcher.Invoke((Action)(() =>
-                        {
-                            Yaw.Text = divm.VM_Yaw.ToString("0.###");
-                        }));
-                    }
-                };
-                */
                 };
             }
         }
