@@ -7,7 +7,7 @@ With this application we can simulate a flight by using a designated simulator, 
 
 
 __Application open screen:__
-![openScreen](https://i.postimg.cc/W3s0FJ8f/open-window.jpg)
+![openScreen](https://i.postimg.cc/NFNKMn1S/app-screen.jpg)
 
 
 
