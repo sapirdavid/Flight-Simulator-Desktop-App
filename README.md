@@ -7,7 +7,7 @@ With this application we can simulate a flight by using a designated simulator, 
 
 
 __Application open screen:__
-![openScreen](https://i.postimg.cc/W3s0FJ8f/open-window.jpg)
+![openScreen](https://i.postimg.cc/NFNKMn1S/app-screen.jpg)
 
 
 
@@ -129,7 +129,7 @@ __UML and MVVM design pattern:__
 ![uml picture](https://i.postimg.cc/hj4pFYkj/uml.jpg)
 *you can find the full UML of the project inside the project.
 
-Furthere more, you can find [here](https://github.com/sapirdavid/MileStone1_DesktopApp/blob/master/MileStone1/Documentation/Flight%20Simulator%20-%20Documentation%20.pdf) more information regarding the project and it's classes.
+Furthermore, you can find [here](https://github.com/sapirdavid/MileStone1_DesktopApp/blob/master/MileStone1/Documentation/Flight%20Simulator%20-%20Documentation%20.pdf) more information regarding the project and it's classes.
 In addition, every ViewModel contains a Model instance, and every View contains ViewModel instance according to the MVVM design pattern. 
  
 
