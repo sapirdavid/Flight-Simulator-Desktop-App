@@ -5,6 +5,10 @@ __Introduction:__
 This project is a WPF applictaion which represents a flight simulation. 
 With this application we can simulate a flight by using a designated simulator, detect anomalies and receive information regarding the flight and it's features.
 
+You can find [here](https://www.youtube.com/watch?v=9mZjAORelmg&feature=youtu.be) the video of the project which demonstrates the features of the application and the connection to the Flight Gear.
+ 
+
+
 
 __Application open screen:__
 ![openScreen](https://i.postimg.cc/NFNKMn1S/app-screen.jpg)
