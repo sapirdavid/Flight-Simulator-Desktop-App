@@ -344,7 +344,14 @@ namespace MileStone1
                         var secondTime = DateTime.Now; ;
                         //update the time to wait Considering the past time
                         timeToWait = Math.Max(0, timeToWait - (int)(secondTime.Millisecond - firstTime.Millisecond));
-                        Thread.Sleep(timeToWait);
+                        try
+                        {
+                            Thread.Sleep(timeToWait);
+                        }
+                        catch (ThreadInterruptedException)
+                        {
+                            Thread.Sleep(100);
+                        }
                     }
                 }
 
