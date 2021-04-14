@@ -13,7 +13,7 @@ You can find [here](https://www.youtube.com/watch?v=9mZjAORelmg&feature=youtu.be
 
 
 __Application open screen:__
-![openScreen](https://i.postimg.cc/28KZF7GQ/app-screen.jpg)
+![openScreen](https://i.postimg.cc/NFNKMn1S/app-screen.jpg)
 
 
 
@@ -64,7 +64,7 @@ Moreover:
 
 
 __Features Implementation:__
-![UI picture](https://i.postimg.cc/LX76dcJB/app.jpg)
+![UI picture](https://i.postimg.cc/28KZF7GQ/app-screen.jpg)
 
 
 
