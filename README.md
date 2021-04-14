@@ -70,7 +70,7 @@ __Features Implementation:__
 
 __Project Structure:__
 
-![folders picture](https://i.postimg.cc/qvzrrbd1/folders.jpg)
+![folders picture](https://i.postimg.cc/3r1Csp86/folders.jpg)
 
 1)	AnomalyDetectors –
 responsible of the DLL loading and syncing to the project.
@@ -78,16 +78,14 @@ responsible of the DLL loading and syncing to the project.
 responsible of the view of each component (graphs, gauges, info boxes, joystick).
 Each logical part (such as the graphs part, data information , joystick) has a view model of its own.
 This folder contains the XAMLs of each component as described above and it's code behind. 
-3)	Dlls – 
-contains the dlls of the project.
-4)	Model –
+3)	Model –
 the main and only model of the project, implements the MVVM design pattern and its responsible of the business logic of the project.
 Contains the logic parts of the application such as parsing the files given, transmitting information, save and use information that is being used at the view models.
-5)	Tools – 
+4)	Tools – 
 This folder contains helper classes such as Transmitter class which is responsible of transmitting data (used in the model) and such as mostCorrelativeFinder which is responsible of finding the most correlative features.
-6)	ViewModel-
+5)	ViewModel-
 this folder contains the view models of each logical part as mentioned above. Each class connects the model to the view.  
-7)	Windows –
+6)	Windows –
 contains the Dashboard window which includes each logical part.
 
 __Installation requirements:__
@@ -133,7 +131,7 @@ __Example:__
 __UML and MVVM design pattern:__
 
 ![uml picture](https://i.postimg.cc/hj4pFYkj/uml.jpg)
-*you can find the full UML of the project inside the project.
+you can find the full UML of the project inside the project.
 
 Furthermore, you can find [here](https://github.com/sapirdavid/MileStone1_DesktopApp/blob/master/MileStone1/Documentation/Flight%20Simulator%20-%20Documentation%20.pdf) more information regarding the project and it's classes.
 In addition, every ViewModel contains a Model instance, and every View contains ViewModel instance according to the MVVM design pattern. 
